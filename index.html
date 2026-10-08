@@ -1,3 +1,616 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Vacarya Webinar</title></head>
-<body style="font-family:system-ui,sans-serif;display:grid;place-items:center;min-height:100vh;margin:0;background:#062F65;color:#fff"><p>Vacarya webinar page: coming soon.</p></body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Live Training | Vacarya</title>
+<meta name="description" content="Free live training with Aiden Weir: how high income earners build a profitable Airbnb business in 90 days, without buying property.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Live Training | Vacarya">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@700&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;padding:0;background:#fff}
+#vc-reg *{margin:0;padding:0;box-sizing:border-box}
+#vc-reg{
+  /* Vacarya brand: cyan #0CB4D6 + navy #062F65 (layout + type 1:1 with source) */
+  --navy:#062F65;--navy-2:#0A3B7C;--navy-3:#0F4A94;--ink:#0F172A;--muted:#5A6478;
+  --brand:#0CB4D6;--cyan:#0A9EBD;--cyan-d:#077A93;--ice:#7FE3F5;--cyan-l:#E7F7FB;--cyan-b:#BCE6F0;
+  --gold:#F5C451;--bg:#FFFFFF;--soft:#F4F6FA;--line:#E3E8EF;
+  --shadow:0 1px 2px rgba(6,47,101,.04),0 18px 40px -22px rgba(6,47,101,.28);
+  --shadow-lg:0 1px 2px rgba(6,47,101,.05),0 30px 60px -30px rgba(6,47,101,.40);
+  font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;
+  width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;overflow:hidden;-webkit-font-smoothing:antialiased}
+#vc-reg img{max-width:100%;display:block}
+#vc-reg .vc-wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+#vc-reg .vc-hl{color:var(--cyan)}
+#vc-reg .vc-nw{white-space:nowrap}
+#vc-reg .vc-center{text-align:center}
+#vc-reg .vc-show-m{display:none}
+
+/* IMAGE PLACEHOLDERS (swap for real images later) */
+#vc-reg .vc-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;
+  background:repeating-linear-gradient(135deg,#EEF3F8 0 14px,#E5ECF4 14px 28px);border:2px dashed #AFC0D4;
+  font-family:"Poppins",sans-serif;font-weight:700;font-size:15px;line-height:1.35;color:var(--navy);letter-spacing:0}
+#vc-reg .vc-ph small{display:block;font-size:12px;opacity:.75;margin-top:4px}
+#vc-reg .vc-ph-logo{position:relative;inset:auto;display:inline-flex;width:170px;height:34px;padding:0 8px;font-size:10.5px;border-width:1.5px;border-radius:6px}
+
+/* HEADER */
+#vc-reg .vc-header{display:flex;align-items:center;justify-content:center;padding:18px 22px;background:#fff;border-bottom:1px solid var(--line)}
+
+/* SECTIONS + TYPE */
+#vc-reg .vc-section{padding:88px 0;border-top:1px solid var(--line)}
+#vc-reg .vc-soft{background:#fff}
+#vc-reg .vc-kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--cyan-d);background:var(--cyan-l);border:1px solid var(--cyan-b);border-radius:999px;padding:7px 14px;margin-bottom:18px}
+#vc-reg .vc-kicker:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--brand)}
+#vc-reg h2{font-size:clamp(28px,4vw,42px);font-weight:900;line-height:1.12;letter-spacing:-1px;color:var(--navy);text-wrap:balance}
+#vc-reg .vc-sub{margin-top:14px;line-height:1.6}
+
+/* BUTTON */
+#vc-reg .vc-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;border:none;text-decoration:none;font-family:inherit;font-size:clamp(16px,1.6vw,18px);font-weight:800;letter-spacing:.2px;color:#fff;
+  background:linear-gradient(180deg,#14BCDD 0%,#0AA2C2 55%,#0886A3 100%);padding:20px 44px;border-radius:14px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 18px 34px -14px rgba(10,158,189,.75);transition:transform .15s ease,box-shadow .15s ease,filter .15s ease}
+#vc-reg .vc-btn:hover{transform:translateY(-2px);filter:brightness(1.05);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 24px 44px -14px rgba(10,158,189,.85)}
+#vc-reg .vc-btn-arrow{transition:transform .15s ease}
+#vc-reg .vc-btn:hover .vc-btn-arrow{transform:translateX(3px)}
+#vc-reg .vc-btn-note{font-size:13px;color:var(--muted);margin-top:12px;font-weight:600;letter-spacing:.3px}
+#vc-reg .vc-cta-row{margin-top:44px;text-align:center}
+
+/* HERO */
+#vc-reg .vc-hero{position:relative;padding:26px 0 76px;text-align:center;color:var(--ink);background:radial-gradient(760px 420px at 50% -8%,rgba(12,180,214,.13),transparent 70%),#fff}
+#vc-reg .vc-hero:before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(6,47,101,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(6,47,101,.045) 1px,transparent 1px);background-size:44px 44px;-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 30%,transparent 80%);mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 30%,transparent 80%)}
+#vc-reg .vc-hero .vc-wrap{position:relative}
+#vc-reg .vc-date{display:inline-flex;flex-wrap:wrap;justify-content:center;gap:6px 10px;align-items:center;font-size:13px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--cyan-d);background:var(--cyan-l);border:1px solid var(--cyan-b);border-radius:999px;padding:9px 18px}
+#vc-reg .vc-date i{font-style:normal;color:#9AA6B6}
+#vc-reg .vc-live{flex:0 0 8px;width:8px;height:8px;border-radius:50%;background:#FF5A5A;box-shadow:0 0 0 0 rgba(255,90,90,.6);animation:vcpulse 1.8s infinite}
+@keyframes vcpulse{0%{box-shadow:0 0 0 0 rgba(255,90,90,.55)}70%{box-shadow:0 0 0 9px rgba(255,90,90,0)}100%{box-shadow:0 0 0 0 rgba(255,90,90,0)}}
+#vc-reg .vc-hero h1{font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.1;letter-spacing:-1.4px;max-width:1000px;margin:24px auto 20px;color:var(--navy);text-wrap:balance}
+#vc-reg .vc-hero h1 .vc-hl{background:linear-gradient(90deg,#0CB4D6,#0A8FAE);-webkit-background-clip:text;background-clip:text;color:transparent}
+#vc-reg .vc-hero h1 .vc-money{color:var(--navy);white-space:nowrap;background:linear-gradient(180deg,transparent 62%,rgba(245,196,81,.55) 62%);padding:0 4px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+#vc-reg .vc-hero .vc-sub{max-width:720px;margin:0 auto;font-size:clamp(17px,2vw,20px);color:var(--muted);text-wrap:balance}
+#vc-reg .vc-cd-label{font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin:34px 0 12px}
+#vc-reg .vc-cd{display:flex;justify-content:center;gap:12px;margin-bottom:32px}
+#vc-reg .vc-cd-box{background:linear-gradient(180deg,var(--navy-3),var(--navy));border:1px solid var(--navy);border-radius:14px;padding:14px 6px;min-width:82px;box-shadow:0 14px 28px -16px rgba(6,47,101,.6)}
+#vc-reg .vc-cd-num{display:block;font-size:32px;font-weight:900;color:#fff;line-height:1.1;font-variant-numeric:tabular-nums;letter-spacing:-.5px}
+#vc-reg .vc-cd-unit{display:block;font-size:10.5px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:#9DB4D3;margin-top:6px}
+#vc-reg .vc-vip{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;max-width:620px;margin:22px auto 0;padding:14px 18px;border-radius:14px;background:linear-gradient(90deg,#FFF8E6,#FFFCF3);border:1px dashed #E9B949}
+#vc-reg .vc-vip-tag{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:900;letter-spacing:1.8px;text-transform:uppercase;color:var(--navy);background:var(--gold);border-radius:8px;padding:6px 10px}
+#vc-reg .vc-vip-text{font-size:15px;font-weight:600;color:var(--muted)}
+#vc-reg .vc-vip-text b{color:var(--navy);font-weight:800}
+#vc-reg .vc-vip-tix{display:inline-flex;gap:6px}
+#vc-reg .vc-tix{font-size:12px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;border-radius:999px;padding:5px 11px}
+#vc-reg .vc-tix-free{color:var(--cyan-d);background:var(--cyan-l);border:1px solid var(--cyan-b)}
+#vc-reg .vc-tix-vip{color:#9A6B00;background:#FFF1C9;border:1px solid #E9B949}
+#vc-reg .vc-rating{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 10px;margin-top:26px;font-size:15px;color:var(--muted)}
+#vc-reg .vc-rating b{color:var(--navy);font-weight:800}
+#vc-reg .vc-stars{color:#F2B01E;font-size:18px;letter-spacing:3px;line-height:1}
+#vc-reg .vc-proofline{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:16px}
+#vc-reg .vc-proofline span{font-size:14px;font-weight:600;color:var(--cyan-d);background:var(--cyan-l);border:1px solid var(--cyan-b);border-radius:999px;padding:8px 14px;white-space:nowrap}
+#vc-reg .vc-proofline b{font-weight:900;color:var(--cyan-d)}
+#vc-reg .vc-proofline i{font-style:normal}
+
+/* WALKTHROUGH CARDS */
+#vc-reg .vc-walk{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:46px}
+#vc-reg .vc-wcard{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);text-align:left;display:flex;flex-direction:column;transition:transform .2s ease,box-shadow .2s ease}
+#vc-reg .vc-wcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+#vc-reg .vc-wimg{height:210px;background:var(--soft);border-bottom:1px solid var(--line);overflow:hidden;position:relative}
+#vc-reg .vc-wbody{padding:26px 26px 30px}
+#vc-reg .vc-wcard h3{font-size:20px;font-weight:800;line-height:1.3;margin-bottom:10px;color:var(--navy);letter-spacing:-.3px}
+#vc-reg .vc-wcard p{font-size:15.5px;color:var(--muted);line-height:1.65}
+#vc-reg .vc-wcard p b{color:var(--navy)}
+#vc-reg .vc-wide{grid-column:1/-1;display:grid;grid-template-columns:1.05fr 1fr;align-items:stretch}
+#vc-reg .vc-wide .vc-wimg{height:auto;min-height:430px;border-bottom:none;border-right:1px solid var(--line)}
+#vc-reg .vc-wide .vc-wbody{padding:40px 40px;display:flex;flex-direction:column;justify-content:center}
+#vc-reg .vc-wide h3{font-size:24px}
+#vc-reg .vc-num{width:42px;height:42px;border-radius:12px;background:var(--cyan-l);border:1px solid var(--cyan-b);color:var(--cyan-d);font-weight:900;font-size:15px;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+
+/* HOST */
+#vc-reg .vc-host{display:grid;grid-template-columns:.8fr 1.2fr;gap:44px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:24px;padding:38px;box-shadow:var(--shadow-lg);text-align:left;margin-top:40px}
+#vc-reg .vc-host-photo{position:relative;aspect-ratio:1/1;border-radius:18px;overflow:hidden;background:linear-gradient(160deg,var(--navy),var(--navy-2));display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 6px var(--cyan-l),0 0 0 7px var(--cyan-b)}
+#vc-reg .vc-host-photo .vc-ph{border-radius:18px}
+#vc-reg .vc-initials{font-size:60px;font-weight:900;color:var(--ice)}
+#vc-reg .vc-host h3{font-size:clamp(24px,2.8vw,32px);line-height:1.2;font-weight:900;color:var(--navy);letter-spacing:-.8px;margin-bottom:14px}
+#vc-reg .vc-host p{font-size:16px;color:var(--muted);line-height:1.7;margin-bottom:12px}
+#vc-reg .vc-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}
+#vc-reg .vc-stat{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:14px 12px;text-align:center}
+#vc-reg .vc-stat b{display:block;font-size:22px;font-weight:900;color:var(--cyan-d);letter-spacing:-.5px}
+#vc-reg .vc-stat span{font-size:12px;color:var(--muted);font-weight:600}
+
+/* CASE STUDIES */
+#vc-reg .vc-cases{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:46px;text-align:left}
+#vc-reg .vc-case{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow-lg);display:flex;flex-direction:column}
+#vc-reg .vc-case-img{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--navy)}
+#vc-reg .vc-case-img .vc-ph{padding-bottom:84px}
+#vc-reg .vc-case-img:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(6,30,66,.88) 100%);pointer-events:none}
+#vc-reg .vc-case-who{position:absolute;left:22px;right:22px;bottom:18px;z-index:1;color:#fff}
+#vc-reg .vc-case-who b{display:block;font-size:20px;font-weight:900;letter-spacing:-.3px}
+#vc-reg .vc-case-who span{font-size:13px;font-weight:600;color:#C9D6E6}
+#vc-reg .vc-case-badge{position:absolute;top:16px;left:16px;z-index:1;font-size:11px;font-weight:900;letter-spacing:1.6px;text-transform:uppercase;color:var(--navy);background:#fff;border-radius:999px;padding:6px 11px}
+#vc-reg .vc-case-body{padding:26px 26px 28px;flex:1}
+#vc-reg .vc-case-big{font-size:clamp(28px,3.2vw,36px);font-weight:900;letter-spacing:-1px;line-height:1.1;color:var(--navy)}
+#vc-reg .vc-case-big em{font-style:normal;color:var(--cyan)}
+#vc-reg .vc-case-sub{display:inline-block;margin-top:10px;font-size:13.5px;font-weight:800;color:var(--cyan-d);background:var(--cyan-l);border:1px solid var(--cyan-b);border-radius:999px;padding:6px 12px}
+#vc-reg .vc-case ul{list-style:none;margin-top:20px;border-top:1px solid var(--line);padding-top:18px}
+#vc-reg .vc-case li{position:relative;padding-left:28px;font-size:15px;color:var(--muted);line-height:1.6;margin-bottom:10px}
+#vc-reg .vc-case li:before{content:"✓";position:absolute;left:0;top:1px;width:19px;height:19px;border-radius:50%;background:var(--cyan-l);color:var(--cyan-d);font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center}
+#vc-reg .vc-case li b{color:var(--navy)}
+#vc-reg .vc-disclaim{max-width:760px;margin:28px auto 0;font-size:13px;color:var(--muted);text-align:center;line-height:1.6;font-style:italic}
+
+/* FAQ */
+#vc-reg .vc-faq-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:36px;align-items:start;margin-top:44px;text-align:left}
+#vc-reg .vc-faq-photo{position:sticky;top:24px;border-radius:22px;overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--line)}
+#vc-reg .vc-faq-img{position:relative;width:100%;aspect-ratio:4/5}
+#vc-reg .vc-faq-img .vc-ph{padding-bottom:90px;border:none}
+#vc-reg .vc-faq-cap{position:absolute;left:14px;right:14px;bottom:14px;background:rgba(255,255,255,.94);backdrop-filter:blur(6px);border-radius:12px;padding:12px 14px;font-size:13.5px;font-weight:700;color:var(--navy);line-height:1.4}
+#vc-reg .vc-faq-cap span{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-top:2px}
+#vc-reg .vc-faq{text-align:left}
+#vc-reg .vc-faq details{background:#fff;border:1px solid var(--line);border-radius:14px;margin-bottom:10px;padding:0 22px;transition:box-shadow .2s ease,border-color .2s ease}
+#vc-reg .vc-faq details[open]{border-color:var(--cyan-b);box-shadow:var(--shadow)}
+#vc-reg .vc-faq summary{cursor:pointer;list-style:none;font-size:17px;font-weight:800;color:var(--navy);padding:19px 36px 19px 0;position:relative}
+#vc-reg .vc-faq summary::-webkit-details-marker{display:none}
+#vc-reg .vc-faq summary:after{content:"+";position:absolute;right:0;top:15px;width:26px;height:26px;border-radius:8px;background:var(--cyan-l);color:var(--cyan-d);font-size:18px;font-weight:800;display:flex;align-items:center;justify-content:center}
+#vc-reg .vc-faq details[open] summary:after{content:"−"}
+#vc-reg .vc-faq details p{font-size:15.5px;color:var(--muted);line-height:1.65;padding-bottom:20px}
+
+/* FINAL CTA */
+#vc-reg .vc-final{position:relative;background:radial-gradient(700px 340px at 50% 0%,rgba(12,180,214,.10),transparent 72%),#fff}
+#vc-reg .vc-final-card{display:grid;gap:0;align-items:stretch;background:#fff;border:1px solid var(--line);border-radius:26px;overflow:hidden;box-shadow:var(--shadow-lg);margin:0 auto;grid-template-columns:1fr;max-width:760px}
+#vc-reg .vc-final-body{display:flex;flex-direction:column;justify-content:center;text-align:center;align-items:center;padding:56px 40px}
+#vc-reg .vc-final-body .vc-cta-row{margin-top:30px;text-align:center}
+#vc-reg .vc-final-when{margin-top:14px;font-size:16px;color:var(--muted)}
+#vc-reg .vc-final-when b{color:var(--navy)}
+#vc-reg .vc-eyebrow{font-size:13px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan-d);margin-bottom:14px}
+
+/* MODAL */
+#vc-reg .vc-modal{position:fixed;inset:0;z-index:2147483000;display:none;align-items:center;justify-content:center;padding:16px}
+#vc-reg .vc-modal.vc-open{display:flex}
+#vc-reg .vc-modal-bg{position:absolute;inset:0;background:rgba(4,22,48,.70);backdrop-filter:blur(5px)}
+#vc-reg .vc-modal-card{position:relative;width:100%;max-width:520px;max-height:94vh;overflow-y:auto;background:#fff;border-radius:20px;padding:28px 22px;box-shadow:0 40px 90px -20px rgba(6,30,66,.55)}
+#vc-reg .vc-modal-x{position:absolute;top:12px;right:12px;width:34px;height:34px;border:none;cursor:pointer;border-radius:9px;background:var(--soft);color:var(--navy);font-size:22px;line-height:1;font-family:inherit}
+#vc-reg .vc-modal-head{text-align:center;margin-bottom:12px}
+#vc-reg .vc-modal-title{font-size:26px;font-weight:900;color:var(--navy);letter-spacing:-.6px;margin-top:4px}
+#vc-reg .vc-modal-note{font-size:14px;color:var(--muted);margin-top:4px}
+@media (min-width:901px) and (min-height:820px){#vc-reg .vc-modal-card{transform:scale(1.15);max-height:calc(94vh/1.15)}}
+@media (min-width:901px) and (min-height:1000px){#vc-reg .vc-modal-card{transform:scale(1.3);max-height:calc(94vh/1.3)}}
+
+/* FORM (placeholder styled like the GHL form; swap for the GHL embed later) */
+#vc-reg .vc-form{padding:30px 6px 4px;text-align:left}
+#vc-reg .vc-field{margin-bottom:16px}
+#vc-reg .vc-form input[type=text],#vc-reg .vc-form input[type=email],#vc-reg .vc-form input[type=tel]{width:100%;background:#fff;color:#101828;border:1px solid #D0D5DD;border-radius:7px;padding:15px 10px;box-shadow:0 1px 2px 0 rgba(16,24,40,.05);font-family:"Inter",sans-serif;font-size:16px;font-weight:400;outline:none;transition:border-color .15s}
+#vc-reg .vc-form input::placeholder{color:#667085;opacity:1}
+#vc-reg .vc-form input:hover,#vc-reg .vc-form input:focus{border-color:var(--cyan-b)}
+#vc-reg .vc-form input.vc-err{border-color:#F04438}
+#vc-reg .vc-q{display:block;color:#344054;font-size:14px;font-weight:700;margin-bottom:10px;line-height:1.4}
+#vc-reg .vc-radio{display:flex;align-items:center;gap:10px;color:#344054;font-size:14px;font-weight:500;line-height:1.4;padding:5px 0;cursor:pointer}
+#vc-reg .vc-radio input{width:16px;height:16px;flex:0 0 16px;accent-color:var(--cyan);margin:0}
+#vc-reg .vc-group.vc-err .vc-q{color:#D92D20}
+#vc-reg .vc-submit{width:100%;margin-top:15px;border:0;cursor:pointer;border-radius:15px;padding:12px 0 15px;background:#0AA2C2;color:#fff;font-family:"Inter",sans-serif;font-size:18px;font-weight:700;letter-spacing:.2px;box-shadow:0 1px 2px 0 rgba(16,24,40,.05);transition:filter .15s}
+#vc-reg .vc-submit:hover{filter:brightness(1.06)}
+#vc-reg .vc-submit[disabled]{opacity:.7;cursor:wait}
+#vc-reg .vc-form-ok{display:none;text-align:center;padding:30px 6px 10px}
+#vc-reg .vc-form-ok b{display:block;font-size:20px;font-weight:900;color:var(--navy);margin-bottom:6px}
+#vc-reg .vc-form-ok span{font-size:15px;color:var(--muted)}
+
+/* MOBILE STICKY CTA */
+#vc-reg .vc-sticky{position:fixed;left:0;right:0;bottom:0;z-index:2147482000;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:10px 14px;box-shadow:0 -8px 24px -12px rgba(6,47,101,.25);transform:translateY(110%);visibility:hidden;transition:transform .25s ease,visibility .25s}
+#vc-reg .vc-sticky.vc-on{transform:none;visibility:visible}
+#vc-reg .vc-sticky .vc-btn{width:100%;padding:15px 20px}
+
+/* FOOTER */
+#vc-reg .vc-footer{background:#fff;color:#8592A6;padding:40px 0 90px;font-size:12.5px;line-height:1.7;text-align:center;border-top:1px solid var(--line)}
+#vc-reg .vc-footer p{max-width:900px;margin:0 auto 10px}
+
+@media (max-width:900px){
+  #vc-reg .vc-walk{grid-template-columns:1fr}
+  #vc-reg .vc-cases{grid-template-columns:1fr;max-width:560px;margin-left:auto;margin-right:auto}
+  #vc-reg .vc-host{grid-template-columns:1fr;padding:26px;gap:30px}
+  #vc-reg .vc-host-photo{max-width:320px;width:100%;margin:0 auto}
+  #vc-reg .vc-wide{grid-template-columns:1fr}
+  #vc-reg .vc-wide .vc-wimg{min-height:0;height:230px;border-right:none;border-bottom:1px solid var(--line)}
+  #vc-reg .vc-faq-grid{grid-template-columns:1fr;max-width:640px;margin-left:auto;margin-right:auto}
+  #vc-reg .vc-faq-photo{position:relative;top:0}
+  #vc-reg .vc-faq-img{aspect-ratio:16/10}
+  #vc-reg .vc-final-card{max-width:560px}
+  #vc-reg .vc-final-body{padding:34px 28px}
+}
+@media (max-width:600px){
+  #vc-reg .vc-section{padding:60px 0}
+  #vc-reg .vc-header{padding:13px 18px}
+  #vc-reg .vc-cd{gap:8px;margin-bottom:22px}
+  #vc-reg .vc-cd-box{min-width:66px;padding:11px 4px}
+  #vc-reg .vc-cd-num{font-size:24px}
+  #vc-reg .vc-cd-label{margin:22px 0 10px}
+  #vc-reg .vc-btn{width:100%;padding:18px 20px}
+  #vc-reg .vc-date{flex-wrap:nowrap;white-space:nowrap;font-size:10.5px;letter-spacing:.3px;gap:5px;padding:8px 12px;max-width:100%}
+  #vc-reg .vc-hero{padding:14px 0 52px}
+  #vc-reg .vc-hero h1{font-size:6.6vw;letter-spacing:-.6px;line-height:1.18;margin:16px auto 12px}
+  #vc-reg .vc-hero h1 .vc-money{white-space:normal}
+  #vc-reg .vc-hero .vc-sub{font-size:14px;line-height:1.5}
+  #vc-reg .vc-vip{flex-direction:column;gap:8px;padding:12px 14px}
+  #vc-reg .vc-vip-text{font-size:14px}
+  #vc-reg .vc-rating{flex-wrap:nowrap;white-space:nowrap;font-size:12.5px;gap:6px}
+  #vc-reg .vc-stars{font-size:15px;letter-spacing:2px}
+  #vc-reg .vc-proofline{flex-wrap:nowrap;gap:6px}
+  #vc-reg .vc-hide-m{display:none}
+  #vc-reg .vc-show-m{display:inline}
+  #vc-reg .vc-walk-h{font-size:23px;white-space:nowrap;letter-spacing:-.6px}
+  #vc-reg .vc-proofline span{font-size:11px;padding:6px 8px}
+  #vc-reg .vc-stats{grid-template-columns:1fr;gap:8px}
+  #vc-reg .vc-stat{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;text-align:left}
+  #vc-reg .vc-stat b{font-size:19px}
+  #vc-reg .vc-stat span{font-size:13.5px}
+  #vc-reg .vc-wide .vc-wbody{padding:26px}
+  #vc-reg .vc-host p{margin-bottom:18px}
+  #vc-reg .vc-case-body{padding:22px 20px 24px}
+  #vc-reg .vc-final-body{padding:36px 20px}
+  #vc-reg .vc-ph{font-size:13.5px}
+}
+@media (min-width:901px){#vc-reg .vc-sticky{display:none!important}}
+@media (prefers-reduced-motion:reduce){#vc-reg *{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="vc-reg">
+
+  <header class="vc-header">
+    <!-- LOGO: replace with the dark wordmark <img> (180px wide desktop / 100px mobile, height blank) -->
+    <div class="vc-ph vc-ph-logo">VACARYA LOGO (DARK WORDMARK)</div>
+  </header>
+
+  <!-- HERO -->
+  <section class="vc-hero">
+    <div class="vc-wrap">
+      <div class="vc-date"><span class="vc-live" aria-hidden="true"></span> <span class="vc-hide-m">Free live training</span><i class="vc-hide-m">·</i> <span><span class="vc-show-m">Live </span>This</span> <span data-vc-date>Wednesday, Oct 14</span> <i>·</i> <span data-vc-time>7:00 PM EDT</span></div>
+      <h1>Give Me 1 Hour Live, And I'll Show You How To <span class="vc-hl">Build A <span class="vc-nw">Profitable Airbnb</span> Business In 90&nbsp;Days</span> <span class="vc-money">Without Buying Property</span></h1>
+      <p class="vc-sub">Without any hosting experience, quitting your job, or running the day-to-day yourself.</p>
+      <div class="vc-cd-label">Live training starts in</div>
+      <div class="vc-cd" id="vcCountdown">
+        <div class="vc-cd-box"><span class="vc-cd-num" data-cd="days">00</span><span class="vc-cd-unit">Days</span></div>
+        <div class="vc-cd-box"><span class="vc-cd-num" data-cd="hours">00</span><span class="vc-cd-unit">Hours</span></div>
+        <div class="vc-cd-box"><span class="vc-cd-num" data-cd="mins">00</span><span class="vc-cd-unit">Mins</span></div>
+        <div class="vc-cd-box"><span class="vc-cd-num" data-cd="secs">00</span><span class="vc-cd-unit">Secs</span></div>
+      </div>
+      <button type="button" class="vc-btn" data-vc-open id="vcHeroBtn">Save My Seat <span class="vc-btn-arrow">→</span></button>
+      <div class="vc-btn-note">Free · Live · No replay</div>
+
+      <div class="vc-vip">
+        <span class="vc-vip-tag">★ VIP Options</span>
+        <span class="vc-vip-text">Both <b>free</b> and <b>VIP</b> tickets available.</span>
+        <span class="vc-vip-tix"><span class="vc-tix vc-tix-free">Free</span><span class="vc-tix vc-tix-vip">VIP</span></span>
+      </div>
+      <div class="vc-rating">
+        <span class="vc-stars" aria-hidden="true">★★★★★</span>
+        <b>90.1% 5-star</b>
+        <span>65,000+ guest stays</span>
+      </div>
+      <div class="vc-proofline">
+        <span>Hosted by <b>Aiden Weir</b></span>
+        <span><b>400</b> <i class="vc-hide-m">active </i>properties</span>
+        <span><b>$12.5M</b> collected</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT AIDEN WALKS THROUGH -->
+  <section class="vc-section">
+    <div class="vc-wrap vc-center">
+      <span class="vc-kicker">On the live training</span>
+      <h2 class="vc-walk-h">What Aiden Walks Through <span class="vc-hl">Live</span></h2>
+      <div class="vc-walk">
+        <div class="vc-wcard">
+          <div class="vc-wimg"><div class="vc-ph">IMAGE: Map of Vacarya properties across the U.S. &amp; Canada</div></div>
+          <div class="vc-wbody">
+            <div class="vc-num">01</div>
+            <h3>Why You Don't Need To Own Property</h3>
+            <p><b>Most people think Airbnb means buying a house.</b> I'll show you how our operators lease homes instead and keep their cash free to grow.</p>
+          </div>
+        </div>
+        <div class="vc-wcard">
+          <div class="vc-wimg"><div class="vc-ph">IMAGE: Screenshot of a listing's bookings / nightly rate dashboard</div></div>
+          <div class="vc-wbody">
+            <div class="vc-num">02</div>
+            <h3>How We Know A Property Will Book Before We Sign</h3>
+            <p>See how we check demand, nightly rates and occupancy on real listings so you know what to pursue and what to pass on.</p>
+          </div>
+        </div>
+        <div class="vc-wcard">
+          <div class="vc-wimg"><div class="vc-ph">IMAGE: Furnished Vacarya unit, ready for guests</div></div>
+          <div class="vc-wbody">
+            <div class="vc-num">03</div>
+            <h3>The Done-For-You Model, End To End</h3>
+            <p>From finding the unit to furnishing, listing and guest care. Live in 5 to 15 days, with 500+ launches behind it.</p>
+          </div>
+        </div>
+        <div class="vc-wcard vc-wide">
+          <div class="vc-wimg"><div class="vc-ph">IMAGE: Aiden on a live training, answering questions</div></div>
+          <div class="vc-wbody">
+            <div class="vc-num">04</div>
+            <h3>Bring Your Toughest Questions To The Live Q&amp;A</h3>
+            <p>Aiden answers the hard ones live: saturation, city regulations, and "if it's so good, why share it?" Plus how our 90-day and 12-month guarantees work.</p>
+          </div>
+        </div>
+      </div>
+      <div class="vc-cta-row">
+        <button type="button" class="vc-btn" data-vc-open>Save My Seat <span class="vc-btn-arrow">→</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOST -->
+  <section class="vc-section vc-soft">
+    <div class="vc-wrap vc-center">
+      <span class="vc-kicker">Your host</span>
+      <h2>Meet Aiden Weir</h2>
+      <div class="vc-host">
+        <div class="vc-host-photo">
+          <span class="vc-initials">AW</span>
+          <div class="vc-ph">IMAGE: Aiden Weir headshot (square)</div>
+        </div>
+        <div>
+          <h3>400 Active Airbnb Properties</h3>
+          <p>I'm an operator, not a guru. I built my own short-term rental company to multiple seven figures before co-founding Vacarya.</p>
+          <p>Today we run <b class="vc-hl">400 active properties and back 100+ operators</b> across the U.S. and Canada.</p>
+          <p>Last year our properties <b class="vc-hl">collected $12.5M across 65,000+ guest stays.</b></p>
+          <p>This <span data-vc-day>Wednesday</span>, I'll show you exactly how you can launch your first or next profitable Airbnb <b class="vc-hl">without buying property.</b></p>
+          <div class="vc-stats">
+            <div class="vc-stat"><b>400</b><span>Active properties</span></div>
+            <div class="vc-stat"><b>$12.5M</b><span>Collected last year</span></div>
+            <div class="vc-stat"><b>100+</b><span>Operators we back</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="vc-section">
+    <div class="vc-wrap vc-center">
+      <span class="vc-kicker">Operator results</span>
+      <h2>What this looks like for people I work with</h2>
+      <div class="vc-cases">
+        <article class="vc-case">
+          <div class="vc-case-img">
+            <div class="vc-ph">IMAGE: Kajana D. photo</div>
+            <span class="vc-case-badge">Case study</span>
+            <div class="vc-case-who"><b>Kajana D.</b><span>Vacarya operator, Mississauga, ON</span></div>
+          </div>
+          <div class="vc-case-body">
+            <div class="vc-case-big"><em>21 Airbnbs</em> in 2 years</div>
+            <span class="vc-case-sub">Started after being let go</span>
+            <ul>
+              <li>Was <b>let go from her job</b> two years ago.</li>
+              <li>Got her first unit <b>live in 15 days</b> with Vacarya.</li>
+              <li>Now runs <b>21 Airbnb properties</b> without owning them.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="vc-case">
+          <div class="vc-case-img">
+            <div class="vc-ph">IMAGE: Josh C. photo</div>
+            <span class="vc-case-badge">Case study</span>
+            <div class="vc-case-who"><b>Josh C.</b><span>Vacarya operator, Hamilton, ON</span></div>
+          </div>
+          <div class="vc-case-body">
+            <div class="vc-case-big"><em>25 units</em> and growing</div>
+            <span class="vc-case-sub">About $90,000/mo in bookings</span>
+            <ul>
+              <li>First unit <b>live in 13 days</b>.</li>
+              <li>Scaled to <b>25 units</b> without buying property.</li>
+              <li>Brings in about <b>$90,000 a month</b>.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+      <p class="vc-disclaim">These are some of our best results, not typical ones. Most people won't grow this fast. Your results depend on your capital, your market and the work you put in.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="vc-section vc-soft">
+    <div class="vc-wrap vc-center">
+      <span class="vc-kicker">Questions</span>
+      <h2>Before you save your seat</h2>
+      <div class="vc-faq-grid">
+        <div class="vc-faq-photo">
+          <div class="vc-faq-img"><div class="vc-ph">IMAGE: Aiden Weir on a call / at a Vacarya property</div></div>
+          <div class="vc-faq-cap">Bring your questions. I answer them live.<span>Aiden Weir, Co-Founder, Vacarya</span></div>
+        </div>
+        <div class="vc-faq">
+          <details><summary>Is it really live?</summary><p>Yes. I run it live, share my screen and answer questions at the end. There's no replay.</p></details>
+          <details><summary>Do I need to buy property?</summary><p>No. Our operators lease homes and run them as Airbnbs, so your money goes into launching the business, not a down payment.</p></details>
+          <details><summary>How much money do I need?</summary><p>It depends on the city and the size of the unit. On the training I'll walk through real setup costs so you know your number.</p></details>
+          <details><summary>Do I need experience?</summary><p>No. The training starts from your very first unit.</p></details>
+          <details><summary>What should I bring?</summary><p>A computer if you can, since I'll be sharing my screen. And your toughest question about Airbnb. I answer them live.</p></details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="vc-section vc-final">
+    <div class="vc-wrap">
+      <div class="vc-final-card">
+        <div class="vc-final-body">
+          <div class="vc-eyebrow">Live · Free · One Hour</div>
+          <h2>Launch Your First Or Next Profitable Airbnb Without Buying Property</h2>
+          <p class="vc-final-when">Live <b data-vc-date>Wednesday, Oct 14</b> at <b data-vc-time>7:00 PM EDT</b>.</p>
+          <div class="vc-cta-row">
+            <button type="button" class="vc-btn" data-vc-open>Save My Seat <span class="vc-btn-arrow">→</span></button>
+            <div class="vc-btn-note">Free · Live · Seats are limited</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="vc-footer">
+    <div class="vc-wrap">
+      <p>Vacarya is an independent short-term rental business and education company and is not affiliated with or endorsed by Airbnb. Results shown are from specific operators and are not typical or guaranteed. Nothing here is financial, legal, investment or business advice. Guarantees are subject to full written terms.</p>
+      <p>This website is not part of the Facebook website or Facebook Inc. Additionally, this site is not endorsed by Facebook in any way. Facebook is a trademark of Meta Platforms, Inc.</p>
+      <p>© 2026 Vacarya Academy LP · All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <!-- MODAL -->
+  <div class="vc-modal" id="vcModal" aria-hidden="true">
+    <div class="vc-modal-bg" data-vc-close></div>
+    <div class="vc-modal-card" role="dialog" aria-modal="true" aria-label="Save your seat">
+      <button type="button" class="vc-modal-x" data-vc-close aria-label="Close">×</button>
+      <div class="vc-modal-head">
+        <span class="vc-kicker" style="margin-bottom:8px">Free live training</span>
+        <div class="vc-modal-title">Save your seat</div>
+        <p class="vc-modal-note"><span data-vc-date>Wednesday, Oct 14</span> at <span data-vc-time>7:00 PM EDT</span></p>
+      </div>
+
+      <!-- FORM SLOT: placeholder form. Replace this <form> with the GHL form embed when ready. -->
+      <form class="vc-form" id="vcForm" novalidate>
+        <div class="vc-field"><input type="text" name="first_name" placeholder="First Name*" autocomplete="given-name" required></div>
+        <div class="vc-field"><input type="email" name="email" placeholder="Email Address*" autocomplete="email" required></div>
+        <div class="vc-field"><input type="tel" name="phone" placeholder="Phone Number*" autocomplete="tel" required></div>
+        <div class="vc-field vc-group" data-group="stage">
+          <span class="vc-q">Where are you at with Airbnb right now?</span>
+          <label class="vc-radio"><input type="radio" name="stage" value="I'm looking to launch my first Airbnb"> I'm looking to launch my first Airbnb</label>
+          <label class="vc-radio"><input type="radio" name="stage" value="I already run Airbnbs and want to grow"> I already run Airbnbs and want to grow</label>
+          <label class="vc-radio"><input type="radio" name="stage" value="I'm looking to book a stay, not run a business"> I'm looking to book a stay, not run a business</label>
+        </div>
+        <div class="vc-field vc-group" data-group="capital">
+          <span class="vc-q">How much capital do you have to invest in your Airbnb business?</span>
+          <label class="vc-radio"><input type="radio" name="capital" value="Under $10,000" data-min="0"> Under $10,000</label>
+          <label class="vc-radio"><input type="radio" name="capital" value="$10,000–$24,999" data-min="10000"> $10,000–$24,999</label>
+          <label class="vc-radio"><input type="radio" name="capital" value="$25,000–$49,999" data-min="25000"> $25,000–$49,999</label>
+          <label class="vc-radio"><input type="radio" name="capital" value="$50,000–$99,999" data-min="50000"> $50,000–$99,999</label>
+          <label class="vc-radio"><input type="radio" name="capital" value="$100,000+" data-min="100000"> $100,000+</label>
+        </div>
+        <button type="submit" class="vc-submit">CLAIM YOUR FREE TICKET</button>
+      </form>
+      <div class="vc-form-ok" id="vcFormOk"><b>You're in.</b><span>Check your email for your seat details.</span></div>
+    </div>
+  </div>
+
+  <!-- MOBILE STICKY CTA -->
+  <div class="vc-sticky" id="vcSticky">
+    <button type="button" class="vc-btn" data-vc-open>Save My Seat <span class="vc-btn-arrow">→</span></button>
+  </div>
+</div>
+
+<script>
+(function(){
+  /* ---------- SETTINGS ---------- */
+  var TZ = 'America/Toronto';
+  var WEBINAR_WEEKDAY = 3;      // 0=Sun ... 3=Wed
+  var WEBINAR_HOUR = 19, WEBINAR_MIN = 0;   // 7:00 PM Toronto
+  var NEXT_PAGE_URL = '';       // page 2 (VIP) URL goes here later; blank = show "You're in" message
+  var QUALIFIED_MIN_CAPITAL = 25000; // placeholder cutoff, Aiden to confirm
+
+  /* ---------- TIME HELPERS (always Toronto time, whatever the visitor's zone) ---------- */
+  function parts(date){
+    var p = {};
+    new Intl.DateTimeFormat('en-US',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23',weekday:'short'})
+      .formatToParts(date).forEach(function(x){p[x.type]=x.value;});
+    return p;
+  }
+  function tzOffset(date){
+    var p = parts(date);
+    var asUTC = Date.UTC(+p.year, +p.month-1, +p.day, +p.hour, +p.minute, +p.second);
+    return asUTC - Math.floor(date.getTime()/1000)*1000;
+  }
+  function zoned(y,m,d,h,mi){
+    var guess = Date.UTC(y,m,d,h,mi);
+    var t = guess - tzOffset(new Date(guess));
+    return new Date(guess - tzOffset(new Date(t)));
+  }
+  function nextWebinar(){
+    var now = new Date(), p = parts(now);
+    var days = {Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+    var add = (WEBINAR_WEEKDAY - days[p.weekday] + 7) % 7;
+    var base = new Date(Date.UTC(+p.year, +p.month-1, +p.day + add));
+    var t = zoned(base.getUTCFullYear(), base.getUTCMonth(), base.getUTCDate(), WEBINAR_HOUR, WEBINAR_MIN);
+    if (t.getTime() <= now.getTime()) {
+      base = new Date(Date.UTC(+p.year, +p.month-1, +p.day + add + 7));
+      t = zoned(base.getUTCFullYear(), base.getUTCMonth(), base.getUTCDate(), WEBINAR_HOUR, WEBINAR_MIN);
+    }
+    return t;
+  }
+
+  var target = nextWebinar();
+  var dateTxt = new Intl.DateTimeFormat('en-US',{timeZone:TZ,weekday:'long',month:'short',day:'numeric'}).format(target);
+  var dayTxt  = new Intl.DateTimeFormat('en-US',{timeZone:TZ,weekday:'long'}).format(target);
+  var timeTxt = new Intl.DateTimeFormat('en-US',{timeZone:TZ,hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(target);
+  document.querySelectorAll('[data-vc-date]').forEach(function(el){el.textContent = dateTxt;});
+  document.querySelectorAll('[data-vc-day]').forEach(function(el){el.textContent = dayTxt;});
+  document.querySelectorAll('[data-vc-time]').forEach(function(el){el.textContent = timeTxt;});
+
+  /* ---------- COUNTDOWN ---------- */
+  var cd = {};
+  document.querySelectorAll('[data-cd]').forEach(function(el){cd[el.getAttribute('data-cd')] = el;});
+  function pad(n){return (n<10?'0':'') + n;}
+  function tick(){
+    var diff = Math.max(0, target.getTime() - Date.now());
+    if (diff === 0) { target = nextWebinar(); }
+    var s = Math.floor(diff/1000);
+    cd.days.textContent  = pad(Math.floor(s/86400));
+    cd.hours.textContent = pad(Math.floor(s%86400/3600));
+    cd.mins.textContent  = pad(Math.floor(s%3600/60));
+    cd.secs.textContent  = pad(s%60);
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* ---------- MODAL ---------- */
+  var modal = document.getElementById('vcModal');
+  var sticky = document.getElementById('vcSticky');
+  function openModal(){
+    modal.classList.add('vc-open'); modal.setAttribute('aria-hidden','false');
+    document.documentElement.style.overflow = 'hidden';
+    sticky.classList.remove('vc-on');
+    var first = modal.querySelector('input'); if (first) setTimeout(function(){first.focus();}, 50);
+  }
+  function closeModal(){
+    modal.classList.remove('vc-open'); modal.setAttribute('aria-hidden','true');
+    document.documentElement.style.overflow = '';
+    onScroll();
+  }
+  document.querySelectorAll('[data-vc-open]').forEach(function(b){b.addEventListener('click', openModal);});
+  document.querySelectorAll('[data-vc-close]').forEach(function(b){b.addEventListener('click', closeModal);});
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && modal.classList.contains('vc-open')) closeModal(); });
+
+  /* ---------- MOBILE STICKY: shows once the hero button scrolls away ---------- */
+  var heroBtn = document.getElementById('vcHeroBtn');
+  function onScroll(){
+    if (modal.classList.contains('vc-open')) return;
+    var r = heroBtn.getBoundingClientRect();
+    sticky.classList.toggle('vc-on', r.bottom < 0);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  /* ---------- PLACEHOLDER FORM ---------- */
+  var form = document.getElementById('vcForm');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var ok = true;
+    ['first_name','email','phone'].forEach(function(n){
+      var el = form.elements[n], v = el.value.trim();
+      var bad = !v || (n === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) || (n === 'phone' && v.replace(/\D/g,'').length < 7);
+      el.classList.toggle('vc-err', bad); if (bad) ok = false;
+    });
+    form.querySelectorAll('.vc-group').forEach(function(g){
+      var picked = g.querySelector('input:checked');
+      g.classList.toggle('vc-err', !picked); if (!picked) ok = false;
+    });
+    if (!ok) return;
+
+    var cap = form.querySelector('input[name=capital]:checked');
+    var stage = form.querySelector('input[name=stage]:checked').value;
+    var qualified = +cap.getAttribute('data-min') >= QUALIFIED_MIN_CAPITAL && stage.indexOf('book a stay') === -1;
+    // Meta pixel hook (Rehan to wire): fire only for qualified opt-ins
+    // if (qualified && window.fbq) fbq('trackCustom', 'QualifiedOptIn');
+    window.vcLead = {qualified: qualified, capital: cap.value, stage: stage};
+
+    if (NEXT_PAGE_URL) { window.location.href = NEXT_PAGE_URL; return; }
+    form.style.display = 'none';
+    document.getElementById('vcFormOk').style.display = 'block';
+  });
+})();
+</script>
+</body>
+</html>
