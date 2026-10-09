@@ -16,7 +16,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@700&display=swap" rel="stylesheet">
 <style>
 html,body{margin:0;padding:0;background:#fff}
-#vc-reg *{margin:0;padding:0;box-sizing:border-box}
+#vc-reg *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+#vc-reg button,#vc-reg summary,#vc-reg label{-webkit-user-select:none;user-select:none;touch-action:manipulation}
+#vc-reg :focus{outline:none}
+#vc-reg :focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:10px}
 #vc-reg{
   /* Vacarya brand: cyan #0CB4D6 + navy #062F65 (layout + type 1:1 with source) */
   --navy:#062F65;--navy-2:#0A3B7C;--navy-3:#0F4A94;--ink:#0F172A;--muted:#5A6478;
@@ -154,6 +157,7 @@ html,body{margin:0;padding:0;background:#fff}
 #vc-reg .vc-faq details[open]{border-color:var(--cyan-b);box-shadow:var(--shadow)}
 #vc-reg .vc-faq summary{cursor:pointer;list-style:none;font-size:17px;font-weight:800;color:var(--navy);padding:19px 36px 19px 0;position:relative}
 #vc-reg .vc-faq summary::-webkit-details-marker{display:none}
+#vc-reg .vc-faq summary:active{opacity:.75}
 #vc-reg .vc-faq summary:after{content:"+";position:absolute;right:0;top:15px;width:26px;height:26px;border-radius:8px;background:var(--cyan-l);color:var(--cyan-d);font-size:18px;font-weight:800;display:flex;align-items:center;justify-content:center}
 #vc-reg .vc-faq details[open] summary:after{content:"−"}
 #vc-reg .vc-faq details p{font-size:15.5px;color:var(--muted);line-height:1.65;padding-bottom:20px}
