@@ -104,6 +104,9 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 #vc-reg .vc-wcard{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);text-align:left;display:flex;flex-direction:column;transition:transform .2s ease,box-shadow .2s ease}
 #vc-reg .vc-wcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 #vc-reg .vc-wimg{height:210px;background:var(--soft);border-bottom:1px solid var(--line);overflow:hidden;position:relative}
+#vc-reg .vc-wimg img{width:100%;height:100%;object-fit:cover;object-position:top left}
+#vc-reg .vc-wimg img.vc-fill{object-position:center}
+#vc-reg .vc-wimg img.vc-fit{object-fit:contain;object-position:center;background:#F2F6FA;padding:10px}
 #vc-reg .vc-wbody{padding:26px 26px 30px}
 #vc-reg .vc-wcard h3{font-size:20px;font-weight:800;line-height:1.3;margin-bottom:10px;color:var(--navy);letter-spacing:-.3px}
 #vc-reg .vc-wcard p{font-size:15.5px;color:var(--muted);line-height:1.65}
@@ -117,7 +120,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 /* HOST */
 #vc-reg .vc-host{display:grid;grid-template-columns:.8fr 1.2fr;gap:44px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:24px;padding:38px;box-shadow:var(--shadow-lg);text-align:left;margin-top:40px}
 #vc-reg .vc-host-photo{position:relative;aspect-ratio:1/1;border-radius:18px;overflow:hidden;background:linear-gradient(160deg,var(--navy),var(--navy-2));display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 6px var(--blue-l),0 0 0 7px var(--blue-b)}
-#vc-reg .vc-host-photo .vc-ph{border-radius:18px}
+#vc-reg .vc-host-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center}
 #vc-reg .vc-initials{font-size:60px;font-weight:900;color:var(--ice)}
 #vc-reg .vc-host h3{font-size:clamp(24px,2.8vw,32px);line-height:1.2;font-weight:900;color:var(--navy);letter-spacing:-.8px;margin-bottom:14px}
 #vc-reg .vc-host p{font-size:16px;color:var(--muted);line-height:1.7;margin-bottom:12px}
@@ -150,7 +153,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 #vc-reg .vc-faq-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:36px;align-items:start;margin-top:44px;text-align:left}
 #vc-reg .vc-faq-photo{position:sticky;top:24px;border-radius:22px;overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--line)}
 #vc-reg .vc-faq-img{position:relative;width:100%;aspect-ratio:4/5}
-#vc-reg .vc-faq-img .vc-ph{padding-bottom:90px;border:none}
+#vc-reg .vc-faq-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:66% 22%}
 #vc-reg .vc-faq-cap{position:absolute;left:14px;right:14px;bottom:14px;background:rgba(255,255,255,.94);backdrop-filter:blur(6px);border-radius:12px;padding:12px 14px;font-size:13.5px;font-weight:700;color:var(--navy);line-height:1.4}
 #vc-reg .vc-faq-cap span{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-top:2px}
 #vc-reg .vc-faq{text-align:left}
@@ -309,7 +312,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       <h2 class="vc-walk-h">What Aiden Walks Through <span class="vc-hl">Live</span></h2>
       <div class="vc-walk">
         <div class="vc-wcard">
-          <div class="vc-wimg"><div class="vc-ph">IMAGE: Map of Vacarya properties across the U.S. &amp; Canada</div></div>
+          <div class="vc-wimg"><img class="vc-fit" src="/img/properties-map.jpg" alt="Map of U.S. states with Vacarya properties" loading="lazy"></div>
           <div class="vc-wbody">
             <div class="vc-num">01</div>
             <h3>Why You Don't Need To Own Property</h3>
@@ -317,7 +320,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
           </div>
         </div>
         <div class="vc-wcard">
-          <div class="vc-wimg"><div class="vc-ph">IMAGE: Screenshot of a listing's bookings / nightly rate dashboard</div></div>
+          <div class="vc-wimg"><img src="/img/bookings-calendar.jpg" alt="Booking calendar showing guests and nightly rates across Vacarya units" loading="lazy"></div>
           <div class="vc-wbody">
             <div class="vc-num">02</div>
             <h3>How We Know A Property Will Book Before We Sign</h3>
@@ -325,7 +328,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
           </div>
         </div>
         <div class="vc-wcard">
-          <div class="vc-wimg"><div class="vc-ph">IMAGE: Furnished Vacarya unit, ready for guests</div></div>
+          <div class="vc-wimg"><img class="vc-fill" src="/img/furnished-unit.jpg" alt="Furnished Vacarya living room, ready for guests" loading="lazy"></div>
           <div class="vc-wbody">
             <div class="vc-num">03</div>
             <h3>The Done-For-You Model, End To End</h3>
@@ -355,7 +358,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       <div class="vc-host">
         <div class="vc-host-photo">
           <span class="vc-initials">AW</span>
-          <div class="vc-ph">IMAGE: Aiden Weir headshot (square)</div>
+          <img src="/img/aiden-headshot.jpg" alt="Aiden Weir">
         </div>
         <div>
           <h3>400 Active Airbnb Properties</h3>
@@ -423,7 +426,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       <h2>Before you save your seat</h2>
       <div class="vc-faq-grid">
         <div class="vc-faq-photo">
-          <div class="vc-faq-img"><div class="vc-ph">IMAGE: Aiden Weir on a call / at a Vacarya property</div></div>
+          <div class="vc-faq-img"><img src="/img/aiden-office.jpg" alt="Aiden Weir" loading="lazy"></div>
           <div class="vc-faq-cap">Bring your questions. I answer them live.<span>Aiden Weir, Co-Founder, Vacarya</span></div>
         </div>
         <div class="vc-faq">
