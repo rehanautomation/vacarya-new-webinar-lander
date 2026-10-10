@@ -1,0 +1,9 @@
+{
+  "name": "vacarya-new-webinar-lander",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "stripe": "18.1.0"
+  }
+}
