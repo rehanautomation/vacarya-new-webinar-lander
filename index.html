@@ -187,23 +187,10 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 @media (min-width:901px) and (min-height:820px){#vc-reg .vc-modal-card{transform:scale(1.15);max-height:calc(94vh/1.15)}}
 @media (min-width:901px) and (min-height:1000px){#vc-reg .vc-modal-card{transform:scale(1.3);max-height:calc(94vh/1.3)}}
 
-/* FORM (placeholder styled like the GHL form; swap for the GHL embed later) */
-#vc-reg .vc-form{padding:30px 6px 4px;text-align:left}
-#vc-reg .vc-field{margin-bottom:16px}
-#vc-reg .vc-form input[type=text],#vc-reg .vc-form input[type=email],#vc-reg .vc-form input[type=tel]{width:100%;background:#fff;color:#101828;border:1px solid #D0D5DD;border-radius:7px;padding:15px 10px;box-shadow:0 1px 2px 0 rgba(16,24,40,.05);font-family:"Inter",sans-serif;font-size:16px;font-weight:400;outline:none;transition:border-color .15s}
-#vc-reg .vc-form input::placeholder{color:#667085;opacity:1}
-#vc-reg .vc-form input:hover,#vc-reg .vc-form input:focus{border-color:var(--blue-b)}
-#vc-reg .vc-form input.vc-err{border-color:#F04438}
-#vc-reg .vc-q{display:block;color:#344054;font-size:14px;font-weight:700;margin-bottom:10px;line-height:1.4}
-#vc-reg .vc-radio{display:flex;align-items:center;gap:10px;color:#344054;font-size:14px;font-weight:500;line-height:1.4;padding:5px 0;cursor:pointer}
-#vc-reg .vc-radio input{width:16px;height:16px;flex:0 0 16px;accent-color:var(--blue);margin:0}
-#vc-reg .vc-group.vc-err .vc-q{color:#D92D20}
-#vc-reg .vc-submit{width:100%;margin-top:15px;border:0;cursor:pointer;border-radius:15px;padding:12px 0 15px;background:#0096D1;color:#fff;font-family:"Inter",sans-serif;font-size:18px;font-weight:700;letter-spacing:.2px;box-shadow:0 1px 2px 0 rgba(16,24,40,.05);transition:filter .15s}
-#vc-reg .vc-submit:hover{filter:brightness(1.06)}
-#vc-reg .vc-submit[disabled]{opacity:.7;cursor:wait}
-#vc-reg .vc-form-ok{display:none;text-align:center;padding:30px 6px 10px}
-#vc-reg .vc-form-ok b{display:block;font-size:20px;font-weight:900;color:var(--navy);margin-bottom:6px}
-#vc-reg .vc-form-ok span{font-size:15px;color:var(--muted)}
+/* GHL FORM (inline embed inside our modal, same as Section 8) */
+#vc-reg .vc-modal-card iframe{display:block;width:100%;min-height:704px;border:none;border-radius:8px}
+#vc-reg .vc-fallback{display:block;text-align:center;font-size:13px;color:var(--muted);margin-top:8px}
+@media (min-width:901px) and (min-height:820px){#vc-reg .vc-modal-card iframe{min-height:600px}}
 
 /* MOBILE STICKY CTA */
 #vc-reg .vc-sticky{position:fixed;left:0;right:0;bottom:0;z-index:2147482000;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:10px 14px;box-shadow:0 -8px 24px -12px rgba(6,47,101,.25);transform:translateY(110%);visibility:hidden;transition:transform .25s ease,visibility .25s}
@@ -476,28 +463,26 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
         <p class="vc-modal-note"><span data-vc-date>Wednesday, Oct 14</span> at <span data-vc-time>7:00 PM EDT</span></p>
       </div>
 
-      <!-- FORM SLOT: placeholder form. Replace this <form> with the GHL form embed when ready. -->
-      <form class="vc-form" id="vcForm" novalidate>
-        <div class="vc-field"><input type="text" name="first_name" placeholder="First Name*" autocomplete="given-name" required></div>
-        <div class="vc-field"><input type="email" name="email" placeholder="Email Address*" autocomplete="email" required></div>
-        <div class="vc-field"><input type="tel" name="phone" placeholder="Phone Number*" autocomplete="tel" required></div>
-        <div class="vc-field vc-group" data-group="stage">
-          <span class="vc-q">Where are you at with Airbnb right now?</span>
-          <label class="vc-radio"><input type="radio" name="stage" value="I'm looking to launch my first Airbnb"> I'm looking to launch my first Airbnb</label>
-          <label class="vc-radio"><input type="radio" name="stage" value="I already run Airbnbs and want to grow"> I already run Airbnbs and want to grow</label>
-          <label class="vc-radio"><input type="radio" name="stage" value="I'm looking to book a stay, not run a business"> I'm looking to book a stay, not run a business</label>
-        </div>
-        <div class="vc-field vc-group" data-group="capital">
-          <span class="vc-q">How much capital do you have to invest in your Airbnb business?</span>
-          <label class="vc-radio"><input type="radio" name="capital" value="Under $10,000" data-min="0"> Under $10,000</label>
-          <label class="vc-radio"><input type="radio" name="capital" value="$10,000–$24,999" data-min="10000"> $10,000–$24,999</label>
-          <label class="vc-radio"><input type="radio" name="capital" value="$25,000–$49,999" data-min="25000"> $25,000–$49,999</label>
-          <label class="vc-radio"><input type="radio" name="capital" value="$50,000–$99,999" data-min="50000"> $50,000–$99,999</label>
-          <label class="vc-radio"><input type="radio" name="capital" value="$100,000+" data-min="100000"> $100,000+</label>
-        </div>
-        <button type="submit" class="vc-submit">CLAIM YOUR FREE TICKET</button>
-      </form>
-      <div class="vc-form-ok" id="vcFormOk"><b>You're in.</b><span>Check your email for your seat details.</span></div>
+      <!-- GHL form: Webinar form V2 (inline layout, loads when the modal first opens) -->
+      <iframe
+        src="" data-vc-src="https://api.leadconnectorhq.com/widget/form/UbqnSxV2Jlcsuqe9bmga"
+        style="width:100%;height:704px;border:none;border-radius:8px"
+        id="inline-UbqnSxV2Jlcsuqe9bmga"
+        data-layout="{'id':'INLINE'}"
+        data-trigger-type="alwaysShow"
+        data-trigger-value=""
+        data-activation-type="alwaysActivated"
+        data-activation-value=""
+        data-deactivation-type="neverDeactivate"
+        data-deactivation-value=""
+        data-form-name="Webinar form V2"
+        data-height="704"
+        data-layout-iframe-id="inline-UbqnSxV2Jlcsuqe9bmga"
+        data-form-id="UbqnSxV2Jlcsuqe9bmga"
+        data-cookie-consent="true"
+        data-cookie-consent-provider="auto"
+        title="Webinar form V2"></iframe>
+      <a class="vc-fallback" href="https://api.leadconnectorhq.com/widget/form/UbqnSxV2Jlcsuqe9bmga" target="_blank" rel="noopener">Form not loading? Open it here →</a>
     </div>
   </div>
 
@@ -513,8 +498,6 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   var TZ = 'America/Toronto';
   var WEBINAR_WEEKDAY = 3;      // 0=Sun ... 3=Wed
   var WEBINAR_HOUR = 19, WEBINAR_MIN = 0;   // 7:00 PM Toronto
-  var NEXT_PAGE_URL = '/vip'; // page 2 (VIP). Blank = show "You're in" message instead
-  var QUALIFIED_MIN_CAPITAL = 25000; // placeholder cutoff, Aiden to confirm
 
   /* ---------- TIME HELPERS (always Toronto time, whatever the visitor's zone) ---------- */
   function parts(date){
@@ -576,7 +559,8 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     modal.classList.add('vc-open'); modal.setAttribute('aria-hidden','false');
     document.documentElement.style.overflow = 'hidden';
     sticky.classList.remove('vc-on');
-    var first = modal.querySelector('input'); if (first) setTimeout(function(){first.focus();}, 50);
+    var f = modal.querySelector('iframe[data-vc-src]');
+    if (f && !f.getAttribute('src')) f.setAttribute('src', f.getAttribute('data-vc-src'));
   }
   function closeModal(){
     modal.classList.remove('vc-open'); modal.setAttribute('aria-hidden','true');
@@ -596,34 +580,8 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   }
   window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
 
-  /* ---------- PLACEHOLDER FORM ---------- */
-  var form = document.getElementById('vcForm');
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    var ok = true;
-    ['first_name','email','phone'].forEach(function(n){
-      var el = form.elements[n], v = el.value.trim();
-      var bad = !v || (n === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) || (n === 'phone' && v.replace(/\D/g,'').length < 7);
-      el.classList.toggle('vc-err', bad); if (bad) ok = false;
-    });
-    form.querySelectorAll('.vc-group').forEach(function(g){
-      var picked = g.querySelector('input:checked');
-      g.classList.toggle('vc-err', !picked); if (!picked) ok = false;
-    });
-    if (!ok) return;
-
-    var cap = form.querySelector('input[name=capital]:checked');
-    var stage = form.querySelector('input[name=stage]:checked').value;
-    var qualified = +cap.getAttribute('data-min') >= QUALIFIED_MIN_CAPITAL && stage.indexOf('book a stay') === -1;
-    // Meta pixel hook (Rehan to wire): fire only for qualified opt-ins
-    // if (qualified && window.fbq) fbq('trackCustom', 'QualifiedOptIn');
-    window.vcLead = {qualified: qualified, capital: cap.value, stage: stage};
-
-    if (NEXT_PAGE_URL) { window.location.href = NEXT_PAGE_URL; return; }
-    form.style.display = 'none';
-    document.getElementById('vcFormOk').style.display = 'block';
-  });
 })();
 </script>
+<script src="https://link.msgsndr.com/js/form_embed.js"></script>
 </body>
 </html>
