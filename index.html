@@ -74,9 +74,10 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 #vc-reg .vc-date i{font-style:normal;color:#9AA6B6}
 #vc-reg .vc-live{flex:0 0 8px;width:8px;height:8px;border-radius:50%;background:#FF5A5A;box-shadow:0 0 0 0 rgba(255,90,90,.6);animation:vcpulse 1.8s infinite}
 @keyframes vcpulse{0%{box-shadow:0 0 0 0 rgba(255,90,90,.55)}70%{box-shadow:0 0 0 9px rgba(255,90,90,0)}100%{box-shadow:0 0 0 0 rgba(255,90,90,0)}}
-#vc-reg .vc-hero h1{font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.1;letter-spacing:-1.4px;max-width:1000px;margin:24px auto 20px;color:var(--navy);text-wrap:balance}
+#vc-reg .vc-pre{max-width:820px;margin:22px auto 0;font-size:clamp(15px,1.7vw,19px);font-weight:700;line-height:1.4;color:#334155;text-wrap:balance}
+#vc-reg .vc-hero h1{font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.1;letter-spacing:-1.4px;max-width:1000px;margin:14px auto 20px;color:var(--ink);text-wrap:balance}
 #vc-reg .vc-hero h1 .vc-hl{background:linear-gradient(90deg,#00ABE5,#0099D8);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-box-decoration-break:clone;box-decoration-break:clone}
-#vc-reg .vc-hero h1 .vc-money{color:var(--navy);white-space:nowrap;background:linear-gradient(180deg,transparent 62%,rgba(245,196,81,.55) 62%);padding:0 4px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+#vc-reg .vc-hero h1 .vc-money{color:var(--ink);white-space:nowrap;background:linear-gradient(180deg,transparent 62%,rgba(245,196,81,.55) 62%);padding:0 4px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 #vc-reg .vc-hero .vc-sub{max-width:720px;margin:0 auto;font-size:clamp(17px,2vw,20px);color:var(--muted);text-wrap:balance}
 #vc-reg .vc-cd-label{font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin:34px 0 12px}
 #vc-reg .vc-cd{display:flex;justify-content:center;gap:12px;margin-bottom:32px}
@@ -149,6 +150,35 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 #vc-reg .vc-case li b{color:var(--navy)}
 #vc-reg .vc-disclaim{max-width:760px;margin:28px auto 0;font-size:13px;color:var(--muted);text-align:center;line-height:1.6;font-style:italic}
 
+/* VIDEO TESTIMONIALS */
+#vc-reg .vc-tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:880px;margin:46px auto 0;text-align:left}
+#vc-reg .vc-tcard{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}
+#vc-reg .vc-tvid{position:relative;background:var(--navy)}
+#vc-reg .vc-tvid > div{position:relative}
+#vc-reg .vc-tname{padding:14px 18px;font-size:15px;font-weight:800;color:var(--navy)}
+#vc-reg .vc-tname span{display:block;font-size:12.5px;font-weight:600;color:var(--muted);margin-top:2px}
+#vc-reg .vc-more-btn{margin-top:30px;cursor:pointer;font-family:inherit;font-size:15px;font-weight:800;color:var(--blue-d);background:var(--blue-l);border:1px solid var(--blue-b);border-radius:12px;padding:14px 26px}
+#vc-reg .vc-more-btn:hover{background:#D7F0FB}
+#vc-reg .vc-more{margin-top:30px}
+#vc-reg .vc-more[hidden]{display:none}
+#vc-reg .vc-more .vc-tgrid{margin-top:0}
+#vc-reg .vc-reviews{columns:3;column-gap:16px;margin-top:22px}
+#vc-reg .vc-reviews img{width:100%;height:auto;margin:0 0 16px;break-inside:avoid;border-radius:14px;border:1px solid var(--line);box-shadow:var(--shadow)}
+
+/* FOR YOU / NOT FOR YOU */
+#vc-reg .vc-fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:46px;text-align:left}
+#vc-reg .vc-fitcard{background:#fff;border:1px solid var(--line);border-radius:22px;padding:34px 32px;box-shadow:var(--shadow-lg)}
+#vc-reg .vc-fitcard h3{font-size:clamp(22px,2.4vw,27px);font-weight:900;line-height:1.2;letter-spacing:-.6px;color:var(--navy);margin-bottom:20px}
+#vc-reg .vc-fitcard ul{list-style:none}
+#vc-reg .vc-fitcard li{position:relative;padding-left:34px;font-size:16px;color:var(--muted);line-height:1.6;margin-bottom:14px}
+#vc-reg .vc-fitcard li b{color:var(--navy)}
+#vc-reg .vc-fitcard li:before{position:absolute;left:0;top:2px;width:22px;height:22px;border-radius:50%;font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center}
+#vc-reg .vc-fit-yes{border-color:var(--blue-b)}
+#vc-reg .vc-fit-yes li:before{content:"✓";background:var(--blue-l);color:var(--blue-d);border:1px solid var(--blue-b)}
+#vc-reg .vc-fit-no{background:var(--soft)}
+#vc-reg .vc-fit-no h3 u{text-decoration-color:var(--brand);text-decoration-thickness:3px;text-underline-offset:5px}
+#vc-reg .vc-fit-no li:before{content:"−";background:#fff;color:#7C8799;border:1px solid var(--line);font-size:15px}
+
 /* FAQ */
 #vc-reg .vc-faq-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:36px;align-items:start;margin-top:44px;text-align:left}
 #vc-reg .vc-faq-photo{position:sticky;top:24px;border-radius:22px;overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--line)}
@@ -204,6 +234,9 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 @media (max-width:900px){
   #vc-reg .vc-walk{grid-template-columns:1fr}
   #vc-reg .vc-cases{grid-template-columns:1fr;max-width:560px;margin-left:auto;margin-right:auto}
+  #vc-reg .vc-tgrid{grid-template-columns:repeat(2,1fr)}
+  #vc-reg .vc-reviews{columns:2}
+  #vc-reg .vc-fit-grid{grid-template-columns:1fr;max-width:640px;margin-left:auto;margin-right:auto}
   #vc-reg .vc-host{grid-template-columns:1fr;padding:26px;gap:30px}
   #vc-reg .vc-host-photo{max-width:320px;width:100%;margin:0 auto}
   #vc-reg .vc-wide{grid-template-columns:1fr}
@@ -246,6 +279,11 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   #vc-reg .vc-host p{margin-bottom:18px}
   #vc-reg .vc-case-body{padding:22px 20px 24px}
   #vc-reg .vc-final-body{padding:36px 20px}
+  #vc-reg .vc-tgrid{grid-template-columns:1fr;max-width:340px;margin-left:auto;margin-right:auto}
+  #vc-reg .vc-reviews{columns:1}
+  #vc-reg .vc-fitcard{padding:26px 22px}
+  #vc-reg .vc-fitcard li{font-size:15px}
+  #vc-reg .vc-pre{font-size:14px;margin-top:16px}
   #vc-reg .vc-ph{font-size:13.5px}
 }
 @media (min-width:901px){#vc-reg .vc-sticky{display:none!important}}
@@ -263,8 +301,9 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   <section class="vc-hero">
     <div class="vc-wrap">
       <div class="vc-date"><span class="vc-live" aria-hidden="true"></span> <span class="vc-hide-m">Free live training</span><i class="vc-hide-m">·</i> <span><span class="vc-show-m">Live </span>This</span> <span data-vc-date>Wednesday, Oct 14</span> <i>·</i> <span data-vc-time>7:00 PM EDT</span></div>
-      <h1>Give Me 1 Hour Live, And I'll Show You How To <span class="vc-hl">Build A <span class="vc-nw">Profitable Airbnb</span> Business In 90&nbsp;Days</span> <span class="vc-money">Without Buying Property</span></h1>
-      <p class="vc-sub">Without any hosting experience, quitting your job, or running the day-to-day yourself.</p>
+      <p class="vc-pre">We Have 493 Airbnbs That Did $15M+ In The Last 12 Months… Without Owning A Single One.</p>
+      <h1>Give Me 1 Hour Live, And I'll Show You How To Build A <span class="vc-nw">Profitable Airbnb</span> Business In 90&nbsp;Days <span class="vc-money">Without</span> Buying Property</h1>
+      <p class="vc-sub">…without real estate experience, ever seeing your Airbnbs in person, or spending more than 5 hours a week managing it.</p>
       <div class="vc-cd-label">Live training starts in</div>
       <div class="vc-cd" id="vcCountdown">
         <div class="vc-cd-box"><span class="vc-cd-num" data-cd="days">00</span><span class="vc-cd-unit">Days</span></div>
@@ -282,13 +321,13 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       </div>
       <div class="vc-rating">
         <span class="vc-stars" aria-hidden="true">★★★★★</span>
-        <b>65,000+ guest stays</b>
-        <span>90% rated 5 stars</span>
+        <b>5.0 Rating</b>
+        <span>Trusted by 100+ Investors</span>
       </div>
       <div class="vc-proofline">
         <span>Hosted by <b>Aiden Weir</b></span>
-        <span><b>400</b> <i class="vc-hide-m">active </i>properties</span>
-        <span><b>$12.5M</b> collected</span>
+        <span><b>493</b> <i class="vc-hide-m">active </i>properties</span>
+        <span><b>$2M</b>/mo<i class="vc-hide-m"> in earnings</i></span>
       </div>
     </div>
   </section>
@@ -300,35 +339,35 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       <h2 class="vc-walk-h">What Aiden Walks Through <span class="vc-hl">Live</span></h2>
       <div class="vc-walk">
         <div class="vc-wcard">
-          <div class="vc-wimg"><img class="vc-fit" src="/img/properties-map-v2.jpg" alt="Map of U.S. states with Vacarya properties" loading="lazy"></div>
+          <div class="vc-wimg"><img class="vc-fill" src="/img/furnished-unit.jpg" alt="Furnished Vacarya living room, ready for guests" loading="lazy"></div>
           <div class="vc-wbody">
             <div class="vc-num">01</div>
             <h3>Why You Don't Need To Own Property</h3>
-            <p><b>Most people think Airbnb means buying a house.</b> I'll show you how our operators lease homes instead and keep their cash free to grow.</p>
+            <p>You'll learn why not only is buying the worst way in, but why it has <b>nothing to do</b> with the money you make. <i>(Once you see this, you can't go back.)</i></p>
+          </div>
+        </div>
+        <div class="vc-wcard">
+          <div class="vc-wimg"><img class="vc-fit" src="/img/properties-map-v2.jpg" alt="Map of U.S. states with Vacarya properties" loading="lazy"></div>
+          <div class="vc-wbody">
+            <div class="vc-num">02</div>
+            <h3>How To Pick The Right Cities</h3>
+            <p>Why <i>"saturated"</i> markets are a <b>myth</b>, and our 3-step process to finding profitable properties in <b>any</b> city.</p>
           </div>
         </div>
         <div class="vc-wcard">
           <div class="vc-wimg"><img src="/img/bookings-calendar.jpg" alt="Booking calendar showing guests and nightly rates across Vacarya units" loading="lazy"></div>
           <div class="vc-wbody">
-            <div class="vc-num">02</div>
-            <h3>How We Know A Property Will Book Before We Sign</h3>
-            <p>See how we check demand, nightly rates and occupancy on real listings so you know what to pursue and what to pass on.</p>
-          </div>
-        </div>
-        <div class="vc-wcard">
-          <div class="vc-wimg"><img class="vc-fill" src="/img/furnished-unit.jpg" alt="Furnished Vacarya living room, ready for guests" loading="lazy"></div>
-          <div class="vc-wbody">
             <div class="vc-num">03</div>
-            <h3>The Done-For-You Model, End To End</h3>
-            <p>From finding the unit to furnishing, listing and guest care. Live in 5 to 15 days, with 500+ launches behind it.</p>
+            <h3>How We Find Profitable Properties</h3>
+            <p>See how we check demand, nightly rates and occupancy using live examples of our <b>own portfolio</b> so you know what to pursue and what to pass on.</p>
           </div>
         </div>
         <div class="vc-wcard vc-wide">
           <div class="vc-wimg"><img src="/img/aiden-live-v2.jpg" alt="Aiden Weir on a live call" loading="lazy" style="object-position:50% 30%"></div>
           <div class="vc-wbody">
             <div class="vc-num">04</div>
-            <h3>Bring Your Toughest Questions To The Live Q&amp;A</h3>
-            <p>Aiden answers the hard ones live: saturation, city regulations, and "if it's so good, why share it?" Plus how our 90-day and 12-month guarantees work.</p>
+            <h3>The Vacarya Done-For-You Model + Q&amp;A</h3>
+            <p>Discover the Vacarya partnership. We handle everything for you: sourcing, underwriting, design, build, and launch, taking each unit from vacant to guest-ready in the most profitable markets on your behalf. We then plug the exact system we spent 6 years building into your business from day one and co-pilot your growth from there with direct 1:1 support, <b>indefinitely</b>. We end off with a live Q&amp;A.</p>
           </div>
         </div>
       </div>
@@ -349,15 +388,14 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
           <img src="/img/aiden-headshot.jpg" alt="Aiden Weir">
         </div>
         <div>
-          <h3>400 Active Airbnb Properties</h3>
-          <p>I'm an operator, not a guru. I built my own short-term rental company to multiple seven figures before co-founding Vacarya.</p>
-          <p>Today we run <b class="vc-hl">400 active properties and back 100+ operators</b> across the U.S. and Canada.</p>
-          <p>Last year our properties <b class="vc-hl">collected $12.5M across 65,000+ guest stays.</b></p>
-          <p>This <span data-vc-day>Wednesday</span>, I'll show you exactly how you can launch your first or next profitable Airbnb <b class="vc-hl">without buying property.</b></p>
+          <p>A good few years ago, I quit a six-figure job in the nuclear industry. I was sitting in a concrete bunker at 1AM, watching two 50-year-olds argue about overtime, and realized if I didn't at least try something, I was looking at myself in 30 years. The cost of staying was higher than the cost of trying to build something on my own. <b class="vc-hl">So I went all in on Airbnb arbitrage.</b></p>
+          <p>I figured it out eventually, but I made every mistake in the book and lost tons of money along the way. <b class="vc-hl">Basically all of it could've been avoided if I'd had the right person in my corner.</b> So I built what my younger self needed. <b class="vc-hl">Vacarya.</b></p>
+          <p>The Vacarya network has <b class="vc-hl">493 properties</b>, does <b class="vc-hl">~$1.8M a month in bookings</b>, and has helped <b class="vc-hl">over 100 operators</b> build a second income stream through Airbnb arbitrage. <b class="vc-hl">Some are already scaling into seven figures.</b></p>
+          <p>This <span data-vc-day>Wednesday</span>, I'm going live to show you the <b class="vc-hl">fastest path to a profitable Airbnb business</b> that exists today, so you don't have to spend 6 years figuring it out like I did.</p>
           <div class="vc-stats">
-            <div class="vc-stat"><b>400</b><span>Active properties</span></div>
-            <div class="vc-stat"><b>$12.5M</b><span>Collected last year</span></div>
-            <div class="vc-stat"><b>100+</b><span>Operators we back</span></div>
+            <div class="vc-stat"><b>493</b><span>Active properties</span></div>
+            <div class="vc-stat"><b>$15M</b><span>The last 365 days</span></div>
+            <div class="vc-stat"><b>25+</b><span>Markets across US/Canada</span></div>
           </div>
         </div>
       </div>
@@ -369,41 +407,66 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     <div class="vc-wrap vc-center">
       <span class="vc-kicker">Operator results</span>
       <h2>What this looks like for people I work with</h2>
-      <div class="vc-cases">
-        <article class="vc-case">
-          <div class="vc-case-img">
-            <div class="vc-ph">IMAGE: Kajana D. photo</div>
-            <span class="vc-case-badge">Case study</span>
-            <div class="vc-case-who"><b>Kajana D.</b><span>Vacarya operator, Mississauga, ON</span></div>
-          </div>
-          <div class="vc-case-body">
-            <div class="vc-case-big"><em>21 Airbnbs</em> in 2 years</div>
-            <span class="vc-case-sub">Started after being let go</span>
-            <ul>
-              <li>Was <b>let go from her job</b> two years ago.</li>
-              <li>Got her first unit <b>live in 15 days</b> with Vacarya.</li>
-              <li>Now runs <b>21 Airbnb properties</b> without owning them.</li>
-            </ul>
-          </div>
-        </article>
-        <article class="vc-case">
-          <div class="vc-case-img">
-            <div class="vc-ph">IMAGE: Josh C. photo</div>
-            <span class="vc-case-badge">Case study</span>
-            <div class="vc-case-who"><b>Josh C.</b><span>Vacarya operator, Hamilton, ON</span></div>
-          </div>
-          <div class="vc-case-body">
-            <div class="vc-case-big"><em>25 units</em> and growing</div>
-            <span class="vc-case-sub">About $90,000/mo in bookings</span>
-            <ul>
-              <li>First unit <b>live in 13 days</b>.</li>
-              <li>Scaled to <b>25 units</b> without buying property.</li>
-              <li>Brings in about <b>$90,000 a month</b>.</li>
-            </ul>
-          </div>
-        </article>
+      <div class="vc-tgrid">
+          <div class="vc-tcard"><div class="vc-tvid" data-video="AT3E6HoGHbMxB4ug" data-loader="settings"><div id="AT3E6HoGHbMxB4ug" style="padding-top:177.78%"></div></div><div class="vc-tname">Rob V.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="UH3YggU0nB1bDod_"><div id="vidalytics_embed_UH3YggU0nB1bDod_" style="padding-top:177.78%"></div></div><div class="vc-tname">Josh C.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="YMTcLkxOfEPogHig"><div id="vidalytics_embed_YMTcLkxOfEPogHig" style="padding-top:177.78%"></div></div><div class="vc-tname">Kajana D.<span>Vacarya operator</span></div></div>
+      </div>
+      <button type="button" class="vc-more-btn" id="vcMoreBtn" aria-expanded="false">View More ↓</button>
+      <div class="vc-more" id="vcMore" hidden>
+        <div class="vc-tgrid">
+          <div class="vc-tcard"><div class="vc-tvid" data-video="9ZMBSpvLpcRNeL8m" data-loader="settings"><div id="9ZMBSpvLpcRNeL8m" style="padding-top:177.78%"></div></div><div class="vc-tname">Patricia G.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="_3LhJcZabSuVtAqn" data-loader="settings"><div id="_3LhJcZabSuVtAqn" style="padding-top:177.78%"></div></div><div class="vc-tname">Helen Q.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="d6GhhPiwXRTZIh55" data-loader="settings"><div id="d6GhhPiwXRTZIh55" style="padding-top:177.78%"></div></div><div class="vc-tname">Ravi R.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="S2udtgRr3weGPAMJ" data-loader="settings"><div id="S2udtgRr3weGPAMJ" style="padding-top:177.78%"></div></div><div class="vc-tname">Mike E.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="o9Ho5JnqweHAsKkj" data-loader="settings"><div id="o9Ho5JnqweHAsKkj" style="padding-top:177.78%"></div></div><div class="vc-tname">Sajeed A.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="AtKNDCr00S_Yyh0G" data-loader="settings"><div id="AtKNDCr00S_Yyh0G" style="padding-top:177.78%"></div></div><div class="vc-tname">Kevin M.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="TBDybqUkvVpuF5cy" data-loader="settings"><div id="TBDybqUkvVpuF5cy" style="padding-top:177.78%"></div></div><div class="vc-tname">John S.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="BEIWJ7hHIaXtj5E9" data-loader="settings"><div id="BEIWJ7hHIaXtj5E9" style="padding-top:177.78%"></div></div><div class="vc-tname">Devang B.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="O6XYSCu2jX0XvhUf" data-loader="settings"><div id="O6XYSCu2jX0XvhUf" style="padding-top:177.78%"></div></div><div class="vc-tname">Greg L.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="WoB8QPzALc0OUKH6"><div id="vidalytics_embed_WoB8QPzALc0OUKH6" style="padding-top:177.78%"></div></div><div class="vc-tname">Andy D.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="KCxrI1vlcJ71GTP9"><div id="vidalytics_embed_KCxrI1vlcJ71GTP9" style="padding-top:177.78%"></div></div><div class="vc-tname">Fasi K.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="C873MB3yzcU4eiHP"><div id="vidalytics_embed_C873MB3yzcU4eiHP" style="padding-top:177.78%"></div></div><div class="vc-tname">Dylan M.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="Q7FZIMLXMLWHNdDk"><div id="vidalytics_embed_Q7FZIMLXMLWHNdDk" style="padding-top:177.78%"></div></div><div class="vc-tname">Jason L.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="LUuJ8wfnCQ7QS1d3"><div id="vidalytics_embed_LUuJ8wfnCQ7QS1d3" style="padding-top:177.78%"></div></div><div class="vc-tname">Dennis L.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="WkyXHrLIcfaeY4yr"><div id="vidalytics_embed_WkyXHrLIcfaeY4yr" style="padding-top:177.78%"></div></div><div class="vc-tname">Trevor J.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="pJPnsekIVIAUwxYD"><div id="vidalytics_embed_pJPnsekIVIAUwxYD" style="padding-top:177.78%"></div></div><div class="vc-tname">Trevor H.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="5KPTZEDzewMmOnXu" data-loader="settings"><div id="5KPTZEDzewMmOnXu" style="padding-top:177.78%"></div></div><div class="vc-tname">Gaurav D.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="cWgx4DGVi2lkzUK4" data-loader="settings"><div id="cWgx4DGVi2lkzUK4" style="padding-top:177.78%"></div></div><div class="vc-tname">Tony G.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="zx8wRA3vo22fIHNK" data-loader="settings"><div id="zx8wRA3vo22fIHNK" style="padding-top:177.78%"></div></div><div class="vc-tname">Jessica<span>Vacarya operator</span></div></div>
+        </div>
+        <div class="vc-reviews"><img data-src="https://vacarya-confirmation-page.vercel.app/reviews/review-20.webp" alt="Client review" loading="lazy" decoding="async"><img data-src="https://vacarya-confirmation-page.vercel.app/reviews/review-14.webp" alt="Client review" loading="lazy" decoding="async"><img data-src="https://vacarya-confirmation-page.vercel.app/reviews/review-4.webp" alt="Client review" loading="lazy" decoding="async"><img data-src="https://vacarya-confirmation-page.vercel.app/reviews/review-15.webp" alt="Client review" loading="lazy" decoding="async"><img data-src="https://vacarya-confirmation-page.vercel.app/reviews/review-13.webp" alt="Client review" loading="lazy" decoding="async"><img data-src="https://vacarya-confirmation-page.vercel.app/reviews/review-2.webp" alt="Client review" loading="lazy" decoding="async"><img data-src="https://vacarya-confirmation-page.vercel.app/reviews/review-3.webp" alt="Client review" loading="lazy" decoding="async"><img data-src="https://vacarya-confirmation-page.vercel.app/reviews/review-12.webp" alt="Client review" loading="lazy" decoding="async"><img data-src="https://vacarya-confirmation-page.vercel.app/reviews/review-11.webp" alt="Client review" loading="lazy" decoding="async"><img data-src="https://vacarya-confirmation-page.vercel.app/reviews/review-9.webp" alt="Client review" loading="lazy" decoding="async"><img data-src="https://vacarya-confirmation-page.vercel.app/reviews/review-17.webp" alt="Client review" loading="lazy" decoding="async"><img data-src="https://vacarya-confirmation-page.vercel.app/reviews/review-1.webp" alt="Client review" loading="lazy" decoding="async"><img data-src="https://vacarya-confirmation-page.vercel.app/reviews/review-18.webp" alt="Client review" loading="lazy" decoding="async"><img data-src="https://vacarya-confirmation-page.vercel.app/reviews/review-10.webp" alt="Client review" loading="lazy" decoding="async"><img data-src="https://vacarya-confirmation-page.vercel.app/reviews/review-7.webp" alt="Client review" loading="lazy" decoding="async"><img data-src="https://vacarya-confirmation-page.vercel.app/reviews/review-5.webp" alt="Client review" loading="lazy" decoding="async"><img data-src="https://vacarya-confirmation-page.vercel.app/reviews/review-8.webp" alt="Client review" loading="lazy" decoding="async"><img data-src="https://vacarya-confirmation-page.vercel.app/reviews/review-16.webp" alt="Client review" loading="lazy" decoding="async"><img data-src="https://vacarya-confirmation-page.vercel.app/reviews/review-19.webp" alt="Client review" loading="lazy" decoding="async"><img data-src="https://vacarya-confirmation-page.vercel.app/reviews/review-6.webp" alt="Client review" loading="lazy" decoding="async"></div>
       </div>
       <p class="vc-disclaim">These are some of our best results, not typical ones. Most people won't grow this fast. Your results depend on your capital, your market and the work you put in.</p>
+    </div>
+  </section>
+
+  <!-- FOR YOU / NOT FOR YOU -->
+  <section class="vc-section">
+    <div class="vc-wrap vc-center">
+      <span class="vc-kicker">Is this for you?</span>
+      <div class="vc-fit-grid">
+        <div class="vc-fitcard vc-fit-yes">
+          <h3>This is for you if…</h3>
+          <ul>
+            <li>You're a <b>high earner</b> who is serious about building a second income stream.</li>
+            <li>You have the <b>capital</b> to invest into a new opportunity assuming it aligns with your goals.</li>
+            <li>You're done trading the only thing you can't get back, <b>your time</b>, for a paycheck.</li>
+            <li>You want a business you can run from <b>anywhere</b> on your terms, not be tied to a desk.</li>
+            <li>You're okay knowing this training will change the way you see Airbnb <b>forever</b>. <i>(Seriously.)</i></li>
+          </ul>
+        </div>
+        <div class="vc-fitcard vc-fit-no">
+          <h3>This is <u>not</u> for you if…</h3>
+          <ul>
+            <li>You're easily distracted, and won't show up for the full hour.</li>
+            <li>You aren't willing to put in the work or invest in yourself.</li>
+            <li>You think every business opportunity is a <i>"scam"</i> before you even hear it out.</li>
+            <li>You blame the market, the economy, or your circumstances for where you are.</li>
+            <li>You aren't committed to making a change in your life.</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -418,11 +481,12 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
           <div class="vc-faq-cap">Bring your questions. I answer them live.<span>Aiden Weir, Co-Founder, Vacarya</span></div>
         </div>
         <div class="vc-faq">
-          <details><summary>Is it really live?</summary><p>Yes. I run it live, share my screen and answer questions at the end. There's no replay.</p></details>
-          <details><summary>Do I need to buy property?</summary><p>No. Our operators lease homes and run them as Airbnbs, so your money goes into launching the business, not a down payment.</p></details>
-          <details><summary>How much money do I need?</summary><p>It depends on the city and the size of the unit. On the training I'll walk through real setup costs so you know your number.</p></details>
-          <details><summary>Do I need experience?</summary><p>No. The training starts from your very first unit.</p></details>
-          <details><summary>What should I bring?</summary><p>A computer if you can, since I'll be sharing my screen. And your toughest question about Airbnb. I answer them live.</p></details>
+          <details><summary>Is it really live?</summary><p>Yes. This is a live-only event and there will be no replay. I will share my screen to show you the behind-the-scenes of this business including real numbers and live listings from our portfolio.</p></details>
+          <details><summary>How much money do I need?</summary><p>There is no set starting amount, but I likely wouldn't go into this venture with less than $40,000. This is a business opportunity, not a get-rich-quick scheme. If you treat it as such you will be successful.</p></details>
+          <details><summary>Do I need to live near my Airbnb properties?</summary><p>No. With the systems you will learn about in this training, this can be managed 100% remotely. I haven't seen 98% of our properties.</p></details>
+          <details><summary>Do I need real estate experience?</summary><p>No. The training starts from your very first property. No experience necessary.</p></details>
+          <details><summary>Isn't Airbnb getting too saturated?</summary><p>No. And it never will be. You will never look at Airbnb or saturation the same within the first 10 minutes of this live event.</p></details>
+          <details><summary>How much time does this take each week?</summary><p>With the right systems in place it can be managed in a few hours a week.</p></details>
         </div>
       </div>
     </div>
@@ -434,8 +498,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       <div class="vc-final-card">
         <div class="vc-final-body">
           <div class="vc-eyebrow">Live · Free · One Hour</div>
-          <h2>Launch Your First Or Next Profitable Airbnb Without Buying Property</h2>
-          <p class="vc-final-when">Live <b data-vc-date>Wednesday, Oct 14</b> at <b data-vc-time>7:00 PM EDT</b>.</p>
+          <h2>On <span class="vc-hl" data-vc-datelong>Wednesday, October 14</span> at <span class="vc-hl" data-vc-time>7:00 PM EDT</span>, Aiden walks through the entire Vacarya done-for-you model, end to end.</h2>
           <div class="vc-cta-row">
             <button type="button" class="vc-btn" data-vc-open>Save My Seat <span class="vc-btn-arrow">→</span></button>
             <div class="vc-btn-note">Free · Live · Seats are limited</div>
@@ -535,6 +598,8 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   var dayTxt  = new Intl.DateTimeFormat('en-US',{timeZone:TZ,weekday:'long'}).format(target);
   var timeTxt = new Intl.DateTimeFormat('en-US',{timeZone:TZ,hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(target);
   document.querySelectorAll('[data-vc-date]').forEach(function(el){el.textContent = dateTxt;});
+  var dateLong = new Intl.DateTimeFormat('en-US',{timeZone:TZ,weekday:'long',month:'long',day:'numeric'}).format(target);
+  document.querySelectorAll('[data-vc-datelong]').forEach(function(el){el.textContent = dateLong;});
   document.querySelectorAll('[data-vc-day]').forEach(function(el){el.textContent = dayTxt;});
   document.querySelectorAll('[data-vc-time]').forEach(function(el){el.textContent = timeTxt;});
 
@@ -580,6 +645,51 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     sticky.classList.toggle('vc-on', r.bottom < 0);
   }
   window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  /* ---------- AUTO POP-UP: opens the form once, 10s after load ---------- */
+  var POPUP_DELAY_MS = 10000, opened = false;
+  document.querySelectorAll('[data-vc-open]').forEach(function(b){b.addEventListener('click', function(){opened = true;});});
+  setTimeout(function(){ if (!opened && !modal.classList.contains('vc-open')) { opened = true; openModal(); } }, POPUP_DELAY_MS);
+
+  /* ---------- TESTIMONIAL VIDEOS (Vidalytics, lazy) ---------- */
+  var VACC = 'xWCLYwSv', vStarted = {}, playerLoading = false;
+  function vBase(id){ return 'https://fast.vidalytics.com/embeds/' + VACC + '/' + id + '/'; }
+  function addScript(src, cb){ var s=document.createElement('script'); s.async=true; s.src=src; s.onload=cb; s.onerror=cb; document.head.appendChild(s); }
+  function ensurePlayer(id){ if (playerLoading) return; playerLoading = true; addScript(vBase(id)+'loader.min.js', function(){ addScript(vBase(id)+'player.min.js', function(){}); }); }
+  function loadSettings(id){
+    window._vidalytics = window._vidalytics || {}; window._vidalytics.embeds = window._vidalytics.embeds || {};
+    ensurePlayer(id);
+    var run = function(){ if (window.Vidalytics && window.Vidalytics.Embed){ var e = new window.Vidalytics.Embed(); e.run(id); e.loadCss(); } else setTimeout(run, 500); };
+    var x = new XMLHttpRequest(); x.open('GET', vBase(id)+'player.settings.json?ac='+Date.now(), true);
+    x.onreadystatechange = function(){ if (x.readyState!==4 || (x.status!==200 && x.status!==304)) return; window._vidalytics.embeds[id] = {type:'video', options: JSON.parse(x.responseText)}; run(); };
+    x.send();
+  }
+  function loadClassic(id){
+    var embedId = 'vidalytics_embed_' + id, url = vBase(id);
+    (function (v, i, d, a, l, y, t, c, s) {
+      y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}
+      var vl='Loader',vli=v[y][vl],vsl=v[c][vl+'Script'],vlf=v[c][vl+'Loaded'],ve='Embed';
+      if(!vsl){vsl=function(u,cb){ if(t){cb();return;}s=i.createElement("script");s.type="text/javascript";s.async=1;s.src=u; s.onload=function(){vlf=1;cb();}; i.getElementsByTagName("head")[0].appendChild(s); };}
+      vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();} vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});
+    })(window, document, 'Vidalytics', embedId, url);
+  }
+  function kick(el){ var id = el.getAttribute('data-video'); if (vStarted[id]) return; vStarted[id] = 1; if (el.getAttribute('data-loader') === 'settings') loadSettings(id); else loadClassic(id); }
+  var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ kick(e.target); io.unobserve(e.target); } }); }, {rootMargin:'400px'}) : null;
+  function watch(scope){ scope.querySelectorAll('.vc-tvid[data-video]').forEach(function(el){ io ? io.observe(el) : kick(el); }); }
+  document.querySelectorAll('.vc-tgrid').forEach(function(g){ if (!g.closest('#vcMore')) watch(g); });
+
+  /* ---------- VIEW MORE: all testimonials + written reviews ---------- */
+  var moreBtn = document.getElementById('vcMoreBtn'), more = document.getElementById('vcMore');
+  moreBtn.addEventListener('click', function(){
+    var open = more.hasAttribute('hidden');
+    if (open) {
+      more.removeAttribute('hidden');
+      more.querySelectorAll('img[data-src]').forEach(function(img){ img.src = img.getAttribute('data-src'); img.removeAttribute('data-src'); });
+      watch(more);
+    } else { more.setAttribute('hidden',''); }
+    moreBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    moreBtn.textContent = open ? 'Show Less ↑' : 'View More ↓';
+  });
 
 })();
 </script>
