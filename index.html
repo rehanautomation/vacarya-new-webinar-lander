@@ -11,6 +11,9 @@
 <meta name="theme-color" content="#062F65">
 <link rel="icon" type="image/png" sizes="300x300" href="https://hostvacarya.com/wp-content/uploads/2025/10/vacarya-favicon-light-512-300x300.png">
 <link rel="apple-touch-icon" href="https://hostvacarya.com/wp-content/uploads/2025/10/vacarya-favicon-light-512-300x300.png">
+<link rel="preconnect" href="https://api.leadconnectorhq.com" crossorigin>
+<link rel="preconnect" href="https://link.msgsndr.com" crossorigin>
+<link rel="dns-prefetch" href="https://stcdn.leadconnectorhq.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@700&display=swap" rel="stylesheet">
@@ -223,6 +226,9 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
 /* GHL FORM (inline embed inside our modal, same as Section 8) */
 #vc-reg .vc-modal-card iframe{display:block;width:100%;min-height:704px;border:none;border-radius:8px}
+#vc-reg .vc-form-wrap{position:relative}
+#vc-reg .vc-form-load{position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:center;padding-top:60px;font-size:14px;font-weight:600;color:var(--muted);pointer-events:none}
+#vc-reg .vc-form-wrap.vc-ready .vc-form-load{display:none}
 #vc-reg .vc-fallback{display:block;text-align:center;font-size:13px;color:var(--muted);margin-top:8px}
 @media (min-width:901px) and (min-height:820px){#vc-reg .vc-modal-card iframe{min-height:600px}}
 
@@ -543,6 +549,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
         <p class="vc-modal-note"><span data-vc-date>Wednesday, Oct 14</span> at <span data-vc-time>7:00 PM EDT</span></p>
       </div>
 
+      <div class="vc-form-wrap" id="vcFormWrap"><div class="vc-form-load">Loading form…</div>
       <!-- GHL form: Webinar form V2 (inline layout, loads when the modal first opens) -->
       <iframe
         src="" data-vc-src="https://api.leadconnectorhq.com/widget/form/UbqnSxV2Jlcsuqe9bmga"
@@ -561,7 +568,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
         data-form-id="UbqnSxV2Jlcsuqe9bmga"
         data-cookie-consent="true"
         data-cookie-consent-provider="auto"
-        title="Webinar form V2"></iframe>
+        title="Webinar form V2"></iframe></div>
       <a class="vc-fallback" href="https://api.leadconnectorhq.com/widget/form/UbqnSxV2Jlcsuqe9bmga" target="_blank" rel="noopener">Form not loading? Open it here →</a>
     </div>
   </div>
@@ -656,6 +663,17 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     onScroll();
   }
   document.querySelectorAll('[data-vc-open]').forEach(function(b){b.addEventListener('click', openModal);});
+
+  /* ---------- PRELOAD FORM: start loading it in the background so it's ready before anyone clicks ---------- */
+  var formFrame = modal.querySelector('iframe[data-vc-src]');
+  formFrame.addEventListener('load', function(){ if (formFrame.getAttribute('src')) document.getElementById('vcFormWrap').classList.add('vc-ready'); });
+  function preloadForm(){ if (!formFrame.getAttribute('src')) formFrame.setAttribute('src', formFrame.getAttribute('data-vc-src')); }
+  function whenIdle(fn){ ('requestIdleCallback' in window) ? requestIdleCallback(fn, {timeout:2500}) : setTimeout(fn, 1200); }
+  if (document.readyState === 'complete') whenIdle(preloadForm); else window.addEventListener('load', function(){ whenIdle(preloadForm); });
+  document.querySelectorAll('[data-vc-open]').forEach(function(b){
+    b.addEventListener('pointerenter', preloadForm, {once:true});
+    b.addEventListener('touchstart', preloadForm, {once:true, passive:true});
+  });
   document.querySelectorAll('[data-vc-close]').forEach(function(b){b.addEventListener('click', closeModal);});
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && modal.classList.contains('vc-open')) closeModal(); });
 
@@ -734,6 +752,6 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
 })();
 </script>
-<script src="https://link.msgsndr.com/js/form_embed.js"></script>
+<script src="https://link.msgsndr.com/js/form_embed.js" defer></script>
 </body>
 </html>
