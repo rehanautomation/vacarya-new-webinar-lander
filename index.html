@@ -573,17 +573,15 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   </div>
 </div>
 
-<div id="vcVar"><button data-n="1" data-v="0" class="on">Variant 1</button><button data-n="2" data-v="1">Variant 2</button><button data-n="3" data-v="2">Variant 3</button><button data-n="4" data-v="3">Variant 4</button><button data-n="5" data-v="4">Variant 5</button></div>
+<div id="vcVar"><button data-n="1" data-v="0" class="on">Variant 1</button><button data-n="2" data-v="1">Variant 2</button><button data-n="3" data-v="2">Variant 3</button></div>
 <script>
 (function(){
   var V=['From the team behind 493 Airbnbs generating $15M+ annually.',
-         'From the team behind 493 Airbnbs and $15M+ last year',
-         'From the team behind 493 Airbnbs \u00b7 $15M+ last year',
          'From the team behind 493 Airbnbs generating $15M+ annually.',
          'From the team behind 493 Airbnbs generating<br>$15M+ annually.'];
   var pre=document.getElementById('vcPre');
   function fit(){pre.style.fontSize='';if(pre.classList.contains('vc-pre-big')&&!pre.classList.contains('vc-pre-v5'))return;var s=parseFloat(getComputedStyle(pre).fontSize);while(pre.scrollWidth>pre.clientWidth&&s>9){s-=.5;pre.style.fontSize=s+'px';}}
-  document.querySelectorAll('#vcVar button').forEach(function(b){b.onclick=function(){var v=b.dataset.v;pre.innerHTML=V[+v];pre.classList.toggle('vc-pre-big',v==='3'||v==='4');pre.classList.toggle('vc-pre-v5',v==='4');document.querySelectorAll('#vcVar button').forEach(function(x){x.classList.toggle('on',x===b)});fit();};});
+  document.querySelectorAll('#vcVar button').forEach(function(b){b.onclick=function(){var v=b.dataset.v;pre.innerHTML=V[+v];pre.classList.toggle('vc-pre-big',v==='1'||v==='2');pre.classList.toggle('vc-pre-v5',v==='2');document.querySelectorAll('#vcVar button').forEach(function(x){x.classList.toggle('on',x===b)});fit();};});
   fit(); window.addEventListener('resize',fit);
 })();
 (function(){
