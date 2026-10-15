@@ -1,13 +1,12 @@
 /* Review-only Back / Next buttons to walk the buyer flow.
    Shows on *.vercel.app and localhost only, so real visitors on our own domain never see it.
-   Hide for this tab: add ?nav=0 to any URL (?nav=1 brings it back). */
+   × shrinks it to a small Nav button; tap that to bring it back. */
 (function () {
   var host = location.hostname;
   var q = new URLSearchParams(location.search);
   try {
     if (q.get('nav') === '0') sessionStorage.setItem('vcFlowNav', 'off');
     if (q.get('nav') === '1') sessionStorage.removeItem('vcFlowNav');
-    if (sessionStorage.getItem('vcFlowNav') === 'off') return;
   } catch (e) {}
   if (!/\.vercel\.app$/.test(host) && host !== 'localhost' && host !== '127.0.0.1') return;
 
@@ -42,7 +41,11 @@
       '<span>' + s.n + '</span>' +
       '<a ' + (s.next ? 'href="' + href(s.next) + '"' : 'class="off"') + '>Next &#8594;</a>' +
       '<button type="button" title="Hide (this tab)" aria-label="Hide">&times;</button>';
-    bar.querySelector('button').onclick = function () { try { sessionStorage.setItem('vcFlowNav', 'off'); } catch (e) {} bar.remove(); };
+    var full = bar.innerHTML, mini = '<button type="button" title="Show Back/Next" style="width:auto;padding:0 12px;height:32px;color:#fff">&#8596; Nav</button>';
+    function set(off) { try { off ? sessionStorage.setItem('vcFlowNav', 'off') : sessionStorage.removeItem('vcFlowNav'); } catch (e) {}
+      bar.innerHTML = off ? mini : full; bar.querySelector('button').onclick = function () { set(!off); }; }
+    var startOff = false; try { startOff = sessionStorage.getItem('vcFlowNav') === 'off'; } catch (e) {}
+    set(startOff);
     document.body.appendChild(bar);
     /* sit above the page's own sticky CTA bar when it shows */
     function lift() {
