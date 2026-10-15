@@ -55,16 +55,30 @@ html,body{margin:0;padding:0;background:#fff}
 #pq form{padding:16px 10px}
 #pq .f{margin-bottom:17.5px}
 #pq .f label{display:block;font-size:16px;font-weight:500;color:#344054;line-height:1.8;margin-bottom:8px}
+#pq textarea{display:block;width:100%;font:inherit;font-size:16px;font-weight:400;color:#101828;background:#fff;border:1px solid #D0D5DD;border-radius:12px;
+  box-shadow:0 1px 2px 0 #1018280D;transition:border-color .15s,box-shadow .15s;appearance:none;-webkit-appearance:none}
+/* Dropdowns: custom list like Section 8's GHL dropdown (vue-multiselect): white list under the box, 45px rows, tinted hover row */
 #pq .sel{position:relative}
-#pq select,#pq textarea{display:block;width:100%;font:inherit;font-size:16px;font-weight:400;color:#101828;background:#fff;border:1px solid #D0D5DD;border-radius:12px;
-  box-shadow:0 1px 2px 0 #1018280D;padding:10px 40px 10px 15px;height:50px;line-height:28px;transition:border-color .15s,box-shadow .15s;appearance:none;-webkit-appearance:none}
-#pq select:invalid{color:#667085}
-#pq select option{color:#101828}
-#pq .sel:after{content:"";position:absolute;right:18px;top:50%;margin-top:-3px;border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid #999;pointer-events:none}
+#pq .sel select{display:none}
+#pq .ms-box{display:flex;align-items:center;width:100%;height:50px;padding:10px 40px 10px 15px;font:inherit;font-size:16px;font-weight:400;line-height:28px;color:#667085;text-align:left;
+  background:#fff;border:1px solid #D0D5DD;border-radius:12px;box-shadow:0 1px 2px 0 #1018280D;cursor:pointer;transition:border-color .15s}
+#pq .ms-box span{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+#pq .sel.has .ms-box{color:#101828}
+#pq .ms-box:after{content:"";position:absolute;right:18px;top:24px;margin-top:-3px;border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid #999}
+#pq .sel.open .ms-box:after{transform:rotate(180deg)}
+#pq .ms-box:hover,#pq .sel.open .ms-box{border-color:#B8E4F7}
+#pq .ms-box:focus{outline:none}
+#pq .ms-box:focus-visible{border-color:var(--brand);box-shadow:0 0 0 3px rgba(0,171,229,.15)}
+#pq .ms-list{display:none;position:absolute;left:0;right:0;top:100%;z-index:50;list-style:none;max-height:300px;overflow-y:auto;background:#fff;border:1px solid #E8E8E8;border-top:none;-webkit-overflow-scrolling:touch}
+#pq .sel.up .ms-list{top:auto;bottom:100%;border-top:1px solid #E8E8E8;border-bottom:none}
+#pq .sel.open .ms-list{display:block}
+#pq .ms-opt{display:flex;align-items:center;min-height:45px;padding:8px 10px;font-size:15px;line-height:1.35;color:#35495E;cursor:pointer}
+#pq .ms-opt.sel-on{font-weight:600;color:#101828}
+#pq .ms-opt.hl{background:#CCEEFB;color:#000}
 #pq textarea{height:auto;min-height:50px;resize:none;overflow:hidden;padding:10px 10px 10px 15px;line-height:1.6}
 #pq textarea::placeholder{color:#667085}
-#pq select:focus,#pq textarea:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px rgba(0,171,229,.15)}
-#pq .f.bad select,#pq .f.bad textarea{border-color:var(--err)}
+#pq textarea:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px rgba(0,171,229,.15)}
+#pq .f.bad .ms-box,#pq .f.bad textarea{border-color:var(--err)}
 #pq .emsg{display:none;color:var(--err);font-size:13px;font-weight:600;margin-top:6px}
 #pq .f.bad .emsg{display:block}
 
@@ -181,6 +195,39 @@ html,body{margin:0;padding:0;background:#fff}
     var ph = document.createElement('option'); ph.value = ''; ph.textContent = 'Select an option'; ph.disabled = true; ph.selected = true; sel.appendChild(ph);
     OPTIONS[sel.getAttribute('data-opts')].forEach(function(v){ var o = document.createElement('option'); o.value = v; o.textContent = v; sel.appendChild(o); });
   });
+
+  /* custom dropdown (Section 8 style); the hidden <select> keeps the value */
+  var openSel = null;
+  function closeAll(){ if (openSel) { openSel.classList.remove('open','up'); openSel.querySelector('.ms-box').setAttribute('aria-expanded','false'); openSel = null; } }
+  document.querySelectorAll('.sel').forEach(function(wrap){
+    var sel = wrap.querySelector('select'), opts = OPTIONS[sel.getAttribute('data-opts')], hl = -1;
+    var box = document.createElement('button'); box.type = 'button'; box.className = 'ms-box'; box.setAttribute('aria-haspopup','listbox'); box.setAttribute('aria-expanded','false');
+    box.innerHTML = '<span>Select an option</span>';
+    var lab = document.querySelector('label[for="' + sel.id + '"]'); if (lab) { lab.setAttribute('for', sel.id + 'Box'); box.id = sel.id + 'Box'; }
+    var list = document.createElement('ul'); list.className = 'ms-list'; list.setAttribute('role','listbox');
+    opts.forEach(function(v, i){ var li = document.createElement('li'); li.className = 'ms-opt'; li.setAttribute('role','option'); li.textContent = v;
+      li.addEventListener('mouseenter', function(){ mark(i); });
+      li.addEventListener('mousedown', function(e){ e.preventDefault(); pick(i); });
+      list.appendChild(li); });
+    wrap.appendChild(box); wrap.appendChild(list);
+    function mark(i){ hl = i; [].forEach.call(list.children, function(li, j){ li.classList.toggle('hl', j === i); }); if (i > -1) { var li = list.children[i]; if (li.offsetTop < list.scrollTop) list.scrollTop = li.offsetTop; else if (li.offsetTop + li.offsetHeight > list.scrollTop + list.clientHeight) list.scrollTop = li.offsetTop + li.offsetHeight - list.clientHeight; } }
+    function pick(i){ sel.value = opts[i]; box.firstChild.textContent = opts[i]; wrap.classList.add('has');
+      [].forEach.call(list.children, function(li, j){ li.classList.toggle('sel-on', j === i); li.setAttribute('aria-selected', j === i); });
+      sel.dispatchEvent(new Event('change', {bubbles:true})); closeAll(); box.focus(); }
+    function open(){ closeAll(); wrap.classList.add('open'); openSel = wrap; box.setAttribute('aria-expanded','true');
+      var r = box.getBoundingClientRect(), need = Math.min(300, list.scrollHeight);
+      if (window.innerHeight - r.bottom < need && r.top > window.innerHeight - r.bottom) wrap.classList.add('up');
+      mark(Math.max(0, opts.indexOf(sel.value))); }
+    box.addEventListener('click', function(){ wrap.classList.contains('open') ? closeAll() : open(); });
+    box.addEventListener('keydown', function(e){
+      var isOpen = wrap.classList.contains('open');
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); if (!isOpen) return open(); mark(Math.min(opts.length - 1, Math.max(0, hl + (e.key === 'ArrowDown' ? 1 : -1)))); }
+      else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (isOpen && hl > -1) pick(hl); else open(); }
+      else if (e.key === 'Escape' || e.key === 'Tab') { closeAll(); }
+    });
+  });
+  document.addEventListener('mousedown', function(e){ if (openSel && !openSel.contains(e.target)) closeAll(); });
+  document.addEventListener('touchstart', function(e){ if (openSel && !openSel.contains(e.target)) closeAll(); }, {passive:true});
 
   /* buyer details come from checkout (?email=&first_name=&last_name=); never asked again */
   var qs = new URLSearchParams(location.search);
