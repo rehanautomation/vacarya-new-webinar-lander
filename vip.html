@@ -752,7 +752,12 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   /* ---------- CHECKOUT (Stripe) ---------- */
   var STRIPE_PK = 'pk_test_51RPDiCDIw5VjyCSnDNGMV1g9Zi0fRnaYNdR4iJF5YNSAdZM7hXuhELtThFuCnXgmZWf7sMdyK9SOE8KtYu7F1mtC00vAi6imJJ';
   var VIP_CENTS = 2700, VIP_CURRENCY = 'usd';   // display only; the real price is set on the server
-  var SUCCESS_URL = '/confirmed?vip=1';
+  var SUCCESS_PATH = '/pre-qualification-app-a';   // after paying, buyers fill the pre-qual form
+  function successUrl(email, first, last){
+    var q = new URLSearchParams();
+    if (email) q.set('email', email); if (first) q.set('first_name', first); if (last) q.set('last_name', last);
+    var s = q.toString(); return SUCCESS_PATH + (s ? '?' + s : '');
+  }
 
   var form = document.getElementById('coForm'), msg = document.getElementById('coMsg'), payBtn = document.getElementById('coPay');
   var f = {first:document.getElementById('coFirst'), last:document.getElementById('coLast'), email:document.getElementById('coEmail'), addr:document.getElementById('coAddr')};
@@ -812,7 +817,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       return stripe.confirmCardPayment(secret, {payment_method:{card:cardNum, billing_details:{name:(d.firstName + ' ' + d.lastName).trim(), email:d.email, address:{line1:d.address}}}});
     }).then(function(res){
       if (res.error) throw new Error(res.error.message);
-      if (res.paymentIntent && res.paymentIntent.status === 'succeeded') { window.location.href = SUCCESS_URL; return; }
+      if (res.paymentIntent && res.paymentIntent.status === 'succeeded') { window.location.href = successUrl(d.email, d.firstName, d.lastName); return; }
       throw new Error('Payment did not go through. Please try again.');
     }).catch(function(err){ busy(false); showMsg(err.message); });
   });
@@ -842,10 +847,10 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
         if (r.error) throw new Error(r.error.message);
         return createIntent(extra);
       }).then(function(secret){
-        return stripe.confirmPayment({elements:els, clientSecret:secret, confirmParams:{return_url:window.location.origin + SUCCESS_URL}, redirect:'if_required'});
+        return stripe.confirmPayment({elements:els, clientSecret:secret, confirmParams:{return_url:window.location.origin + successUrl(extra.email, extra.firstName, extra.lastName)}, redirect:'if_required'});
       }).then(function(res){
         if (res.error) throw new Error(res.error.message);
-        window.location.href = SUCCESS_URL;
+        window.location.href = successUrl(extra.email, extra.firstName, extra.lastName);
       }).catch(function(err){ showMsg(err.message); });
     });
   }

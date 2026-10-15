@@ -44,8 +44,9 @@ export async function POST(request) {
 
   const hook = process.env.GHL_PREQUAL_WEBHOOK_URL;
   if (!hook) {
-    console.error('prequal: GHL_PREQUAL_WEBHOOK_URL is not set; answers not saved', data.email);
-    return json({ error: 'Something went wrong on our side. Please try again in a minute.' }, 503);
+    // Not connected to GHL yet: never block a paying buyer. Answers are kept in the Vercel logs until the webhook is set.
+    console.log('PREQUAL_UNSENT ' + JSON.stringify(data));
+    return json({ ok: true, saved: 'logs' });
   }
 
   try {
