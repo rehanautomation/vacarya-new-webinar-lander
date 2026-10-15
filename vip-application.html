@@ -40,7 +40,7 @@ html,body{margin:0;padding:0}
 #pq select:invalid{color:#6B7280}
 #pq select option{color:var(--ink)}
 #pq .sel:after{content:"";position:absolute;right:18px;top:50%;margin-top:-3px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:7px solid #6B7280;pointer-events:none}
-#pq textarea{min-height:76px;resize:vertical;padding:12px 16px;line-height:1.45}
+#pq textarea{min-height:76px;resize:none;overflow:hidden;padding:12px 16px;line-height:1.45}
 #pq textarea::placeholder{color:#6B7280}
 #pq select:focus,#pq textarea:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px rgba(0,171,229,.15)}
 #pq .f.bad select,#pq .f.bad textarea{border-color:var(--err)}
@@ -146,6 +146,10 @@ html,body{margin:0;padding:0}
   var who = { email: (qs.get('email') || '').trim(), first_name: (qs.get('first_name') || '').trim(), last_name: (qs.get('last_name') || '').trim(), payment_intent: (qs.get('payment_intent') || '').trim() };
 
   var form = document.getElementById('pqForm'), btn = document.getElementById('pqBtn'), msg = document.getElementById('pqMsg');
+  /* text box grows with what they type (no drag handle) */
+  var ta = document.getElementById('pqGoal');
+  function grow(){ ta.style.height = 'auto'; ta.style.height = ta.scrollHeight + 2 + 'px'; }
+  ta.addEventListener('input', grow);
   ['input','change'].forEach(function(ev){ form.addEventListener(ev, function(e){ var f = e.target.closest('.f'); if (f) f.classList.remove('bad'); }); });
 
   form.addEventListener('submit', function(e){
