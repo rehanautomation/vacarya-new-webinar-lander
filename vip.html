@@ -255,8 +255,9 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   #vc-reg .ty-bar{display:none}
   #vc-reg .ty-vip{display:none}
   #vc-reg .ty-chips-top{display:none}
-  #vc-reg .ty-chips-m{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;max-width:360px;margin:0 auto 18px}
-  #vc-reg .ty-chips span{text-align:center;white-space:nowrap;font-size:12px;padding:6px 10px}
+  #vc-reg .ty-chips-m{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:420px;margin:0 auto 18px}
+  #vc-reg .ty-chips span{display:flex;align-items:center;justify-content:center;text-align:center;font-size:13px;line-height:1.25;padding:9px 8px;border-radius:14px}
+  #vc-reg .ty-chips-m span:last-child{grid-column:1/-1}
   #vc-reg .ty-hero{padding-top:14px}
   #vc-reg .ty-steps{gap:5px;flex-wrap:nowrap;margin-bottom:0}
   #vc-reg .ty-steps li{font-size:min(11px,2.85vw);padding:4px 9px 4px 4px;gap:5px;white-space:nowrap}
@@ -338,7 +339,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 })(window, document, 'Vidalytics', 'vidalytics_embed_LvhKc7l2xrqUUOtK', 'https://fast.vidalytics.com/embeds/xWCLYwSv/LvhKc7l2xrqUUOtK/');
 </script>
       </div>
-      <div class="ty-chips ty-chips-m"><span>1 on 1 with Samuel</span><span>Deal Calculator</span><span>Landlord Approval Kit</span><span>All-in-One Airbnb Dashboard</span><span>Private Financing</span></div>
+      <div class="ty-chips ty-chips-m"><span>1 on 1 with Samuel</span><span>Deal Calculator</span><span>Landlord Approval Kit</span><span>Private Financing</span><span>All-in-One Airbnb Dashboard</span></div>
       <a href="#ty-checkout" class="vc-btn ty-btn2" id="tyHeroBtn"><span class="ty-btn-main"><span>Get VIP Access For <span data-vip-price>$27</span></span> <span class="vc-btn-arrow">→</span></span><span class="ty-btn-sub"><span data-vip-price>$27</span> one time</span></a>
       <div class="ty-trust">
         <span>✓ 30 day refund<i class="ty-hide-m">, keep everything</i></span>
