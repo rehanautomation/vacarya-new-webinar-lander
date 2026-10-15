@@ -132,7 +132,10 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 #vc-reg .ty-ic svg{width:23px;height:23px}
 #vc-reg .ty-item h3{font-size:18px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin-bottom:4px}
 #vc-reg .ty-item p{font-size:14.5px;color:var(--muted);line-height:1.55}
-#vc-reg .ty-val{font-size:17px;font-weight:800;color:#9AA6B6}
+#vc-reg .ty-val{font-size:16px;font-weight:800;color:#9AA6B6;text-align:right;white-space:nowrap}
+#vc-reg .ty-val small{display:block;font-size:10.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:#B7C0CC;margin-bottom:2px}
+#vc-reg .ty-val-pr{color:var(--blue-d)}
+#vc-reg .ty-total s.ty-instead{font-size:20px}
 #vc-reg .ty-total{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 26px;background:var(--navy);color:#fff}
 #vc-reg .ty-total span{display:block;font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:#9FB6D6}
 #vc-reg .ty-total s{font-size:24px;font-weight:800;color:#9FB6D6}
@@ -160,6 +163,24 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 #vc-reg .ty-co-head span{font-size:22px;font-weight:900;color:var(--blue-d)}
 #vc-reg .ty-co-head s{font-size:15px;color:#9AA6B6;font-weight:700;margin-right:6px}
 #vc-reg .ty-co-foot{text-align:center;font-size:12.5px;font-weight:600;color:var(--muted);margin-top:12px}
+/* VIDEO TESTIMONIALS */
+#vc-reg .vc-tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:880px;margin:46px auto 0;text-align:left}
+#vc-reg .vc-tcard{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}
+#vc-reg .vc-tvid{position:relative;background:var(--navy)}
+#vc-reg .vc-tvid > div{position:relative}
+#vc-reg .vc-tname{padding:14px 18px;font-size:15px;font-weight:800;color:var(--ink)}
+#vc-reg .vc-tname span{display:block;font-size:12.5px;font-weight:600;color:var(--muted);margin-top:2px}
+#vc-reg .vc-more-btn{margin-top:30px;cursor:pointer;font-family:inherit;font-size:15px;font-weight:800;color:var(--blue-d);background:var(--blue-l);border:1px solid var(--blue-b);border-radius:12px;padding:14px 26px}
+#vc-reg .vc-more-btn:hover{background:#D7F0FB}
+#vc-reg .vc-more{margin-top:30px}
+#vc-reg .vc-more[hidden]{display:none}
+#vc-reg .vc-more .vc-tgrid{margin-top:0}
+#vc-reg .vc-reviews{display:flex;gap:16px;align-items:flex-start;margin-top:30px}
+#vc-reg .vc-rcol{flex:1;min-width:0;display:flex;flex-direction:column;gap:16px}
+#vc-reg .vc-reviews img{width:100%;height:auto;border-radius:14px;border:1px solid var(--line);box-shadow:var(--shadow)}
+#vc-reg .vc-cta-desk{margin-top:36px}
+@media (max-width:900px){#vc-reg .vc-cta-desk{display:none}}
+
 #vc-reg .ty-quotes{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:900px;margin:40px auto 0;text-align:left}
 #vc-reg .ty-q{margin:0;background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px;box-shadow:var(--shadow)}
 #vc-reg .ty-q blockquote{font-size:16.5px;color:var(--navy);line-height:1.6;font-weight:600;margin:12px 0 14px}
@@ -226,8 +247,8 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   #vc-reg .ty-bar{display:none}
   #vc-reg .ty-vip{display:none}
   #vc-reg .ty-chips-top{display:none}
-  #vc-reg .ty-chips-m{display:grid;grid-template-columns:1fr 1fr;gap:6px;max-width:340px;margin:0 auto 18px}
-  #vc-reg .ty-chips span{text-align:center;white-space:nowrap;font-size:12.5px;padding:7px 6px}
+  #vc-reg .ty-chips-m{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;max-width:360px;margin:0 auto 18px}
+  #vc-reg .ty-chips span{text-align:center;white-space:nowrap;font-size:12px;padding:6px 10px}
   #vc-reg .ty-hero{padding-top:14px}
   #vc-reg .ty-steps{gap:5px;flex-wrap:nowrap;margin-bottom:0}
   #vc-reg .ty-steps li{font-size:min(11px,2.85vw);padding:4px 9px 4px 4px;gap:5px;white-space:nowrap}
@@ -270,6 +291,8 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   #vc-reg .ty-final{padding:32px 16px}
 }
 @media (min-width:901px){#vc-reg .vc-sticky{display:none!important}}
+@media (max-width:900px){#vc-reg .vc-tgrid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){#vc-reg .vc-tgrid{grid-template-columns:1fr;max-width:340px;margin-left:auto;margin-right:auto}}
 @media (prefers-reduced-motion:reduce){#vc-reg *{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -289,9 +312,9 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
         <li><span>3</span>Show up live</li>
       </ol>
       <div class="ty-vip"><span>★</span> VIP Access<i class="ty-hide-m">&nbsp;· Before the training</i></div>
-      <h1>Before <span data-vc-day>Wednesday</span>: Get <span class="vc-hl vc-nw">1 on 1 Help</span> To Launch Your First Profitable Airbnb For Just <span class="vc-money" data-vip-price>$27</span></h1>
-      <p class="vc-sub">I'll walk you through the model live. Then <b>a senior Vacarya advisor</b> hops on a call with you <b>1 on 1</b> to map out your first unit.</p>
-      <div class="ty-chips ty-chips-top"><span>1 on 1 call</span><span>Top 5 markets</span><span>Landlord scripts</span><span>Setup financing</span></div>
+      <h1>Before <span data-vc-day>Wednesday</span>: Get <span class="vc-hl vc-nw">1 on 1 Help</span> To Launch Your Airbnb Business For Just <span class="vc-money" data-vip-price>$27</span></h1>
+      <p class="vc-sub">I'll walk you through the model live. Then our Vice-President, <b>Samuel</b>, the guy who's helped dozens of Vacarya partners get their Airbnb businesses off the ground, hops on a call with you <b>1 on 1</b> to map out your <b>90-day launch plan</b>.</p>
+      <div class="ty-chips ty-chips-top"><span>1 on 1 with Samuel</span><span>Deal Calculator</span><span>Landlord Approval Kit</span><span>All-in-One Airbnb Dashboard</span><span>Private Financing</span></div>
       <div class="ty-video">
 <div id="vidalytics_embed_LvhKc7l2xrqUUOtK" style="width: 100%; position:relative; padding-top: 56.25%;"></div>
 <script type="text/javascript">
@@ -306,8 +329,8 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 })(window, document, 'Vidalytics', 'vidalytics_embed_LvhKc7l2xrqUUOtK', 'https://fast.vidalytics.com/embeds/xWCLYwSv/LvhKc7l2xrqUUOtK/');
 </script>
       </div>
-      <div class="ty-chips ty-chips-m"><span>1 on 1 call</span><span>Top 5 markets</span><span>Landlord scripts</span><span>Setup financing</span></div>
-      <a href="#ty-checkout" class="vc-btn ty-btn2" id="tyHeroBtn"><span class="ty-btn-main"><span>Get VIP Access For <span data-vip-price>$27</span></span> <span class="vc-btn-arrow">→</span></span><span class="ty-btn-sub"><s data-vip-value>$768</s> &nbsp;Today: <span data-vip-price>$27</span> one time</span></a>
+      <div class="ty-chips ty-chips-m"><span>1 on 1 with Samuel</span><span>Deal Calculator</span><span>Landlord Approval Kit</span><span>All-in-One Airbnb Dashboard</span><span>Private Financing</span></div>
+      <a href="#ty-checkout" class="vc-btn ty-btn2" id="tyHeroBtn"><span class="ty-btn-main"><span>Get VIP Access For <span data-vip-price>$27</span></span> <span class="vc-btn-arrow">→</span></span><span class="ty-btn-sub"><span data-vip-price>$27</span> one time</span></a>
       <div class="ty-trust">
         <span>✓ 30 day refund<i class="ty-hide-m">, keep everything</i></span>
         <span>✓ One time payment</span>
@@ -321,14 +344,15 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   <section class="vc-section">
     <div class="vc-wrap vc-center">
       <span class="vc-kicker">Why VIP Access exists</span>
-      <h2>You'll learn it live. <span class="vc-hl">VIP helps you do it.</span></h2>
-      <p class="vc-sub ty-narrow">Most people leave a training fired up, then stall on the first step. VIP Access covers each part of the training so you can act on it the next day.</p>
+      <h2>The training shows you what to do. <span class="vc-hl">VIP shows you where to start.</span></h2>
+      <p class="vc-sub ty-narrow">After Samuel builds your launch plan with you 1-on-1, you get the tools to put it into action: analyze the deal with our calculator, secure the property with our landlord scripts, set it up with our furniture and property checklists, and manage it all from one dashboard.</p>
       <div class="ty-bridge">
         <div class="ty-bridge-head"><span>On the training, I show you</span><span>With VIP Access, you get</span></div>
-        <div class="ty-row"><div class="ty-learn"><i>01</i>Why you don't need to own property</div><div class="ty-arrow" aria-hidden="true">→</div><div class="ty-get"><b>Our landlord scripts</b>What we say to get landlords to say yes to an Airbnb lease</div></div>
-        <div class="ty-row"><div class="ty-learn"><i>02</i>How we know a property will book</div><div class="ty-arrow" aria-hidden="true">→</div><div class="ty-get"><b>Our Top 5 markets + property criteria</b>Where our units book best, and the units we look for</div></div>
-        <div class="ty-row"><div class="ty-learn"><i>03</i>The done-for-you model, end to end</div><div class="ty-arrow" aria-hidden="true">→</div><div class="ty-get"><b>Access to setup financing</b>Funding options for furnishing and launching your first unit</div></div>
-        <div class="ty-row"><div class="ty-learn"><i>04</i>The live Q&amp;A</div><div class="ty-arrow" aria-hidden="true">→</div><div class="ty-get"><b>A 1 on 1 implementation call</b>Map out your first unit with a senior Vacarya advisor</div></div>
+        <div class="ty-row"><div class="ty-learn"><i>01</i>How I find Airbnb properties</div><div class="ty-arrow" aria-hidden="true">→</div><div class="ty-get"><b>My Landlord Approval Kit</b>The exact scripts and pitch decks I've used to secure hundreds of properties</div></div>
+        <div class="ty-row"><div class="ty-learn"><i>02</i>How I know an Airbnb will make money</div><div class="ty-arrow" aria-hidden="true">→</div><div class="ty-get"><b>My Deal Calculator</b>Run any property's numbers before you sign the lease to determine its cash flow</div></div>
+        <div class="ty-row"><div class="ty-learn"><i>03</i>How I run this business 100% remotely</div><div class="ty-arrow" aria-hidden="true">→</div><div class="ty-get"><b>All-in-One Airbnb Dashboard</b>All of my new property setup and furniture checklists, and a centralized hub to manage your properties</div></div>
+        <div class="ty-row"><div class="ty-learn"><i>04</i>Vacarya Done-For-You Model</div><div class="ty-arrow" aria-hidden="true">→</div><div class="ty-get"><b>Access to my private funding</b>Access the private funding team I use internally for Vacarya partners to maximize their growth</div></div>
+        <div class="ty-row"><div class="ty-learn"><i>05</i>Live Q&amp;A</div><div class="ty-arrow" aria-hidden="true">→</div><div class="ty-get"><b>Personalized 1-on-1 call</b>Sit down with the VP of North America's largest arbitrage team and walk away with a 90-day plan for your exact situation.</div></div>
       </div>
     </div>
   </section>
@@ -341,26 +365,31 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       <div class="ty-stack">
         <div class="ty-item">
           <div class="ty-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-          <div class="ty-body"><h3>1 on 1 Implementation Call With My Team</h3><p>A private call with a senior Vacarya advisor to map out your first unit, your market and your numbers.</p></div>
-          <div class="ty-val"><s>$497</s></div>
-        </div>
-        <div class="ty-item">
-          <div class="ty-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-          <div class="ty-body"><h3>Our Top 5 Airbnb Markets List</h3><p>The markets where our properties book best right now, so you start where the demand already is.</p></div>
-          <div class="ty-val"><s>$127</s></div>
-        </div>
-        <div class="ty-item">
-          <div class="ty-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg></div>
-          <div class="ty-body"><h3>Access To Setup Financing</h3><p>Funding options to cover furnishing and launch costs for your first unit.</p></div>
-          <div class="ty-val"><s>$47</s></div>
+          <div class="ty-body"><h3>1 on 1 Call With Samuel</h3><p>Sit down with the VP of North America's largest arbitrage team and walk away with a 90-day plan for your exact situation.</p></div>
+          <div class="ty-val"><small>No more</small><s>Guesswork</s></div>
         </div>
         <div class="ty-item">
           <div class="ty-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-6 9 6v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></div>
-          <div class="ty-body"><h3>Our Exact Property Criteria + Landlord Scripts</h3><p>The unit types, bedroom counts and rent ranges we target, plus the scripts we use to get landlords to say yes.</p></div>
-          <div class="ty-val"><s>$97</s></div>
+          <div class="ty-body"><h3>My Landlord Approval Kit</h3><p>The exact scripts and pitch decks I've used to secure hundreds of properties.</p></div>
+          <div class="ty-val"><small>No more</small><s>Rejection</s></div>
+        </div>
+        <div class="ty-item">
+          <div class="ty-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h8"/></svg></div>
+          <div class="ty-body"><h3>My Deal Calculator</h3><p>Run any property's numbers before you sign the lease and know its cash flow upfront.</p></div>
+          <div class="ty-val"><small>No more</small><s>Risk</s></div>
+        </div>
+        <div class="ty-item">
+          <div class="ty-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg></div>
+          <div class="ty-body"><h3>My All-in-One Airbnb Dashboard</h3><p>All of my new property setup and furniture checklists, plus a centralized hub to manage your properties.</p></div>
+          <div class="ty-val"><small>No more</small><s>Wasted Time</s></div>
+        </div>
+        <div class="ty-item">
+          <div class="ty-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg></div>
+          <div class="ty-body"><h3>Access To My Private Funding</h3><p>Access the private funding team I use internally for Vacarya partners to maximize their growth.</p></div>
+          <div class="ty-val ty-val-pr">Priceless</div>
         </div>
         <div class="ty-total">
-          <div><span>Total value</span><s data-vip-value>$768</s></div>
+          <div><span>Instead of</span><s class="ty-instead">Months of trial and error</s></div>
           <div class="ty-today"><span>Today</span><b data-vip-price>$27</b></div>
         </div>
       </div>
@@ -376,12 +405,13 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       <div class="ty-co">
         <div class="ty-co-left">
           <span class="vc-kicker">Complete your order</span>
-          <h2>Leave the training <span class="vc-hl">ready to launch</span>, not just inspired</h2>
+          <h2>While others are taking notes, <span class="vc-hl">you'll be taking action</span></h2>
           <ul class="ty-recap">
-            <li>1 on 1 implementation call with my team</li>
-            <li>Our Top 5 Airbnb markets</li>
-            <li>Access to setup financing</li>
-            <li>Our property criteria + landlord scripts</li>
+            <li>1 on 1 implementation call with Samuel</li>
+            <li>Landlord Approval Kit</li>
+            <li>Deal Calculator</li>
+            <li>All-in-One Airbnb Dashboard</li>
+            <li>Access To Private Funding</li>
           </ul>
           <div class="ty-guar">
             <div class="ty-guar-seal">30<small>DAY</small></div>
@@ -389,12 +419,12 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
           </div>
           <div class="ty-host">
             <div class="ty-avatar"><img src="/img/aiden-headshot.jpg" alt="Aiden Weir" loading="lazy"></div>
-            <div><b>Aiden Weir</b><span>Co-Founder, Vacarya · 493 active properties</span></div>
+            <div><b>Aiden Weir</b><span>Vacarya, #1 Airbnb arbitrager in NA</span></div>
           </div>
         </div>
         <div class="ty-co-right">
           <div class="ty-co-card">
-            <div class="ty-co-head"><b>★ VIP Access</b><span><s data-vip-value>$768</s> <span data-vip-price>$27</span></span></div>
+            <div class="ty-co-head"><b>★ VIP Access</b><span><span data-vip-price>$27</span></span></div>
             <!-- CHECKOUT: Stripe Elements (card fields + Apple Pay / Google Pay), same layout as Section 8 -->
             <form class="co" id="coForm" novalidate>
               <h4>Billing Information</h4>
@@ -441,11 +471,39 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     <div class="vc-wrap vc-center">
       <span class="vc-kicker">From our operators</span>
       <h2>What operators say about working with us</h2>
-      <div class="ty-quotes">
-        <figure class="ty-q"><div class="vc-stars">★★★★★</div><blockquote>Amazed by how effortless the setup and ongoing management really were.</blockquote><figcaption><b>Trevor H.</b> · Rockvale, TN</figcaption></figure>
-        <figure class="ty-q ty-q-ph"><div class="vc-stars">★★★★★</div><blockquote>TESTIMONIAL: second operator quote (Trustpilot or video review from Aiden)</blockquote><figcaption><b>Name</b> · City, Province/State</figcaption></figure>
+      <div class="vc-tgrid">
+          <div class="vc-tcard"><div class="vc-tvid" data-video="VTab9sdlPcnqYsyw" data-loader="settings"><div id="VTab9sdlPcnqYsyw" style="padding-top:177.78%"></div></div><div class="vc-tname">Rob V.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="UH3YggU0nB1bDod_"><div id="vidalytics_embed_UH3YggU0nB1bDod_" style="padding-top:177.78%"></div></div><div class="vc-tname">Josh C.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="YMTcLkxOfEPogHig"><div id="vidalytics_embed_YMTcLkxOfEPogHig" style="padding-top:177.78%"></div></div><div class="vc-tname">Kajana D.<span>Vacarya operator</span></div></div>
       </div>
-      <p class="vc-disclaim">Individual results. Not typical and not a guarantee.</p>
+      <button type="button" class="vc-more-btn" id="vcMoreBtn" aria-expanded="false">View More ↓</button>
+      <div class="vc-more" id="vcMore" hidden>
+        <div class="vc-tgrid">
+          <div class="vc-tcard"><div class="vc-tvid" data-video="9ZMBSpvLpcRNeL8m" data-loader="settings"><div id="9ZMBSpvLpcRNeL8m" style="padding-top:177.78%"></div></div><div class="vc-tname">Patricia G.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="_3LhJcZabSuVtAqn" data-loader="settings"><div id="_3LhJcZabSuVtAqn" style="padding-top:177.78%"></div></div><div class="vc-tname">Helen Q.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="d6GhhPiwXRTZIh55" data-loader="settings"><div id="d6GhhPiwXRTZIh55" style="padding-top:177.78%"></div></div><div class="vc-tname">Ravi R.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="S2udtgRr3weGPAMJ" data-loader="settings"><div id="S2udtgRr3weGPAMJ" style="padding-top:177.78%"></div></div><div class="vc-tname">Mike E.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="o9Ho5JnqweHAsKkj" data-loader="settings"><div id="o9Ho5JnqweHAsKkj" style="padding-top:177.78%"></div></div><div class="vc-tname">Sajeed A.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="AtKNDCr00S_Yyh0G" data-loader="settings"><div id="AtKNDCr00S_Yyh0G" style="padding-top:177.78%"></div></div><div class="vc-tname">Kevin M.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="TBDybqUkvVpuF5cy" data-loader="settings"><div id="TBDybqUkvVpuF5cy" style="padding-top:177.78%"></div></div><div class="vc-tname">John S.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="BEIWJ7hHIaXtj5E9" data-loader="settings"><div id="BEIWJ7hHIaXtj5E9" style="padding-top:177.78%"></div></div><div class="vc-tname">Devang B.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="O6XYSCu2jX0XvhUf" data-loader="settings"><div id="O6XYSCu2jX0XvhUf" style="padding-top:177.78%"></div></div><div class="vc-tname">Greg L.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="WoB8QPzALc0OUKH6"><div id="vidalytics_embed_WoB8QPzALc0OUKH6" style="padding-top:177.78%"></div></div><div class="vc-tname">Andy D.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="KCxrI1vlcJ71GTP9"><div id="vidalytics_embed_KCxrI1vlcJ71GTP9" style="padding-top:177.78%"></div></div><div class="vc-tname">Fasi K.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="C873MB3yzcU4eiHP"><div id="vidalytics_embed_C873MB3yzcU4eiHP" style="padding-top:177.78%"></div></div><div class="vc-tname">Dylan M.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="Q7FZIMLXMLWHNdDk"><div id="vidalytics_embed_Q7FZIMLXMLWHNdDk" style="padding-top:177.78%"></div></div><div class="vc-tname">Jason L.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="LUuJ8wfnCQ7QS1d3"><div id="vidalytics_embed_LUuJ8wfnCQ7QS1d3" style="padding-top:177.78%"></div></div><div class="vc-tname">Dennis L.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="WkyXHrLIcfaeY4yr"><div id="vidalytics_embed_WkyXHrLIcfaeY4yr" style="padding-top:177.78%"></div></div><div class="vc-tname">Trevor J.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="pJPnsekIVIAUwxYD"><div id="vidalytics_embed_pJPnsekIVIAUwxYD" style="padding-top:177.78%"></div></div><div class="vc-tname">Trevor H.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="5KPTZEDzewMmOnXu" data-loader="settings"><div id="5KPTZEDzewMmOnXu" style="padding-top:177.78%"></div></div><div class="vc-tname">Gaurav D.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="cWgx4DGVi2lkzUK4" data-loader="settings"><div id="cWgx4DGVi2lkzUK4" style="padding-top:177.78%"></div></div><div class="vc-tname">Tony G.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="zx8wRA3vo22fIHNK" data-loader="settings"><div id="zx8wRA3vo22fIHNK" style="padding-top:177.78%"></div></div><div class="vc-tname">Jessica<span>Vacarya operator</span></div></div>
+        </div>
+        <div class="vc-cta-row vc-cta-desk"><a href="#ty-checkout" class="vc-btn ty-btn2"><span class="ty-btn-main"><span>Get VIP Access For <span data-vip-price>$27</span></span> <span class="vc-btn-arrow">→</span></span><span class="ty-btn-sub"><span data-vip-price>$27</span> one time</span></a></div>
+        <div class="vc-reviews" id="vcReviews"></div>
+        <div class="vc-cta-row vc-cta-desk"><a href="#ty-checkout" class="vc-btn ty-btn2"><span class="ty-btn-main"><span>Get VIP Access For <span data-vip-price>$27</span></span> <span class="vc-btn-arrow">→</span></span><span class="ty-btn-sub"><span data-vip-price>$27</span> one time</span></a></div>
+      </div>
+      <p class="vc-disclaim">These are some of our best results, not typical ones. Most people won't grow this fast. Your results depend on your capital, your market and the work you put in.</p>
     </div>
   </section>
 
@@ -456,7 +514,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       <h2>Before you get VIP Access</h2>
       <div class="vc-faq">
         <details><summary>Is my seat for the training still saved if I skip this?</summary><p>Yes. Your seat for <span data-vc-date>Wednesday, Oct 14</span> at <span data-vc-time>7:00 PM EDT</span> is saved either way. VIP Access is for putting what you learn live into action.</p></details>
-        <details><summary>Should I get it before or after the training?</summary><p>Before. Get the markets list and property criteria now and you'll follow along on the training with your own market in mind. Then book your 1 on 1 call.</p></details>
+        <details><summary>Should I get it before or after the training?</summary><p>Before. Get the Deal Calculator and Landlord Approval Kit now and you'll follow along on the training with real tools in hand. Then book your 1 on 1 call with Samuel.</p></details>
         <details><summary>What happens after I buy?</summary><p>Instant delivery. Your VIP kit and the booking link for your 1 on 1 call are emailed right away.</p></details>
         <details><summary>Is this a subscription?</summary><p>No. It's a one time payment of <span data-vip-price>$27</span>. No subscription, no upsell traps.</p></details>
         <details><summary>What if it's not for me?</summary><p>You have 30 days. If you don't feel it was worth 10x the <span data-vip-price>$27</span>, email us and we refund you. You keep all the resources.</p></details>
@@ -469,9 +527,9 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     <div class="vc-wrap vc-narrow vc-center">
       <div class="ty-final">
         <div class="vc-eyebrow">Last step before the training</div>
-        <h2>Get 1 on 1 Help To Launch Your First Profitable Airbnb</h2>
+        <h2>Get 1 on 1 Help To Launch Your Airbnb Business</h2>
         <div class="vc-cta-row" style="margin-top:26px">
-          <a href="#ty-checkout" class="vc-btn ty-btn2"><span class="ty-btn-main"><span>Get VIP Access For <span data-vip-price>$27</span></span> <span class="vc-btn-arrow">→</span></span><span class="ty-btn-sub"><s data-vip-value>$768</s> &nbsp;Today: <span data-vip-price>$27</span> one time</span></a>
+          <a href="#ty-checkout" class="vc-btn ty-btn2"><span class="ty-btn-main"><span>Get VIP Access For <span data-vip-price>$27</span></span> <span class="vc-btn-arrow">→</span></span><span class="ty-btn-sub"><span data-vip-price>$27</span> one time</span></a>
         </div>
         <a class="ty-no" href="/confirmed">No thanks, I'll figure it out on my own and risk missing out.</a>
         <div class="ty-show">
@@ -490,7 +548,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   </section>
 
   <div class="vc-sticky" id="vcSticky">
-    <a href="#ty-checkout" class="vc-btn ty-btn2"><span class="ty-btn-main"><span>Get VIP Access For <span data-vip-price>$27</span></span> <span class="vc-btn-arrow">→</span></span><span class="ty-btn-sub"><s data-vip-value>$768</s> &nbsp;Today: <span data-vip-price>$27</span> one time</span></a>
+    <a href="#ty-checkout" class="vc-btn ty-btn2"><span class="ty-btn-main"><span>Get VIP Access For <span data-vip-price>$27</span></span> <span class="vc-btn-arrow">→</span></span><span class="ty-btn-sub"><span data-vip-price>$27</span> one time</span></a>
   </div>
 
   <footer class="vc-footer">
@@ -566,6 +624,65 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     + '&text=' + encodeURIComponent('Vacarya Live Training with Aiden Weir')
     + '&dates=' + gstamp(target) + '/' + gstamp(end)
     + '&details=' + encodeURIComponent('Free live training. Your join link is in your confirmation email.');
+
+  /* ---------- TESTIMONIAL VIDEOS (Vidalytics, lazy) ---------- */
+  var VACC = 'xWCLYwSv', vStarted = {}, playerLoading = false;
+  function vBase(id){ return 'https://fast.vidalytics.com/embeds/' + VACC + '/' + id + '/'; }
+  function addScript(src, cb){ var s=document.createElement('script'); s.async=true; s.src=src; s.onload=cb; s.onerror=cb; document.head.appendChild(s); }
+  function ensurePlayer(id){ if (playerLoading) return; playerLoading = true; addScript(vBase(id)+'loader.min.js', function(){ addScript(vBase(id)+'player.min.js', function(){}); }); }
+  function loadSettings(id){
+    window._vidalytics = window._vidalytics || {}; window._vidalytics.embeds = window._vidalytics.embeds || {};
+    ensurePlayer(id);
+    var run = function(){ if (window.Vidalytics && window.Vidalytics.Embed){ var e = new window.Vidalytics.Embed(); e.run(id); e.loadCss(); } else setTimeout(run, 500); };
+    var x = new XMLHttpRequest(); x.open('GET', vBase(id)+'player.settings.json?ac='+Date.now(), true);
+    x.onreadystatechange = function(){ if (x.readyState!==4 || (x.status!==200 && x.status!==304)) return; window._vidalytics.embeds[id] = {type:'video', options: JSON.parse(x.responseText)}; run(); };
+    x.send();
+  }
+  function loadClassic(id){
+    var embedId = 'vidalytics_embed_' + id, url = vBase(id);
+    (function (v, i, d, a, l, y, t, c, s) {
+      y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}
+      var vl='Loader',vli=v[y][vl],vsl=v[c][vl+'Script'],vlf=v[c][vl+'Loaded'],ve='Embed';
+      if(!vsl){vsl=function(u,cb){ if(t){cb();return;}s=i.createElement("script");s.type="text/javascript";s.async=1;s.src=u; s.onload=function(){vlf=1;cb();}; i.getElementsByTagName("head")[0].appendChild(s); };}
+      vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();} vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});
+    })(window, document, 'Vidalytics', embedId, url);
+  }
+  function kick(el){ var id = el.getAttribute('data-video'); if (vStarted[id]) return; vStarted[id] = 1; if (el.getAttribute('data-loader') === 'settings') loadSettings(id); else loadClassic(id); }
+  var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ kick(e.target); io.unobserve(e.target); } }); }, {rootMargin:'400px'}) : null;
+  function watch(scope){ scope.querySelectorAll('.vc-tvid[data-video]').forEach(function(el){ io ? io.observe(el) : kick(el); }); }
+  document.querySelectorAll('.vc-tgrid').forEach(function(g){ if (!g.closest('#vcMore')) watch(g); });
+
+  /* ---------- VIEW MORE: all testimonials + written reviews ---------- */
+  /* ---------- WRITTEN REVIEWS: pack into equal-height columns ---------- */
+  var REV = [{"i": 20, "r": 2.5433}, {"i": 14, "r": 0.435}, {"i": 4, "r": 0.5513}, {"i": 15, "r": 0.5175}, {"i": 13, "r": 1.0288}, {"i": 2, "r": 1.2463}, {"i": 3, "r": 1.3925}, {"i": 12, "r": 0.52}, {"i": 11, "r": 0.4275}, {"i": 9, "r": 0.7462}, {"i": 17, "r": 1.1775}, {"i": 1, "r": 0.6325}, {"i": 18, "r": 0.5138}, {"i": 10, "r": 0.4863}, {"i": 7, "r": 0.4988}, {"i": 5, "r": 0.42}, {"i": 8, "r": 0.47}, {"i": 16, "r": 0.3925}, {"i": 19, "r": 0.5962}, {"i": 6, "r": 0.345}], revBox = document.getElementById('vcReviews'), revCols = 0, revShown = false;
+  function packReviews(){
+    if (!revShown) return;
+    var n = window.innerWidth <= 600 ? 1 : window.innerWidth <= 900 ? 2 : 3;
+    if (n === revCols) return; revCols = n;
+    var cols = [], h = [];
+    for (var c = 0; c < n; c++){ cols.push([]); h.push(0); }
+    REV.slice().sort(function(a,b){return b.r - a.r;}).forEach(function(x){
+      var k = h.indexOf(Math.min.apply(null, h)); cols[k].push(x); h[k] += x.r + 0.03;
+    });
+    revBox.innerHTML = cols.map(function(col){
+      return '<div class="vc-rcol">' + col.map(function(x){
+        return '<img src="https://vacarya-confirmation-page.vercel.app/reviews/review-' + x.i + '.webp" alt="Client review" loading="lazy" decoding="async">';
+      }).join('') + '</div>';
+    }).join('');
+  }
+  window.addEventListener('resize', packReviews);
+
+  var moreBtn = document.getElementById('vcMoreBtn'), more = document.getElementById('vcMore');
+  moreBtn.addEventListener('click', function(){
+    var open = more.hasAttribute('hidden');
+    if (open) {
+      more.removeAttribute('hidden');
+      revShown = true; packReviews();
+      watch(more);
+    } else { more.setAttribute('hidden',''); }
+    moreBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    moreBtn.textContent = open ? 'Show Less ↑' : 'View More ↓';
+  });
 
   /* ---------- SMOOTH SCROLL TO CHECKOUT ---------- */
   document.querySelectorAll('a[href="#ty-checkout"]').forEach(function(a){
@@ -686,6 +803,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   }
   wallet('coApple', 'coAppleNote', 'applePay');
   wallet('coGoogle', 'coGoogleNote', 'googlePay');
+
 })();
 </script>
 </body>
