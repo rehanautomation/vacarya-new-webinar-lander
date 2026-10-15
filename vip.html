@@ -228,11 +228,18 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   #vc-reg .ty-quotes{grid-template-columns:1fr}
 }
 @media (max-width:700px){
-  #vc-reg .ty-bridge-head{display:none}
-  #vc-reg .ty-row{grid-template-columns:1fr;gap:10px;padding:18px 16px}
-  #vc-reg .ty-arrow{transform:rotate(90deg);width:26px;height:26px;margin-left:4px}
-  #vc-reg .ty-learn:before{content:"Live:";font-size:11px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted)}
-  #vc-reg .ty-learn i{display:none}
+  /* phones/tablets: two columns kept side by side (Variant B) */
+  #vc-reg .ty-bridge-head{grid-template-columns:40% 60%;padding:0;border-bottom:none;font-size:10px;letter-spacing:1.2px}
+  #vc-reg .ty-bridge-head span{padding:11px 12px}
+  #vc-reg .ty-bridge-head span:first-child{background:var(--soft);color:#8A94A6}
+  #vc-reg .ty-bridge-head span:last-child{grid-column:auto;background:var(--brand);color:#fff}
+  #vc-reg .ty-row{grid-template-columns:40% 60%;align-items:stretch;padding:0;gap:0;border-bottom:none;border-top:1px solid var(--line)}
+  #vc-reg .ty-arrow{display:none}
+  #vc-reg .ty-learn{position:relative;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:3px;padding:14px 16px 14px 12px;background:var(--soft);font-size:13.5px;line-height:1.3;color:#3B4354}
+  #vc-reg .ty-learn i{flex:none;width:auto;height:auto;border:none;border-radius:0;background:none;padding:0;font-size:10.5px;color:#9AA4B5}
+  #vc-reg .ty-learn:after{content:"";position:absolute;right:-7px;top:50%;transform:translateY(-50%) rotate(45deg);width:12px;height:12px;background:var(--soft);border-top:1px solid var(--line);border-right:1px solid var(--line);z-index:1}
+  #vc-reg .ty-get{background:#fff;border:none;border-radius:0;padding:14px 12px 14px 18px;font-size:12.5px;line-height:1.4}
+  #vc-reg .ty-get b{font-size:14.5px;font-weight:900;line-height:1.25;margin-bottom:3px}
 }
 @media (max-width:600px){
   #vc-reg .vc-section{padding:60px 0}
@@ -262,12 +269,6 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   #vc-reg .ty-hide-m{display:none}
   #vc-reg .ty-no{margin-top:12px;font-size:11.5px}
   #vc-reg .ty-bridge{margin-top:28px;border-radius:20px}
-  #vc-reg .ty-row{gap:6px;padding:14px 14px}
-  #vc-reg .ty-arrow{display:none}
-  #vc-reg .ty-learn{font-size:14px;flex-direction:column;align-items:flex-start;gap:2px}
-  #vc-reg .ty-learn:before{content:"On the training:";font-size:10.5px}
-  #vc-reg .ty-get{padding:10px 12px;font-size:13px}
-  #vc-reg .ty-get b{font-size:15px}
   #vc-reg .ty-stack{margin-top:28px;border-radius:20px}
   #vc-reg .ty-item{grid-template-columns:auto 1fr auto;gap:12px;padding:16px 14px;align-items:start}
   #vc-reg .ty-val{margin-top:2px;font-size:13.5px}
