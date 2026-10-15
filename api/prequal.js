@@ -34,9 +34,12 @@ export async function POST(request) {
     capital: clean(b.capital, 100),
     situation: clean(b.situation, 150),
     timeline: clean(b.timeline, 100),
+    payment_intent: clean(b.payment_intent, 100),
   };
 
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) return json({ error: 'Please enter a valid email.' }, 400);
+  // Email comes from checkout via the URL; the form never asks for it again.
+  if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) data.email = '';
+  if (!data.email) console.warn('prequal: submitted without email (page opened without checkout params)');
   if (data.goal.length < 3) return json({ error: 'Please answer the first question.' }, 400);
   for (const k of ['capital', 'situation', 'timeline']) {
     if (!OPTIONS[k].includes(data[k])) return json({ error: 'Please answer every question.' }, 400);
