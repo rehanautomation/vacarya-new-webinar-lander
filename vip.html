@@ -9,6 +9,7 @@
 <meta name="theme-color" content="#062F65">
 <link rel="icon" type="image/png" sizes="300x300" href="https://hostvacarya.com/wp-content/uploads/2025/10/vacarya-favicon-light-512-300x300.png">
 <link rel="apple-touch-icon" href="https://hostvacarya.com/wp-content/uploads/2025/10/vacarya-favicon-light-512-300x300.png">
+<link rel="preconnect" href="https://fast.vidalytics.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@700&display=swap" rel="stylesheet">
@@ -658,9 +659,40 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     })(window, document, 'Vidalytics', embedId, url);
   }
   function kick(el){ var id = el.getAttribute('data-video'); if (vStarted[id]) return; vStarted[id] = 1; if (el.getAttribute('data-loader') === 'settings') loadSettings(id); else loadClassic(id); }
-  var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ kick(e.target); io.unobserve(e.target); } }); }, {rootMargin:'400px'}) : null;
+  /* Loading plan (keeps the page fast):
+     - nothing loads until a video is about to be seen
+     - desktop: first 3 load as the section nears the screen, the rest only after "View More"
+     - phones: ALL videos sit in one swipe row; the row arms when it nears the screen,
+       then each video loads about one swipe before it slides into view */
+  var HAS_IO = 'IntersectionObserver' in window;
+  var MOBILE = window.matchMedia('(max-width:600px)');
+  var firstGrid = document.querySelector('.vc-tgrid');
+  var moreGrid = document.querySelector('#vcMore .vc-tgrid');
+  var extraCards = moreGrid ? [].slice.call(moreGrid.children) : [];
+  var io = HAS_IO ? new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ kick(e.target); io.unobserve(e.target); } }); }, {rootMargin:'400px 0px'}) : null;
+  var swipeIO = null, rowIO = null;
   function watch(scope){ scope.querySelectorAll('.vc-tvid[data-video]').forEach(function(el){ io ? io.observe(el) : kick(el); }); }
-  document.querySelectorAll('.vc-tgrid').forEach(function(g){ if (!g.closest('#vcMore')) watch(g); });
+  function armSwipe(){
+    if (!HAS_IO){ watch(firstGrid); return; }
+    if (rowIO) return;
+    rowIO = new IntersectionObserver(function(es){
+      if (!es[0].isIntersecting) return;
+      rowIO.disconnect();
+      swipeIO = new IntersectionObserver(function(es2){ es2.forEach(function(e){ if (e.isIntersecting){ kick(e.target); swipeIO.unobserve(e.target); } }); }, {root:firstGrid, rootMargin:'0px 110% 0px 0px'});
+      firstGrid.querySelectorAll('.vc-tvid[data-video]').forEach(function(el){ swipeIO.observe(el); });
+    }, {rootMargin:'400px 0px'});
+    rowIO.observe(firstGrid);
+  }
+  function placeCards(){
+    if (!firstGrid || !moreGrid) return;
+    var target = MOBILE.matches ? firstGrid : moreGrid;
+    extraCards.forEach(function(c){ if (c.parentNode !== target) target.appendChild(c); });
+    moreGrid.style.display = MOBILE.matches ? 'none' : '';
+    if (MOBILE.matches) armSwipe(); else watch(firstGrid);
+    if (moreBtn && more) setMoreLabel();  /* both are set further down; skipped on first run */
+  }
+  placeCards();
+  if (MOBILE.addEventListener) MOBILE.addEventListener('change', placeCards); else if (MOBILE.addListener) MOBILE.addListener(placeCards);
 
   /* ---------- VIEW MORE: all testimonials + written reviews ---------- */
   /* ---------- WRITTEN REVIEWS: pack into equal-height columns ---------- */
@@ -683,16 +715,21 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   window.addEventListener('resize', packReviews);
 
   var moreBtn = document.getElementById('vcMoreBtn'), more = document.getElementById('vcMore');
+  /* desktop: opens the other videos + Trustpilot reviews. phones: videos are already in the swipe row, so it opens the reviews only */
+  function setMoreLabel(){
+    var isOpen = !more.hasAttribute('hidden');
+    moreBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    moreBtn.textContent = MOBILE.matches ? (isOpen ? 'Hide Reviews ↑' : 'See Trustpilot Reviews ↓') : (isOpen ? 'Show Less ↑' : 'View More ↓');
+  }
   moreBtn.addEventListener('click', function(){
-    var open = more.hasAttribute('hidden');
-    if (open) {
+    if (more.hasAttribute('hidden')) {
       more.removeAttribute('hidden');
       revShown = true; packReviews();
-      watch(more);
+      if (!MOBILE.matches) watch(more);
     } else { more.setAttribute('hidden',''); }
-    moreBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    moreBtn.textContent = open ? 'Show Less ↑' : 'View More ↓';
+    setMoreLabel();
   });
+  setMoreLabel();
   } catch (e) { if (window.console) console.warn("testimonials:", e); }
 
   /* ---------- SMOOTH SCROLL TO CHECKOUT ---------- */

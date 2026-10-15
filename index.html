@@ -14,6 +14,7 @@
 <link rel="preconnect" href="https://api.leadconnectorhq.com" crossorigin>
 <link rel="preconnect" href="https://link.msgsndr.com" crossorigin>
 <link rel="dns-prefetch" href="https://stcdn.leadconnectorhq.com">
+<link rel="preconnect" href="https://fast.vidalytics.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@700&display=swap" rel="stylesheet">
@@ -98,6 +99,8 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 #vc-reg .vc-tix-vip{color:#9A6B00;background:#FFF1C9;border:1px solid #E9B949}
 #vc-reg .vc-rating{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 10px;margin-top:26px;font-size:15px;color:var(--muted)}
 #vc-reg .vc-rating b{color:var(--ink);font-weight:800}
+#vc-reg .vc-tp{display:inline-flex;line-height:0}
+#vc-reg .vc-tp svg{height:20px;width:auto}
 #vc-reg .vc-stars{color:#F2B01E;font-size:18px;letter-spacing:3px;line-height:1}
 #vc-reg .vc-proofline{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:16px}
 #vc-reg .vc-proofline span{font-size:14px;font-weight:600;color:var(--blue-d);background:var(--blue-l);border:1px solid var(--blue-b);border-radius:999px;padding:8px 14px;white-space:nowrap}
@@ -283,6 +286,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   #vc-reg .vc-vip-text{font-size:14px}
   #vc-reg .vc-rating{flex-wrap:nowrap;white-space:nowrap;font-size:min(12.5px,3.25vw);gap:6px}
   #vc-reg .vc-stars{font-size:15px;letter-spacing:2px}
+  #vc-reg .vc-tp svg{height:16px}
   #vc-reg .vc-proofline{flex-wrap:wrap;gap:6px}
   #vc-reg .vc-hide-m{display:none}
   #vc-reg .vc-show-m{display:inline}
@@ -343,7 +347,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
         <span class="vc-vip-tix"><span class="vc-tix vc-tix-free">Free</span><span class="vc-tix vc-tix-vip">VIP</span></span>
       </div>
       <div class="vc-rating">
-        <span class="vc-stars" aria-hidden="true">★★★★★</span>
+        <span class="vc-tp" role="img" aria-label="Rated 4.4 out of 5 on Trustpilot"><svg viewBox="0 0 128 24" aria-hidden="true"><rect x="0" width="24" height="24" fill="#00B67A"/><rect x="26" width="24" height="24" fill="#00B67A"/><rect x="52" width="24" height="24" fill="#00B67A"/><rect x="78" width="24" height="24" fill="#00B67A"/><rect x="104" width="12" height="24" fill="#00B67A"/><rect x="116" width="12" height="24" fill="#DCDCE6"/><path transform="translate(0 0)" fill="#fff" d="M12 4.2l2.3 4.9 5.3.6-3.9 3.6 1 5.3L12 16l-4.7 2.6 1-5.3-3.9-3.6 5.3-.6z"/><path transform="translate(26 0)" fill="#fff" d="M12 4.2l2.3 4.9 5.3.6-3.9 3.6 1 5.3L12 16l-4.7 2.6 1-5.3-3.9-3.6 5.3-.6z"/><path transform="translate(52 0)" fill="#fff" d="M12 4.2l2.3 4.9 5.3.6-3.9 3.6 1 5.3L12 16l-4.7 2.6 1-5.3-3.9-3.6 5.3-.6z"/><path transform="translate(78 0)" fill="#fff" d="M12 4.2l2.3 4.9 5.3.6-3.9 3.6 1 5.3L12 16l-4.7 2.6 1-5.3-3.9-3.6 5.3-.6z"/><path transform="translate(104 0)" fill="#fff" d="M12 4.2l2.3 4.9 5.3.6-3.9 3.6 1 5.3L12 16l-4.7 2.6 1-5.3-3.9-3.6 5.3-.6z"/></svg></span>
         <b>Rated Excellent</b>
         <span>on Trustpilot</span>
       </div>
@@ -408,10 +412,10 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       <div class="vc-host">
         <div class="vc-host-photo">
           <span class="vc-initials">AW</span>
-          <img src="/img/aiden-headshot-v2.jpg" alt="Aiden Weir">
+          <img src="/img/aiden-headshot-v3.jpg" alt="Aiden Weir">
         </div>
         <div>
-          <p>A good few years ago, I quit a six-figure job in the nuclear industry. I was sitting in a concrete bunker at 1AM, watching two 50-year-olds argue about overtime, and realized if I didn't at least try something, I was looking at myself in 30 years. The cost of staying was higher than the cost of trying to build something on my own. <b class="vc-hl">So I went all in on Airbnb arbitrage.</b></p>
+          <p>A good few years ago, I quit a six-figure job in the nuclear industry. I was sitting in a concrete bunker at 1AM, watching two 50-year-olds argue about overtime, and realized I had to at least try something else. <b class="vc-hl">So I went all in on Airbnb arbitrage.</b></p>
           <p>I figured it out eventually, but I made every mistake in the book and lost tons of money along the way. <b class="vc-hl">Basically all of it could've been avoided if I'd had the right person in my corner.</b> So I built what my younger self needed. <b class="vc-hl">Vacarya.</b></p>
           <p>With <b class="vc-hl">493 properties</b> doing <b class="vc-hl">over $1.8M last month alone</b>, we're now the <b class="vc-hl">largest arbitrage company in North America</b>. We've helped <b class="vc-hl">over 100 operators</b> build a second income stream through Airbnb arbitrage, with <b class="vc-hl">some already generating over seven figures per year</b>.</p>
           <p>This <span data-vc-day>Wednesday</span>, I'm going live to show you the <b class="vc-hl">fastest path to a profitable Airbnb business</b> that exists today, so you don't have to spend 6 years figuring it out like I did.</p>
@@ -722,9 +726,40 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     })(window, document, 'Vidalytics', embedId, url);
   }
   function kick(el){ var id = el.getAttribute('data-video'); if (vStarted[id]) return; vStarted[id] = 1; if (el.getAttribute('data-loader') === 'settings') loadSettings(id); else loadClassic(id); }
-  var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ kick(e.target); io.unobserve(e.target); } }); }, {rootMargin:'400px'}) : null;
+  /* Loading plan (keeps the page fast):
+     - nothing loads until a video is about to be seen
+     - desktop: first 3 load as the section nears the screen, the rest only after "View More"
+     - phones: ALL videos sit in one swipe row; the row arms when it nears the screen,
+       then each video loads about one swipe before it slides into view */
+  var HAS_IO = 'IntersectionObserver' in window;
+  var MOBILE = window.matchMedia('(max-width:600px)');
+  var firstGrid = document.querySelector('.vc-tgrid');
+  var moreGrid = document.querySelector('#vcMore .vc-tgrid');
+  var extraCards = moreGrid ? [].slice.call(moreGrid.children) : [];
+  var io = HAS_IO ? new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ kick(e.target); io.unobserve(e.target); } }); }, {rootMargin:'400px 0px'}) : null;
+  var swipeIO = null, rowIO = null;
   function watch(scope){ scope.querySelectorAll('.vc-tvid[data-video]').forEach(function(el){ io ? io.observe(el) : kick(el); }); }
-  document.querySelectorAll('.vc-tgrid').forEach(function(g){ if (!g.closest('#vcMore')) watch(g); });
+  function armSwipe(){
+    if (!HAS_IO){ watch(firstGrid); return; }
+    if (rowIO) return;
+    rowIO = new IntersectionObserver(function(es){
+      if (!es[0].isIntersecting) return;
+      rowIO.disconnect();
+      swipeIO = new IntersectionObserver(function(es2){ es2.forEach(function(e){ if (e.isIntersecting){ kick(e.target); swipeIO.unobserve(e.target); } }); }, {root:firstGrid, rootMargin:'0px 110% 0px 0px'});
+      firstGrid.querySelectorAll('.vc-tvid[data-video]').forEach(function(el){ swipeIO.observe(el); });
+    }, {rootMargin:'400px 0px'});
+    rowIO.observe(firstGrid);
+  }
+  function placeCards(){
+    if (!firstGrid || !moreGrid) return;
+    var target = MOBILE.matches ? firstGrid : moreGrid;
+    extraCards.forEach(function(c){ if (c.parentNode !== target) target.appendChild(c); });
+    moreGrid.style.display = MOBILE.matches ? 'none' : '';
+    if (MOBILE.matches) armSwipe(); else watch(firstGrid);
+    if (moreBtn && more) setMoreLabel();  /* both are set further down; skipped on first run */
+  }
+  placeCards();
+  if (MOBILE.addEventListener) MOBILE.addEventListener('change', placeCards); else if (MOBILE.addListener) MOBILE.addListener(placeCards);
 
   /* ---------- VIEW MORE: all testimonials + written reviews ---------- */
   /* ---------- WRITTEN REVIEWS: pack into equal-height columns ---------- */
@@ -747,16 +782,21 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   window.addEventListener('resize', packReviews);
 
   var moreBtn = document.getElementById('vcMoreBtn'), more = document.getElementById('vcMore');
+  /* desktop: opens the other videos + Trustpilot reviews. phones: videos are already in the swipe row, so it opens the reviews only */
+  function setMoreLabel(){
+    var isOpen = !more.hasAttribute('hidden');
+    moreBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    moreBtn.textContent = MOBILE.matches ? (isOpen ? 'Hide Reviews ↑' : 'See Trustpilot Reviews ↓') : (isOpen ? 'Show Less ↑' : 'View More ↓');
+  }
   moreBtn.addEventListener('click', function(){
-    var open = more.hasAttribute('hidden');
-    if (open) {
+    if (more.hasAttribute('hidden')) {
       more.removeAttribute('hidden');
       revShown = true; packReviews();
-      watch(more);
+      if (!MOBILE.matches) watch(more);
     } else { more.setAttribute('hidden',''); }
-    moreBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    moreBtn.textContent = open ? 'Show Less ↑' : 'View More ↓';
+    setMoreLabel();
   });
+  setMoreLabel();
 
 })();
 </script>
