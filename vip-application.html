@@ -130,7 +130,7 @@ html,body{margin:0;padding:0}
 <script>
 (function(){
   /* ---------- SETTINGS ---------- */
-  var NEXT_URL = 'https://section8pro.com/pre-qual-form-completed';
+  var NEXT_URL = '/vip-confirmed';
   var OPTIONS = {   /* must match api/prequal.js exactly */
     capital:   ['Less than $50,000', '$50,000 - $100,000', '$100,000 - $250,000', '$250,000 - $500,000+'],
     situation: ['I am completely new to Airbnb', 'I understand the basics but have not secured my first property', "I have at least one property in my portfolio and I'm looking to expand"],
@@ -167,7 +167,7 @@ html,body{margin:0;padding:0}
     fetch('/api/prequal', {method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(data)})
       .then(function(r){ return r.json().then(function(d){ if (!r.ok || !d.ok) throw new Error(d.error || 'Something went wrong. Please try again.'); }); })
       .then(function(){
-        var u = new URL(NEXT_URL);
+        var u = new URL(NEXT_URL, location.origin);
         if (data.email) u.searchParams.set('email', data.email);
         if (data.first_name) u.searchParams.set('first_name', data.first_name);
         window.location.href = u.toString();

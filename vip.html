@@ -752,7 +752,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   /* ---------- CHECKOUT (Stripe) ---------- */
   var STRIPE_PK = 'pk_test_51RPDiCDIw5VjyCSnDNGMV1g9Zi0fRnaYNdR4iJF5YNSAdZM7hXuhELtThFuCnXgmZWf7sMdyK9SOE8KtYu7F1mtC00vAi6imJJ';
   var VIP_CENTS = 2700, VIP_CURRENCY = 'usd';   // display only; the real price is set on the server
-  var SUCCESS_PATH = '/pre-qualification-app-a';   // after paying, buyers fill the pre-qual form
+  var SUCCESS_PATH = '/vip-application';   // after paying, buyers fill the pre-qual form
   function successUrl(email, first, last){
     var q = new URLSearchParams();
     if (email) q.set('email', email); if (first) q.set('first_name', first); if (last) q.set('last_name', last);

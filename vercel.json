@@ -1,3 +1,10 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/pre-qualification-app-a",
+      "destination": "/vip-application",
+      "permanent": false
+    }
+  ]
 }
