@@ -11,6 +11,7 @@ const OPTIONS = {
     "I have at least one property in my portfolio and I'm looking to expand",
   ],
   timeline: ["I'm ready to start right away", 'Within 30 days', '30-60 days', '3-6 months', 'Just exploring for now'],
+  profit_goal: ['$5,000', '$10,000', '$15,000', '$20,000+'],
 };
 
 function json(data, status = 200) {
@@ -34,6 +35,7 @@ export async function POST(request) {
     capital: clean(b.capital, 100),
     situation: clean(b.situation, 150),
     timeline: clean(b.timeline, 100),
+    profit_goal: clean(b.profit_goal, 50),
     payment_intent: clean(b.payment_intent, 100),
   };
 
@@ -41,7 +43,7 @@ export async function POST(request) {
   if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) data.email = '';
   if (!data.email) console.warn('prequal: submitted without email (page opened without checkout params)');
   if (data.goal.length < 3) return json({ error: 'Please answer the first question.' }, 400);
-  for (const k of ['capital', 'situation', 'timeline']) {
+  for (const k of ['capital', 'situation', 'timeline', 'profit_goal']) {
     if (!OPTIONS[k].includes(data[k])) return json({ error: 'Please answer every question.' }, 400);
   }
 
