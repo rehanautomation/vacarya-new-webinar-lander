@@ -257,6 +257,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   #vc-reg .vc-host-photo{max-width:320px;width:100%;margin:0 auto}
   #vc-reg .vc-wide{grid-template-columns:1fr}
   #vc-reg .vc-wide .vc-wimg{min-height:0;height:230px;border-right:none;border-bottom:1px solid var(--line)}
+  #vc-reg .vc-wide .vc-wimg-ba{height:auto;aspect-ratio:935/731}
   #vc-reg .vc-faq-grid{grid-template-columns:1fr;max-width:640px;margin-left:auto;margin-right:auto}
   #vc-reg .vc-faq-photo{position:relative;top:0}
   #vc-reg .vc-faq-img{aspect-ratio:1/1}
@@ -282,11 +283,11 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   #vc-reg .vc-vip-text{font-size:14px}
   #vc-reg .vc-rating{flex-wrap:nowrap;white-space:nowrap;font-size:min(12.5px,3.25vw);gap:6px}
   #vc-reg .vc-stars{font-size:15px;letter-spacing:2px}
-  #vc-reg .vc-proofline{flex-wrap:nowrap;gap:6px}
+  #vc-reg .vc-proofline{flex-wrap:wrap;gap:6px}
   #vc-reg .vc-hide-m{display:none}
   #vc-reg .vc-show-m{display:inline}
   #vc-reg .vc-walk-h{font-size:min(23px,5.6vw);white-space:nowrap;letter-spacing:-.6px}
-  #vc-reg .vc-proofline span{font-size:min(11px,2.85vw);padding:6px min(8px,1.9vw)}
+  #vc-reg .vc-proofline span{font-size:12px;padding:6px 10px}
   #vc-reg .vc-stats{grid-template-columns:1fr;gap:8px}
   #vc-reg .vc-stat{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;text-align:left}
   #vc-reg .vc-stat b{font-size:19px}
@@ -295,13 +296,20 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   #vc-reg .vc-host p{margin-bottom:18px}
   #vc-reg .vc-case-body{padding:22px 20px 24px}
   #vc-reg .vc-final-body{padding:36px 20px}
-  #vc-reg .vc-tgrid{grid-template-columns:1fr;max-width:340px;margin-left:auto;margin-right:auto}
   #vc-reg .vc-fitcard{padding:26px 22px}
   #vc-reg .vc-fitcard li{font-size:15px}
   #vc-reg .vc-pre{font-size:14px;margin-top:16px}
   #vc-reg .vc-ph{font-size:13.5px}
 }
 @media (min-width:901px){#vc-reg .vc-sticky{display:none!important}}
+#vc-reg .vc-swipe{display:none}
+/* MOBILE: testimonial videos become a swipe row instead of a 1800px-tall stack */
+@media (max-width:600px){
+  #vc-reg .vc-tgrid{display:flex;gap:12px;max-width:none;margin-left:-22px;margin-right:-22px;padding:4px 22px 14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  #vc-reg .vc-tgrid::-webkit-scrollbar{display:none}
+  #vc-reg .vc-tcard{flex:0 0 68%;scroll-snap-align:center}
+  #vc-reg .vc-swipe{display:block;margin-top:6px;font-size:12.5px;font-weight:700;color:var(--muted)}
+}
 @media (prefers-reduced-motion:reduce){#vc-reg *{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -378,7 +386,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
           </div>
         </div>
         <div class="vc-wcard vc-wide">
-          <div class="vc-wimg"><img src="/img/aiden-live-v2.jpg" alt="Aiden Weir on a live call" loading="lazy" style="object-position:50% 30%"></div>
+          <div class="vc-wimg vc-wimg-ba"><img class="vc-fill" src="/img/before-after.jpg" alt="Before and after: a Vacarya unit going from empty boxes to guest-ready" loading="lazy"></div>
           <div class="vc-wbody">
             <div class="vc-num">04</div>
             <h3>The Vacarya Done-For-You Partnership + Live Q&amp;A</h3>
@@ -400,7 +408,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       <div class="vc-host">
         <div class="vc-host-photo">
           <span class="vc-initials">AW</span>
-          <img src="/img/aiden-headshot.jpg" alt="Aiden Weir">
+          <img src="/img/aiden-headshot-v2.jpg" alt="Aiden Weir">
         </div>
         <div>
           <p>A good few years ago, I quit a six-figure job in the nuclear industry. I was sitting in a concrete bunker at 1AM, watching two 50-year-olds argue about overtime, and realized if I didn't at least try something, I was looking at myself in 30 years. The cost of staying was higher than the cost of trying to build something on my own. <b class="vc-hl">So I went all in on Airbnb arbitrage.</b></p>
@@ -427,6 +435,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
           <div class="vc-tcard"><div class="vc-tvid" data-video="UH3YggU0nB1bDod_"><div id="vidalytics_embed_UH3YggU0nB1bDod_" style="padding-top:177.78%"></div></div><div class="vc-tname">Josh C.<span>Vacarya operator</span></div></div>
           <div class="vc-tcard"><div class="vc-tvid" data-video="YMTcLkxOfEPogHig"><div id="vidalytics_embed_YMTcLkxOfEPogHig" style="padding-top:177.78%"></div></div><div class="vc-tname">Kajana D.<span>Vacarya operator</span></div></div>
       </div>
+      <span class="vc-swipe">Swipe for more →</span>
       <button type="button" class="vc-more-btn" id="vcMoreBtn" aria-expanded="false">View More ↓</button>
       <div class="vc-more" id="vcMore" hidden>
         <div class="vc-tgrid">

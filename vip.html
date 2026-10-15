@@ -292,7 +292,14 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 }
 @media (min-width:901px){#vc-reg .vc-sticky{display:none!important}}
 @media (max-width:900px){#vc-reg .vc-tgrid{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:600px){#vc-reg .vc-tgrid{grid-template-columns:1fr;max-width:340px;margin-left:auto;margin-right:auto}}
+#vc-reg .vc-swipe{display:none}
+/* MOBILE: testimonial videos become a swipe row instead of a 1800px-tall stack */
+@media (max-width:600px){
+  #vc-reg .vc-tgrid{display:flex;gap:12px;max-width:none;margin-left:-22px;margin-right:-22px;padding:4px 22px 14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  #vc-reg .vc-tgrid::-webkit-scrollbar{display:none}
+  #vc-reg .vc-tcard{flex:0 0 68%;scroll-snap-align:center}
+  #vc-reg .vc-swipe{display:block;margin-top:6px;font-size:12.5px;font-weight:700;color:var(--muted)}
+}
 @media (prefers-reduced-motion:reduce){#vc-reg *{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -476,6 +483,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
           <div class="vc-tcard"><div class="vc-tvid" data-video="UH3YggU0nB1bDod_"><div id="vidalytics_embed_UH3YggU0nB1bDod_" style="padding-top:177.78%"></div></div><div class="vc-tname">Josh C.<span>Vacarya operator</span></div></div>
           <div class="vc-tcard"><div class="vc-tvid" data-video="YMTcLkxOfEPogHig"><div id="vidalytics_embed_YMTcLkxOfEPogHig" style="padding-top:177.78%"></div></div><div class="vc-tname">Kajana D.<span>Vacarya operator</span></div></div>
       </div>
+      <span class="vc-swipe">Swipe for more →</span>
       <button type="button" class="vc-more-btn" id="vcMoreBtn" aria-expanded="false">View More ↓</button>
       <div class="vc-more" id="vcMore" hidden>
         <div class="vc-tgrid">
