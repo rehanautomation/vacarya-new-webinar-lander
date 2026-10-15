@@ -169,7 +169,7 @@ html,body{margin:0;padding:0;background:#fff}
           <div class="sel"><select id="pqProfit" name="profit_goal" required data-opts="profit_goal"></select></div>
           <p class="emsg">Please select an option.</p>
         </div>
-        <div class="btnw"><button type="submit" class="btn" id="pqBtn">Complete My Account Setup</button></div>
+        <div class="btnw"><button type="submit" class="btn" id="pqBtn">Continue To Book My 1-on-1</button></div>
         <p class="formmsg" id="pqMsg" role="alert"></p>
       </form>
       <p class="note">This takes 15 seconds and gives Sam the context he needs for your <span style="white-space:nowrap">1-on-1.</span></p>
@@ -265,7 +265,7 @@ html,body{margin:0;padding:0;background:#fff}
         if (data.first_name) u.searchParams.set('first_name', data.first_name);
         window.location.href = u.toString();
       })
-      .catch(function(err){ msg.textContent = err.message; msg.classList.add('on'); btn.disabled = false; btn.textContent = 'Complete My Account Setup'; });
+      .catch(function(err){ msg.textContent = err.message; msg.classList.add('on'); btn.disabled = false; btn.textContent = 'Continue To Book My 1-on-1'; });
   });
 })();
 </script>
