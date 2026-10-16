@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://api.leadconnectorhq.com">
+<link rel="preconnect" href="https://fast.vidalytics.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 html,body{margin:0;padding:0;background:#fff}
@@ -375,6 +376,33 @@ html.vc-lock #vc-flow{display:none}
   #vc-cal .card:before{content:"";position:absolute;top:7px;left:50%;width:40px;height:4px;margin-left:-20px;border-radius:4px;background:rgba(6,47,101,.18)}
 }
 @media (prefers-reduced-motion:reduce){#vc-cal .card,#vc-cal .bg{transition:none}}
+/* testimonials (copied from vip.html) */
+#vc-vip .vc-tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:880px;margin:46px auto 0;text-align:left}
+#vc-vip .vc-tcard{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}
+#vc-vip .vc-tvid{position:relative;background:var(--navy)}
+#vc-vip .vc-tvid > div{position:relative}
+#vc-vip .vc-tname{padding:14px 18px;font-size:15px;font-weight:800;color:var(--ink)}
+#vc-vip .vc-tname span{display:block;font-size:12.5px;font-weight:600;color:var(--muted);margin-top:2px}
+#vc-vip .vc-more-btn{margin-top:30px;cursor:pointer;font-family:inherit;font-size:15px;font-weight:800;color:var(--green-d);background:var(--green-l);border:1px solid var(--green-b);border-radius:12px;padding:14px 26px}
+#vc-vip .vc-more-btn:hover{background:#D7F0FB}
+#vc-vip .vc-more{margin-top:30px}
+#vc-vip .vc-more[hidden]{display:none}
+#vc-vip .vc-more .vc-tgrid{margin-top:0}
+#vc-vip .vc-reviews{display:flex;gap:16px;align-items:flex-start;margin-top:30px}
+#vc-vip .vc-rcol{flex:1;min-width:0;display:flex;flex-direction:column;gap:16px}
+#vc-vip .vc-reviews img{width:100%;height:auto;border-radius:14px;border:1px solid var(--line);box-shadow:var(--shadow)}
+
+@media (max-width:900px){#vc-vip .vc-tgrid{grid-template-columns:repeat(2,1fr)}}
+#vc-vip .vc-swipe{display:none}
+/* MOBILE: testimonial videos become a swipe row instead of a 1800px-tall stack */
+@media (max-width:600px){
+  #vc-vip .vc-tgrid{display:flex;gap:12px;max-width:none;margin-left:-22px;margin-right:-22px;padding:4px 22px 14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  #vc-vip .vc-tgrid::-webkit-scrollbar{display:none}
+  #vc-vip .vc-tcard{flex:0 0 68%;scroll-snap-align:center}
+  #vc-vip .vc-swipe{display:block;margin-top:6px;font-size:12.5px;font-weight:700;color:var(--muted)}
+}
+
+#vc-vip button.s8-btn-s{border:0;cursor:pointer;font-family:inherit}
 </style>
 </head>
 <body>
@@ -411,7 +439,7 @@ html.vc-lock #vc-flow{display:none}
         <small>Important</small>
         <h3>I just texted you</h3>
         <p>Check your phone. The text comes from this number, and every reminder for the live training comes from it too.</p>
-        <span class="s8-phone">+1 910-776-2877</span>
+        <span class="s8-phone">+1 305-449-9135</span>
         <span class="s8-reply">Reply YES to confirm</span>
       </div>
     </div>
@@ -429,11 +457,54 @@ html.vc-lock #vc-flow{display:none}
           <div class="s8-inv" aria-hidden="true">
             <div class="s8-inv-when"><b data-vc-inv-date>This week</b> &bull; <span data-vc-inv-time></span></div>
             <div class="s8-inv-title">Vacarya &lt;&lt;&gt;&gt; Accept Invite To Confirm</div>
-            <div class="s8-inv-who"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="#5f6368" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>Aiden Weir</div>
+            <div class="s8-inv-who"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="#5f6368" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>Samuel Leeland</div>
             <div class="s8-inv-btns"><span class="s8-inv-yes">Yes<svg class="s8-inv-arrow" viewBox="0 0 64 64"><path fill="#00ABE5" d="M8 6l34 10-11 9 25 25-8 8-25-25-9 11z"/></svg></span><span>No</span><span>Maybe</span><span class="s8-inv-lt">Add note</span></div>
           </div></div>
         </div>
+        <div class="s8-step">
+          <div class="s8-num">02</div>
+          <div><h3>Book your 1-on-1 with Samuel before seats fill up</h3><p>Pick a date and time that works for you now, so your spot is locked in.</p>
+          <div class="s8-row"><button type="button" class="s8-btn-s vc-book2" data-vc-book>Book My 1-on-1 With Samuel &rarr;</button></div></div>
+        </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS (same as VIP page) ===== -->
+  <section class="s8-section">
+    <div class="s8-wrap s8-center">
+      <span class="s8-kicker">From our operators</span>
+      <h2>What operators say about working with us</h2>
+      <div class="vc-tgrid">
+          <div class="vc-tcard"><div class="vc-tvid" data-video="VTab9sdlPcnqYsyw" data-loader="settings"><div id="VTab9sdlPcnqYsyw" style="padding-top:177.78%"></div></div><div class="vc-tname">Rob V.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="UH3YggU0nB1bDod_"><div id="vidalytics_embed_UH3YggU0nB1bDod_" style="padding-top:177.78%"></div></div><div class="vc-tname">Josh C.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="YMTcLkxOfEPogHig"><div id="vidalytics_embed_YMTcLkxOfEPogHig" style="padding-top:177.78%"></div></div><div class="vc-tname">Kajana D.<span>Vacarya operator</span></div></div>
+      </div>
+      <span class="vc-swipe">Swipe for more →</span>
+      <button type="button" class="vc-more-btn" id="vcMoreBtn" aria-expanded="false">View More ↓</button>
+      <div class="vc-more" id="vcMore" hidden>
+        <div class="vc-tgrid">
+          <div class="vc-tcard"><div class="vc-tvid" data-video="9ZMBSpvLpcRNeL8m" data-loader="settings"><div id="9ZMBSpvLpcRNeL8m" style="padding-top:177.78%"></div></div><div class="vc-tname">Patricia G.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="_3LhJcZabSuVtAqn" data-loader="settings"><div id="_3LhJcZabSuVtAqn" style="padding-top:177.78%"></div></div><div class="vc-tname">Helen Q.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="d6GhhPiwXRTZIh55" data-loader="settings"><div id="d6GhhPiwXRTZIh55" style="padding-top:177.78%"></div></div><div class="vc-tname">Ravi R.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="S2udtgRr3weGPAMJ" data-loader="settings"><div id="S2udtgRr3weGPAMJ" style="padding-top:177.78%"></div></div><div class="vc-tname">Mike E.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="o9Ho5JnqweHAsKkj" data-loader="settings"><div id="o9Ho5JnqweHAsKkj" style="padding-top:177.78%"></div></div><div class="vc-tname">Sajeed A.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="AtKNDCr00S_Yyh0G" data-loader="settings"><div id="AtKNDCr00S_Yyh0G" style="padding-top:177.78%"></div></div><div class="vc-tname">Kevin M.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="TBDybqUkvVpuF5cy" data-loader="settings"><div id="TBDybqUkvVpuF5cy" style="padding-top:177.78%"></div></div><div class="vc-tname">John S.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="BEIWJ7hHIaXtj5E9" data-loader="settings"><div id="BEIWJ7hHIaXtj5E9" style="padding-top:177.78%"></div></div><div class="vc-tname">Devang B.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="O6XYSCu2jX0XvhUf" data-loader="settings"><div id="O6XYSCu2jX0XvhUf" style="padding-top:177.78%"></div></div><div class="vc-tname">Greg L.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="WoB8QPzALc0OUKH6"><div id="vidalytics_embed_WoB8QPzALc0OUKH6" style="padding-top:177.78%"></div></div><div class="vc-tname">Andy D.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="KCxrI1vlcJ71GTP9"><div id="vidalytics_embed_KCxrI1vlcJ71GTP9" style="padding-top:177.78%"></div></div><div class="vc-tname">Fasi K.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="C873MB3yzcU4eiHP"><div id="vidalytics_embed_C873MB3yzcU4eiHP" style="padding-top:177.78%"></div></div><div class="vc-tname">Dylan M.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="Q7FZIMLXMLWHNdDk"><div id="vidalytics_embed_Q7FZIMLXMLWHNdDk" style="padding-top:177.78%"></div></div><div class="vc-tname">Jason L.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="LUuJ8wfnCQ7QS1d3"><div id="vidalytics_embed_LUuJ8wfnCQ7QS1d3" style="padding-top:177.78%"></div></div><div class="vc-tname">Dennis L.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="WkyXHrLIcfaeY4yr"><div id="vidalytics_embed_WkyXHrLIcfaeY4yr" style="padding-top:177.78%"></div></div><div class="vc-tname">Trevor J.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="pJPnsekIVIAUwxYD"><div id="vidalytics_embed_pJPnsekIVIAUwxYD" style="padding-top:177.78%"></div></div><div class="vc-tname">Trevor H.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="5KPTZEDzewMmOnXu" data-loader="settings"><div id="5KPTZEDzewMmOnXu" style="padding-top:177.78%"></div></div><div class="vc-tname">Gaurav D.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="cWgx4DGVi2lkzUK4" data-loader="settings"><div id="cWgx4DGVi2lkzUK4" style="padding-top:177.78%"></div></div><div class="vc-tname">Tony G.<span>Vacarya operator</span></div></div>
+          <div class="vc-tcard"><div class="vc-tvid" data-video="zx8wRA3vo22fIHNK" data-loader="settings"><div id="zx8wRA3vo22fIHNK" style="padding-top:177.78%"></div></div><div class="vc-tname">Jessica<span>Vacarya operator</span></div></div>
+        </div>
+        <div class="vc-reviews" id="vcReviews"></div>
     </div>
   </section>
 
@@ -503,6 +574,105 @@ html.vc-lock #vc-flow{display:none}
   /* warm the calendar up in the background so it opens instantly */
   var idle = window.requestIdleCallback || function(f){ return setTimeout(f, 1200); };
   window.addEventListener('load', function(){ idle(load); });
+})();
+(function(){
+  /* testimonials are isolated: an error here can never stop checkout below */
+  try {
+  /* ---------- TESTIMONIAL VIDEOS (Vidalytics, lazy) ---------- */
+  var VACC = 'xWCLYwSv', vStarted = {}, playerLoading = false;
+  function vBase(id){ return 'https://fast.vidalytics.com/embeds/' + VACC + '/' + id + '/'; }
+  function addScript(src, cb){ var s=document.createElement('script'); s.async=true; s.src=src; s.onload=cb; s.onerror=cb; document.head.appendChild(s); }
+  function ensurePlayer(id){ if (playerLoading) return; playerLoading = true; addScript(vBase(id)+'loader.min.js', function(){ addScript(vBase(id)+'player.min.js', function(){}); }); }
+  function loadSettings(id){
+    window._vidalytics = window._vidalytics || {}; window._vidalytics.embeds = window._vidalytics.embeds || {};
+    ensurePlayer(id);
+    var run = function(){ if (window.Vidalytics && window.Vidalytics.Embed){ var e = new window.Vidalytics.Embed(); e.run(id); e.loadCss(); } else setTimeout(run, 500); };
+    var x = new XMLHttpRequest(); x.open('GET', vBase(id)+'player.settings.json?ac='+Date.now(), true);
+    x.onreadystatechange = function(){ if (x.readyState!==4 || (x.status!==200 && x.status!==304)) return; window._vidalytics.embeds[id] = {type:'video', options: JSON.parse(x.responseText)}; run(); };
+    x.send();
+  }
+  function loadClassic(id){
+    var embedId = 'vidalytics_embed_' + id, url = vBase(id);
+    (function (v, i, d, a, l, y, t, c, s) {
+      y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}
+      var vl='Loader',vli=v[y][vl],vsl=v[c][vl+'Script'],vlf=v[c][vl+'Loaded'],ve='Embed';
+      if(!vsl){vsl=function(u,cb){ if(t){cb();return;}s=i.createElement("script");s.type="text/javascript";s.async=1;s.src=u; s.onload=function(){vlf=1;cb();}; i.getElementsByTagName("head")[0].appendChild(s); };}
+      vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();} vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});
+    })(window, document, 'Vidalytics', embedId, url);
+  }
+  function kick(el){ var id = el.getAttribute('data-video'); if (vStarted[id]) return; vStarted[id] = 1; if (el.getAttribute('data-loader') === 'settings') loadSettings(id); else loadClassic(id); }
+  /* Loading plan (keeps the page fast):
+     - nothing loads until a video is about to be seen
+     - desktop: first 3 load as the section nears the screen, the rest only after "View More"
+     - phones: ALL videos sit in one swipe row; the row arms when it nears the screen,
+       then each video loads about one swipe before it slides into view */
+  var HAS_IO = 'IntersectionObserver' in window;
+  var MOBILE = window.matchMedia('(max-width:600px)');
+  var firstGrid = document.querySelector('.vc-tgrid');
+  var moreGrid = document.querySelector('#vcMore .vc-tgrid');
+  var extraCards = moreGrid ? [].slice.call(moreGrid.children) : [];
+  var io = HAS_IO ? new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ kick(e.target); io.unobserve(e.target); } }); }, {rootMargin:'400px 0px'}) : null;
+  var swipeIO = null, rowIO = null;
+  function watch(scope){ scope.querySelectorAll('.vc-tvid[data-video]').forEach(function(el){ io ? io.observe(el) : kick(el); }); }
+  function armSwipe(){
+    if (!HAS_IO){ watch(firstGrid); return; }
+    if (rowIO) return;
+    rowIO = new IntersectionObserver(function(es){
+      if (!es[0].isIntersecting) return;
+      rowIO.disconnect();
+      swipeIO = new IntersectionObserver(function(es2){ es2.forEach(function(e){ if (e.isIntersecting){ kick(e.target); swipeIO.unobserve(e.target); } }); }, {root:firstGrid, rootMargin:'0px 110% 0px 0px'});
+      firstGrid.querySelectorAll('.vc-tvid[data-video]').forEach(function(el){ swipeIO.observe(el); });
+    }, {rootMargin:'400px 0px'});
+    rowIO.observe(firstGrid);
+  }
+  function placeCards(){
+    if (!firstGrid || !moreGrid) return;
+    var target = MOBILE.matches ? firstGrid : moreGrid;
+    extraCards.forEach(function(c){ if (c.parentNode !== target) target.appendChild(c); });
+    moreGrid.style.display = MOBILE.matches ? 'none' : '';
+    if (MOBILE.matches) armSwipe(); else watch(firstGrid);
+    if (moreBtn && more) setMoreLabel();  /* both are set further down; skipped on first run */
+  }
+  placeCards();
+  if (MOBILE.addEventListener) MOBILE.addEventListener('change', placeCards); else if (MOBILE.addListener) MOBILE.addListener(placeCards);
+
+  /* ---------- VIEW MORE: all testimonials + written reviews ---------- */
+  /* ---------- WRITTEN REVIEWS: pack into equal-height columns ---------- */
+  var REV = [{"i": 20, "r": 2.5433}, {"i": 14, "r": 0.435}, {"i": 4, "r": 0.5513}, {"i": 15, "r": 0.5175}, {"i": 13, "r": 1.0288}, {"i": 2, "r": 1.2463}, {"i": 3, "r": 1.3925}, {"i": 12, "r": 0.52}, {"i": 11, "r": 0.4275}, {"i": 9, "r": 0.7462}, {"i": 17, "r": 1.1775}, {"i": 1, "r": 0.6325}, {"i": 18, "r": 0.5138}, {"i": 10, "r": 0.4863}, {"i": 7, "r": 0.4988}, {"i": 5, "r": 0.42}, {"i": 8, "r": 0.47}, {"i": 16, "r": 0.3925}, {"i": 19, "r": 0.5962}, {"i": 6, "r": 0.345}], revBox = document.getElementById('vcReviews'), revCols = 0, revShown = false;
+  function packReviews(){
+    if (!revShown) return;
+    var n = window.innerWidth <= 600 ? 1 : window.innerWidth <= 900 ? 2 : 3;
+    if (n === revCols) return; revCols = n;
+    var cols = [], h = [];
+    for (var c = 0; c < n; c++){ cols.push([]); h.push(0); }
+    REV.slice().sort(function(a,b){return b.r - a.r;}).forEach(function(x){
+      var k = h.indexOf(Math.min.apply(null, h)); cols[k].push(x); h[k] += x.r + 0.03;
+    });
+    revBox.innerHTML = cols.map(function(col){
+      return '<div class="vc-rcol">' + col.map(function(x){
+        return '<img src="https://vacarya-confirmation-page.vercel.app/reviews/review-' + x.i + '.webp" alt="Client review" loading="lazy" decoding="async">';
+      }).join('') + '</div>';
+    }).join('');
+  }
+  window.addEventListener('resize', packReviews);
+
+  var moreBtn = document.getElementById('vcMoreBtn'), more = document.getElementById('vcMore');
+  /* desktop: opens the other videos + Trustpilot reviews. phones: videos are already in the swipe row, so it opens the reviews only */
+  function setMoreLabel(){
+    var isOpen = !more.hasAttribute('hidden');
+    moreBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    moreBtn.textContent = MOBILE.matches ? (isOpen ? 'Hide Reviews ↑' : 'See Trustpilot Reviews ↓') : (isOpen ? 'Show Less ↑' : 'View More ↓');
+  }
+  moreBtn.addEventListener('click', function(){
+    if (more.hasAttribute('hidden')) {
+      more.removeAttribute('hidden');
+      revShown = true; packReviews();
+      if (!MOBILE.matches) watch(more);
+    } else { more.setAttribute('hidden',''); }
+    setMoreLabel();
+  });
+  setMoreLabel();
+  } catch (e) { if (window.console) console.warn("testimonials:", e); }
 })();
 </script>
 <script src="/flow-nav.js" defer></script>
