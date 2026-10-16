@@ -340,8 +340,11 @@ html,body{margin:0;padding:0;background:#fff}
 #vc-vip .vc-act.vc-primary:hover{border-color:var(--green)}
 
 /* ===== Booking popup: glass card, GHL calendar inside ===== */
-#vc-cal{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;padding:24px;visibility:hidden;pointer-events:none}
+#vc-cal{position:fixed;inset:0;z-index:2147483000;display:none;align-items:center;justify-content:center;padding:24px;visibility:hidden;pointer-events:none}
+#vc-cal.open{display:flex}
 #vc-cal.on{visibility:visible;pointer-events:auto}
+/* this page has no GHL wrapper: undo the full-bleed 100vw trick (it caused sideways scroll) */
+#vc-vip{width:auto;left:auto;right:auto;margin:0}
 #vc-cal .bg{position:absolute;inset:0;background:radial-gradient(900px 600px at 50% 0%,rgba(0,171,229,.28),transparent 70%),rgba(6,47,101,.38);
   -webkit-backdrop-filter:blur(10px) saturate(140%);backdrop-filter:blur(10px) saturate(140%);opacity:0;transition:opacity .3s ease}
 #vc-cal.on .bg{opacity:1}
@@ -566,8 +569,8 @@ html.vc-lock #vc-flow{display:none}
     body.appendChild(frame);
     var s = document.createElement('script'); s.src = 'https://link.msgsndr.com/js/form_embed.js'; s.async = true; document.body.appendChild(s); /* GHL auto-height */
   }
-  function open(){ load(); lastFocus = document.activeElement; modal.classList.add('on'); modal.setAttribute('aria-hidden','false'); document.documentElement.classList.add('vc-lock'); modal.querySelector('.x').focus(); }
-  function close(){ modal.classList.remove('on'); modal.setAttribute('aria-hidden','true'); document.documentElement.classList.remove('vc-lock'); if (lastFocus) lastFocus.focus(); }
+  var hideT; function open(){ load(); clearTimeout(hideT); lastFocus = document.activeElement; modal.classList.add('open'); void modal.offsetWidth; modal.classList.add('on'); modal.setAttribute('aria-hidden','false'); document.documentElement.classList.add('vc-lock'); modal.querySelector('.x').focus(); }
+  function close(){ modal.classList.remove('on'); hideT = setTimeout(function(){ modal.classList.remove('open'); }, 400); modal.setAttribute('aria-hidden','true'); document.documentElement.classList.remove('vc-lock'); if (lastFocus) lastFocus.focus(); }
   root.querySelectorAll('[data-vc-book]').forEach(function(b){ b.addEventListener('click', open); });
   modal.querySelectorAll('[data-vc-close]').forEach(function(b){ b.addEventListener('click', close); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && modal.classList.contains('on')) close(); });
