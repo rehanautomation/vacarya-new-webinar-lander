@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Webinar Funnel Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F8FB; --card:#FFFFFF; --ink:#0B1B33; --muted:#6B7A90; --line:#E6EBF2;
+  --brand:#00ABE5; --brand-d:#0072B5; --brand-t:#E6F6FD; --navy:#062F65;
+  --done:#16A34A; --done-t:#E9F8EF; --now:#00ABE5; --next:#94A3B8; --next-t:#F1F4F8;
+  --wait:#D97706; --wait-t:#FEF5E7;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.45}
+.wrap{max-width:1180px;margin:0 auto;padding:48px 24px 72px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:36px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-d)}
+h1{font-size:40px;font-weight:800;letter-spacing:-.02em;color:var(--navy);margin-top:6px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--muted)}
+.legend span{display:flex;align-items:center;gap:6px}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.d-done{background:var(--done)} .d-now{background:var(--now);box-shadow:0 0 0 4px var(--brand-t)} .d-next{background:var(--next)} .d-wait{background:var(--wait)}
+
+/* flow strip */
+.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;position:relative}
+.track{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 22px 18px;box-shadow:0 1px 2px rgba(11,27,51,.04),0 8px 24px rgba(11,27,51,.04);display:flex;flex-direction:column}
+.track.active{border-color:#9ADCF3;box-shadow:0 0 0 4px var(--brand-t),0 12px 30px rgba(0,171,229,.10)}
+.t-head{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.num{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-weight:800;font-size:15px;background:var(--brand-t);color:var(--brand-d);flex:none}
+.track.complete .num{background:var(--done-t);color:var(--done)}
+h2{font-size:19px;font-weight:700;color:var(--navy);letter-spacing:-.01em}
+.status{margin-left:auto;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;border-radius:999px;white-space:nowrap}
+.s-done{background:var(--done-t);color:var(--done)} .s-now{background:var(--brand);color:#fff} .s-next{background:var(--next-t);color:var(--muted)}
+.bar{height:6px;border-radius:999px;background:var(--next-t);margin:14px 0 18px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#00ABE5,#0099D8)}
+.track.complete .bar i{background:var(--done)}
+ul{list-style:none;display:flex;flex-direction:column;gap:2px}
+li{display:flex;gap:12px;padding:10px 8px;border-radius:12px;align-items:flex-start}
+li .dot{margin-top:6px;flex:none}
+li b{font-weight:600;font-size:14.5px;display:block}
+li small{font-size:12.5px;color:var(--muted);display:block;margin-top:1px}
+li.done b{color:var(--muted);font-weight:500;text-decoration:line-through;text-decoration-color:#C3CCD8}
+li.now{background:var(--brand-t)}
+li.now b{color:var(--navy)}
+li.group{display:block;padding:0;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:14px 8px 4px}
+.group:first-child{margin-top:0}
+
+/* next-up banner */
+.next-up{margin-top:28px;background:var(--navy);color:#fff;border-radius:20px;padding:22px 24px;display:flex;flex-wrap:wrap;align-items:center;gap:18px}
+.next-up .lbl{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#7FD6F5}
+.next-up .steps{display:flex;flex-wrap:wrap;gap:10px;flex:1}
+.chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:9px 14px;font-size:14px;font-weight:500;display:flex;align-items:center;gap:10px}
+.chip em{font-style:normal;font-weight:800;color:#7FD6F5}
+
+/* parked */
+.parked{margin-top:20px;background:var(--card);border:1px dashed #CFD8E4;border-radius:20px;padding:18px 22px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px}
+.parked .lbl{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-right:6px}
+.tag{font-size:13px;color:var(--muted);background:var(--next-t);border-radius:999px;padding:6px 12px}
+footer{margin-top:28px;font-size:12px;color:var(--muted);text-align:center}
+
+@media (max-width:980px){.flow{grid-template-columns:1fr}}
+@media (max-width:520px){.wrap{padding:28px 16px 48px}h1{font-size:30px}.track{padding:20px 16px 14px}.next-up{padding:18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="eyebrow">Vacarya · Webinar funnel</div>
+      <h1>Project map</h1>
+    </div>
+    <div class="legend">
+      <span><i class="dot d-done"></i>Done</span>
+      <span><i class="dot d-now"></i>Now</span>
+      <span><i class="dot d-wait"></i>Waiting on someone</span>
+      <span><i class="dot d-next"></i>Next</span>
+    </div>
+  </header>
+
+  <section class="flow">
+    <!-- 1 -->
+    <article class="track complete">
+      <div class="t-head"><div class="num">1</div><h2>Landing pages</h2><span class="status s-done">Almost done</span></div>
+      <div class="bar"><i style="width:85%"></i></div>
+      <ul>
+        <li class="done"><i class="dot d-done"></i><div><b>5 pages built</b></div></li>
+        <li class="done"><i class="dot d-done"></i><div><b>Registration form</b></div></li>
+        <li class="done"><i class="dot d-done"></i><div><b>Stripe $27 VIP checkout</b></div></li>
+        <li class="done"><i class="dot d-done"></i><div><b>Pages moved into GHL</b></div></li>
+        <li><i class="dot d-next"></i><div><b>VIP application → GHL</b><small>Answers only reach logs today</small></div></li>
+        <li><i class="dot d-next"></i><div><b>Connect event.hostvacarya.com</b><small>Then 1 real $27 test + refund</small></div></li>
+      </ul>
+    </article>
+
+    <!-- 2 -->
+    <article class="track active">
+      <div class="t-head"><div class="num">2</div><h2>WebinarJam</h2><span class="status s-now">Now</span></div>
+      <div class="bar"><i style="width:8%"></i></div>
+      <ul>
+        <li class="group">Access</li>
+        <li class="now"><i class="dot d-now"></i><div><b>Request API key</b><small>Approval can take ~2 business days</small></div></li>
+        <li class="group">Registration</li>
+        <li><i class="dot d-next"></i><div><b>Every GHL sign-up → WebinarJam</b><small>Via API · saves their own live link</small></div></li>
+        <li class="group">Booking = "purchase"</li>
+        <li><i class="dot d-next"></i><div><b>Booking page with calendar</b><small>+ product-page code</small></div></li>
+        <li><i class="dot d-next"></i><div><b>Thank-you page</b><small>+ success code · calendar redirects here</small></div></li>
+        <li><i class="dot d-next"></i><div><b>Offer button → booking page</b></div></li>
+        <li class="group">Follow-up</li>
+        <li><i class="dot d-wait"></i><div><b>Post-webinar emails (up to 10)</b><small>Aiden writes · booked / attended / left early / no-show</small></div></li>
+        <li><i class="dot d-next"></i><div><b>Attended / no-show → GHL tags</b><small>Custom webhook → n8n</small></div></li>
+        <li class="group">Data</li>
+        <li><i class="dot d-next"></i><div><b>Every webinar → BigQuery</b><small>Show rate · watch time · stayed to pitch · booked</small></div></li>
+      </ul>
+    </article>
+
+    <!-- 3 -->
+    <article class="track">
+      <div class="t-head"><div class="num">3</div><h2>Pixel &amp; CAPI</h2><span class="status s-next">Next</span></div>
+      <div class="bar"><i style="width:0%"></i></div>
+      <ul>
+        <li><i class="dot d-wait"></i><div><b>CAPI access token</b><small>Asked Aiden</small></div></li>
+        <li><i class="dot d-wait"></i><div><b>Current event names</b><small>Old webinar event + VSL event</small></div></li>
+        <li><i class="dot d-next"></i><div><b>Pixel on funnel</b><small>PageView only</small></div></li>
+        <li><i class="dot d-next"></i><div><b>CompleteRegistration via CAPI</b><small>Good leads only · $40k+ &amp; ≤60 days</small></div></li>
+        <li><i class="dot d-next"></i><div><b>Custom conversion "Wed Qualified"</b><small>Point webinar ad sets here</small></div></li>
+        <li><i class="dot d-next"></i><div><b>Hyros stays as is</b><small>Keeps sending Lead for E2 / VSL</small></div></li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="next-up">
+    <span class="lbl">Do next</span>
+    <div class="steps">
+      <span class="chip"><em>1</em>Request WebinarJam API</span>
+      <span class="chip"><em>2</em>Auto-register sign-ups</span>
+      <span class="chip"><em>3</em>Booking + thank-you pages</span>
+      <span class="chip"><em>4</em>Data → BigQuery</span>
+    </div>
+  </section>
+
+  <section class="parked">
+    <span class="lbl">Parked</span>
+    <span class="tag">Post-checkout email + SMS</span>
+    <span class="tag">Replay</span>
+    <span class="tag">No-shows → next webinar</span>
+    <span class="tag">Sunday webinar event</span>
+    <span class="tag">VSL booking event</span>
+    <span class="tag">Dashboard tab</span>
+  </section>
+
+  <footer>Updated Oct 17, 2026</footer>
+</div>
+</body>
+</html>
