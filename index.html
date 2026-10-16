@@ -683,11 +683,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   formFrame.addEventListener('load', function(){ if (formFrame.getAttribute('src')) document.getElementById('vcFormWrap').classList.add('vc-ready'); });
   function preloadForm(){ if (!formFrame.getAttribute('src')) formFrame.setAttribute('src', formFrame.getAttribute('data-vc-src')); }
   function whenIdle(fn){ ('requestIdleCallback' in window) ? requestIdleCallback(fn, {timeout:2500}) : setTimeout(fn, 1200); }
-  if (document.readyState === 'complete') whenIdle(preloadForm); else window.addEventListener('load', function(){ whenIdle(preloadForm); });
-  document.querySelectorAll('[data-vc-open]').forEach(function(b){
-    b.addEventListener('pointerenter', preloadForm, {once:true});
-    b.addEventListener('touchstart', preloadForm, {once:true, passive:true});
-  });
+  /* no background preload: GHL renders a different (stale) label when the form loads inside the hidden popup */
   document.querySelectorAll('[data-vc-close]').forEach(function(b){b.addEventListener('click', closeModal);});
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && modal.classList.contains('vc-open')) closeModal(); });
 
