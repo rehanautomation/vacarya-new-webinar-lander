@@ -418,7 +418,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
             <div><b>30 day no questions asked guarantee</b><p>If you don't feel this was worth 10x the <span data-vip-price>$27</span>, email us and we refund you. You keep all the resources.</p></div>
           </div>
           <div class="ty-host">
-            <div class="ty-avatar"><img src="https://vacarya-webinar-funnel.vercel.app/img/aiden-headshot.jpg" alt="Aiden Weir" loading="lazy"></div>
+            <div class="ty-avatar"><img src="https://new-webinar-lander.vercel.app/img/aiden-headshot.jpg" alt="Aiden Weir" loading="lazy"></div>
             <div><b>Aiden Weir</b><span>Vacarya, #1 Airbnb arbitrager in NA</span></div>
           </div>
         </div>
@@ -766,7 +766,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   function createIntent(extra){
     var body = Object.assign(details(), extra || {});
-    return fetch('https://vacarya-webinar-funnel.vercel.app/api/create-payment-intent', {method:'POST', headers:{'content-type':'application/json'}, body:JSON.stringify(body)})
+    return fetch('https://new-webinar-lander.vercel.app/api/create-payment-intent', {method:'POST', headers:{'content-type':'application/json'}, body:JSON.stringify(body)})
       .then(function(r){ return r.json().then(function(d){ if (!r.ok || !d.clientSecret) throw new Error(d.error || 'Checkout error.'); return d.clientSecret; }); });
   }
 

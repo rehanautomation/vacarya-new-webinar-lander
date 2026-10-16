@@ -248,7 +248,7 @@ html,body{margin:0;padding:0;background:#fff}
     if (bad.length) { document.querySelector('#pqForm .f.bad').scrollIntoView({behavior:'smooth', block:'center'}); return; }
 
     btn.disabled = true; btn.textContent = 'Saving…';
-    fetch('https://vacarya-webinar-funnel.vercel.app/api/prequal', {method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(data)})
+    fetch('https://new-webinar-lander.vercel.app/api/prequal', {method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(data)})
       .then(function(r){ return r.json().then(function(d){ if (!r.ok || !d.ok) throw new Error(d.error || 'Something went wrong. Please try again.'); }); })
       .then(function(){
         var u = new URL(NEXT_URL, location.origin);

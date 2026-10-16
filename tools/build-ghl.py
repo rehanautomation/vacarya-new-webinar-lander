@@ -15,7 +15,7 @@ import pathlib, re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = 'https://event.hostvacarya.com'               # GHL funnel domain
-API = 'https://vacarya-webinar-funnel.vercel.app'    # Vercel back end (API, images, PDF)
+API = 'https://new-webinar-lander.vercel.app'       # Vercel back end (API, images, PDF): existing project, Stripe keys already set
 
 PAGES = {  # Vercel file -> GHL step path
     'index.html': 'register',
