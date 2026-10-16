@@ -533,7 +533,7 @@ html.vc-lock #vc-flow{display:none}
 (function(){
   /* ===== SETTINGS ===== */
   var CAL_ID = '2bBUqPFR8qbN0tWSBc6C';                 /* GHL booking widget (Samuel) */
-  var KIT_URL = '';                                    /* VIP Launch Tools download link: empty = button hidden until added */
+  var KIT_URL = '/downloads/Vacarya-VIP-Launch-Kit.pdf'; /* VIP Launch Tools (PDF in /downloads) */
   var WEBINAR = {wd:3, hour:19, min:0, tz:'America/Toronto'}; /* Wednesday 7:00 PM ET */
 
   var root = document.getElementById('vc-vip');
@@ -551,7 +551,7 @@ html.vc-lock #vc-flow{display:none}
 
   /* ----- VIP kit link ----- */
   var kit = root.querySelector('[data-vc-kit]');
-  if (KIT_URL) { kit.href = KIT_URL; kit.target = '_blank'; kit.rel = 'noopener'; } else { kit.addEventListener('click', function(e){ e.preventDefault(); }); }
+  if (KIT_URL) { kit.href = KIT_URL; kit.setAttribute('download','Vacarya-VIP-Launch-Kit.pdf'); } else { kit.addEventListener('click', function(e){ e.preventDefault(); }); }
 
   /* ----- booking popup ----- */
   var modal = document.getElementById('vc-cal'), body = modal.querySelector('.body'), frame = null, lastFocus = null;
