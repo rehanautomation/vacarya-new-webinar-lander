@@ -850,7 +850,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
         if (r.error) throw new Error(r.error.message);
         return createIntent(extra);
       }).then(function(secret){
-        return stripe.confirmPayment({elements:els, clientSecret:secret, confirmParams:{return_url:window.location.origin + successUrl(extra.email, extra.firstName, extra.lastName)}, redirect:'if_required'});
+        return stripe.confirmPayment({elements:els, clientSecret:secret, confirmParams:{return_url:new URL(successUrl(extra.email, extra.firstName, extra.lastName), window.location.href).href}, redirect:'if_required'});
       }).then(function(res){
         if (res.error) throw new Error(res.error.message);
         window.location.href = successUrl(extra.email, extra.firstName, extra.lastName);

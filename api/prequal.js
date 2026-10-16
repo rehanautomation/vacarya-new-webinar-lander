@@ -68,3 +68,6 @@ export async function POST(request) {
 
   return json({ ok: true });
 }
+
+// CORS preflight: the GHL pages on event.hostvacarya.com call this API (headers come from vercel.json)
+export function OPTIONS() { return new Response(null, { status: 204 }); }

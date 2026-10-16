@@ -46,3 +46,6 @@ export async function POST(request) {
     return json({ error: 'Checkout is having trouble. Please try again in a minute.' }, 500);
   }
 }
+
+// CORS preflight: the GHL pages on event.hostvacarya.com call this API (headers come from vercel.json)
+export function OPTIONS() { return new Response(null, { status: 204 }); }
