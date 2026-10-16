@@ -90,6 +90,32 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 #vc-ok .f1{font-size:16px}
 #vc-ok .f2{font-size:15px;margin-top:10px}
 
+
+/* 2 THINGS BEFORE THE TRAINING (layout from /vip-confirmed) */
+#vc-ok .s-do{padding:56px 16px 64px;border-top:1px solid var(--rule);text-align:center}
+#vc-ok .do-wrap{max-width:760px;margin:0 auto}
+#vc-ok .do-kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--blue-d);background:#E6F6FD;border:1px solid #B8E4F7;border-radius:999px;padding:7px 14px;margin-bottom:18px}
+#vc-ok .do-kicker:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--brand)}
+#vc-ok .do-h{font-family:"Montserrat",sans-serif;font-size:clamp(26px,4vw,40px);font-weight:800;line-height:1.12;letter-spacing:-.5px;color:var(--navy)}
+#vc-ok .do-h span{color:var(--brand)}
+#vc-ok .do-steps{margin-top:32px;display:grid;grid-template-columns:minmax(0,1fr);gap:14px;text-align:left}
+#vc-ok .do-step{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid #E3E8EF;border-radius:14px;padding:20px 22px;box-shadow:0 1px 2px rgba(6,47,101,.04),0 18px 40px -22px rgba(6,47,101,.28)}
+#vc-ok .do-step > div:last-child{flex:1 1 0;min-width:0}
+#vc-ok .do-num{flex:0 0 42px;width:42px;height:42px;border-radius:12px;background:#E6F6FD;border:1px solid #B8E4F7;color:var(--blue-d);font-weight:900;font-size:15px;display:flex;align-items:center;justify-content:center}
+#vc-ok .do-step h3{font-family:"Inter",sans-serif;font-size:18px;font-weight:800;color:var(--navy);line-height:1.3;margin-bottom:6px;letter-spacing:-.2px}
+#vc-ok .do-step p{font-size:15.5px;color:var(--text);line-height:1.6}
+#vc-ok .do-step .inv{margin-top:14px;max-width:none}
+#vc-ok .do-sms{margin-top:14px;background:#F3F9FD;border:1px solid #B8E4F7;border-radius:14px;padding:18px 16px 20px;text-align:center}
+#vc-ok .do-phone{display:block;font-family:"Inter",sans-serif;font-size:clamp(28px,5vw,40px);font-weight:900;color:var(--navy);letter-spacing:-1px;font-variant-numeric:tabular-nums;text-decoration:none;margin-bottom:10px}
+#vc-ok .do-reply{display:inline-block;font-size:14px;font-weight:800;color:#fff;background:var(--brand);border-radius:999px;padding:8px 16px}
+@media (max-width:767px){
+  #vc-ok .s-do{padding:40px 12px 48px}
+  #vc-ok .do-kicker{font-size:11px;letter-spacing:1.4px}
+  #vc-ok .do-step{flex-direction:column;gap:12px;padding:20px 16px}
+  #vc-ok .do-step h3{font-size:17px}
+  #vc-ok .do-step p{font-size:15px}
+}
+
 /* TABLET */
 @media (min-width:768px) and (max-width:1024px){
   #vc-ok h1{font-size:31px}
@@ -171,15 +197,33 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
           </div>
         </div>
       </div>
-      <div class="row r-invite">
-        <div class="col">
-          <p class="invite-t">Please Check Your Email For The Calendar Invite</p>
-          <svg class="chev" viewBox="0 0 50 18" fill="none" stroke="#A9B1BE" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4l5 5 5-5M3 9l5 5 5-5"/><path d="M18 3l7 7 7-7M18 8l7 7 7-7" stroke="#8D96A5" stroke-width="2.8"/><path d="M37 4l5 5 5-5M37 9l5 5 5-5"/></svg>
-          <div class="inv" aria-hidden="true">
-            <div class="inv-when"><b data-vc-inv-date>Wed</b> &bull; <span data-vc-inv-time>7:00 PM</span></div>
-            <div class="inv-title">Vacarya &lt;&lt;&gt;&gt; Accept Invite To Confirm</div>
-            <div class="inv-who"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="#5f6368" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>Aiden Weir</div>
-            <div class="inv-btns"><span class="inv-yes">Yes<svg class="inv-arrow" viewBox="0 0 64 64"><path fill="#00ABE5" d="M8 6l34 10-11 9 25 25-8 8-25-25-9 11z"/></svg></span><span>No</span><span>Maybe</span><span class="inv-lt">Add note</span></div>
+    </div>
+  </section>
+
+  <!-- SECTION: 2 THINGS BEFORE THE TRAINING (same layout as /vip-confirmed) -->
+  <section class="s-do">
+    <div class="do-wrap">
+      <span class="do-kicker">Do these now</span>
+      <h2 class="do-h">2 Things Before <span data-vc-day>Wednesday</span></h2>
+      <div class="do-steps">
+        <div class="do-step">
+          <div class="do-num">01</div>
+          <div><h3>Accept the calendar invite in your email</h3><p>I also emailed you a calendar invite. Open it and hit accept, so the live training shows up on your phone and your computer.</p>
+    <div class="inv" aria-hidden="true">
+                <div class="inv-when"><b data-vc-inv-date>Wed</b> &bull; <span data-vc-inv-time>7:00 PM</span></div>
+                <div class="inv-title">Vacarya &lt;&lt;&gt;&gt; Accept Invite To Confirm</div>
+                <div class="inv-who"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="#5f6368" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>Aiden Weir</div>
+                <div class="inv-btns"><span class="inv-yes">Yes<svg class="inv-arrow" viewBox="0 0 64 64"><path fill="#00ABE5" d="M8 6l34 10-11 9 25 25-8 8-25-25-9 11z"/></svg></span><span>No</span><span>Maybe</span><span class="inv-lt">Add note</span></div>
+              </div>
+          </div>
+        </div>
+        <div class="do-step">
+          <div class="do-num">02</div>
+          <div><h3>Reply YES to my text</h3><p>Check your phone. I just texted you from this number, and every reminder for the live training comes from it too.</p>
+            <div class="do-sms">
+              <a class="do-phone" href="sms:+13054499135">+1 305-449-9135</a>
+              <span class="do-reply">Reply YES to confirm</span>
+            </div>
           </div>
         </div>
       </div>
