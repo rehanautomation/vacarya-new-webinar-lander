@@ -762,6 +762,13 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     var s = q.toString(); return SUCCESS_PATH + (s ? '?' + s : '');
   }
 
+  /* prefill checkout from the opt-in redirect (?email=&first_name=&last_name= or ?name=/full_name=) */
+  (function(){ try {
+    var q = new URLSearchParams(location.search), set = function(id, v){ var el = document.getElementById(id); if (el && v && !el.value) el.value = v.trim(); };
+    var first = q.get('first_name'), last = q.get('last_name'), full = q.get('full_name') || q.get('name');
+    if (!first && full) { var p = full.trim().split(/\s+/); first = p.shift(); last = last || p.join(' '); }
+    set('coFirst', first); set('coLast', last); set('coEmail', q.get('email'));
+  } catch (e) {} })();
   var form = document.getElementById('coForm'), msg = document.getElementById('coMsg'), payBtn = document.getElementById('coPay');
   var f = {first:document.getElementById('coFirst'), last:document.getElementById('coLast'), email:document.getElementById('coEmail'), addr:document.getElementById('coAddr')};
   function showMsg(t){ msg.textContent = t || ''; msg.classList.toggle('on', !!t); }
