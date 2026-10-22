@@ -15,7 +15,7 @@ ROOT = pathlib.Path(__file__).resolve().parent
 API = 'https://new-webinar-lander.vercel.app'
 URLS_GHL = {
     'WJ': '{{contact.webinar_link}}',
-    'GCAL': API + '/api/gcal?link={{contact.webinar_link}}',
+    'GCAL': '{{contact.webinar_calendar_link}}',   # direct Google Calendar link, written per contact by n8n WJ2 (n8n-calendar-link.js)
     'ICS': API + '/api/ics?link={{contact.webinar_link}}',
 }
 BLUE, DARK = '#0096D1', '#0072B5'
@@ -23,7 +23,7 @@ TINT, LINE = '#EAF6FC', '#B8E4F7'   # email background tint + divider
 SUPPORT = '{{ custom_values.support_email }}'
 LOGO = 'https://hostvacarya.com/wp-content/uploads/2026/10/vacarya-logo-header-dark.png'  # same dark wordmark as the webinar landing page (index.html)
 FONT = 'Arial,Helvetica,sans-serif'
-P = f'margin:0 0 16px;font-family:{FONT};font-size:16px;line-height:1.6;color:#1a1a1a;'
+P = 'margin:0 0 16px;'   # font/size/colour come from the wrapping cell
 
 
 def cs_value(name):
@@ -165,7 +165,7 @@ def ghl_template(e):
 
 
 def template_name(e):
-    return f"Webinar | Pre | Email {e['n']} - {e['purpose']} ({e['timing']})"
+    return f"{e['n']:02d} - {e['timing']} - {e['purpose']}"   # inside the "Pre-Webinar" folder
 
 
 # ---------- SMS sizing ----------

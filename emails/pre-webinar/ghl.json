@@ -1,0 +1,36 @@
+{
+  "location": "Hoh7amPyoisSFyGtDAng (Webinar)",
+  "folder": {
+    "name": "Pre-Webinar",
+    "id": "6ad9c6182cfc2197cba50ffe"
+  },
+  "templates": {
+    "1": "6ad9c4982cfc2197cba4ec42",
+    "2": "6ad9c64b16d4e1330d9282fb",
+    "3": "6ad9c65bf3f361995d6a7518",
+    "4": "6ad9c66aa3ca789bf41fef73",
+    "5": "6ad9c6832cfc2197cba51a10",
+    "6": "6ad9c694f3f361995d6a7a80",
+    "7": "6ad9c6a5e474022c1342d18d",
+    "8": "6ad9c6b72cfc2197cba51f36",
+    "9": "6ad9c6d0a3ca789bf41ff8bf",
+    "10": "6ad9c6dea3ca789bf41ffa28",
+    "11": "6ad9c6ebe480c9ae3b0e55c6",
+    "12": "6ad9c6f7f3f361995d6a820f"
+  },
+  "contact_fields": {
+    "webinar_link": "0IRhh2fJfGlF8ZvnMmVQ",
+    "webinar_calendar_link": "FcvelyyV3mNVqKZf571p"
+  },
+  "custom_values": {
+    "support_email": "7bkidiXviU38qrkZdnYt",
+    "case_study_patricia": "hcFe2XXMGRUOMB29led1",
+    "case_study_josh": "3mp35WXD4zLdL5rJRHEN",
+    "case_study_rob": "xSTrS5xsrMo717f3SF39",
+    "case_study_helen": "W5RkrI5mWmGyUouDVrJV",
+    "case_study_mike": "11COU68RFevtd7IYfiiU",
+    "case_study_million": "izQr8WmNP0Jjlzxx6Hvr",
+    "case_study_ravi": "WtxFwIsEQSguZStp4qs8"
+  },
+  "note": "Rob, Helen, Mike, Million, Ravi case-study values point to Trustpilot until Aiden sends real links. Update a template: edit copy_data.py, python3 build.py, PATCH update-email-template with the new file."
+}

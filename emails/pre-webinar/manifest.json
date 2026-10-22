@@ -1,7 +1,7 @@
 [
   {
     "n": 1,
-    "name": "Webinar | Pre | Email 1 - Registration Confirmed (Immediate)",
+    "name": "01 - Signup - You're In",
     "subjectLine": "You're in. Here's your link",
     "previewText": "Date, time, your link, and one quick favour.",
     "fromName": "Aiden Weir",
@@ -11,7 +11,7 @@
   },
   {
     "n": 2,
-    "name": "Webinar | Pre | Email 2 - The Realization (+10 Min)",
+    "name": "02 - Signup +10m - Backwards Realization",
     "subjectLine": "This sounds backwards at first",
     "previewText": "It has nothing to do with buying property.",
     "fromName": "Aiden Weir",
@@ -21,7 +21,7 @@
   },
   {
     "n": 3,
-    "name": "Webinar | Pre | Email 3 - Saturated (Mon 9AM)",
+    "name": "03 - Mon 9AM - Saturated",
     "subjectLine": "Let me ruin a sentence for you",
     "previewText": "\"Airbnb is saturated\" is only half a sentence.",
     "fromName": "Aiden Weir",
@@ -31,7 +31,7 @@
   },
   {
     "n": 4,
-    "name": "Webinar | Pre | Email 4 - Second Job (Mon 1PM)",
+    "name": "04 - Mon 1PM - Second Job",
     "subjectLine": "Am I just buying myself a second job?",
     "previewText": "The question almost every smart person asks.",
     "fromName": "Aiden Weir",
@@ -41,7 +41,7 @@
   },
   {
     "n": 5,
-    "name": "Webinar | Pre | Email 5 - Operator Not Owner (Mon 6PM)",
+    "name": "05 - Mon 6PM - Operator Not Owner",
     "subjectLine": "The thing that confuses everybody",
     "previewText": "You're the operator, not the owner.",
     "fromName": "Aiden Weir",
@@ -51,7 +51,7 @@
   },
   {
     "n": 6,
-    "name": "Webinar | Pre | Email 6 - Why Smart People Fail (Tue 9AM)",
+    "name": "06 - Tue 9AM - Why Smart People Fail",
     "subjectLine": "Why smart people still fail at this",
     "previewText": "The information is the easy part.",
     "fromName": "Aiden Weir",
@@ -61,7 +61,7 @@
   },
   {
     "n": 7,
-    "name": "Webinar | Pre | Email 7 - Who Is Real (Tue 1PM)",
+    "name": "07 - Tue 1PM - Who Is Real",
     "subjectLine": "How to tell who is actually real",
     "previewText": "A simple filter you can run on anyone. Including me.",
     "fromName": "Aiden Weir",
@@ -71,7 +71,7 @@
   },
   {
     "n": 8,
-    "name": "Webinar | Pre | Email 8 - Never Run A Business (Tue 6PM)",
+    "name": "08 - Tue 6PM - Never Run A Business",
     "subjectLine": "If you have never run a business before",
     "previewText": "The real reason people hesitate.",
     "fromName": "Aiden Weir",
@@ -81,7 +81,7 @@
   },
   {
     "n": 9,
-    "name": "Webinar | Pre | Email 9 - Tonight Reminder (Wed T-5H)",
+    "name": "09 - Wed T-5h - Tonight Reminder",
     "subjectLine": "Tonight at 7PM EST",
     "previewText": "A year from now, do you want to be in the same spot?",
     "fromName": "Aiden Weir",
@@ -91,7 +91,7 @@
   },
   {
     "n": 10,
-    "name": "Webinar | Pre | Email 10 - One Hour (Wed T-1H)",
+    "name": "10 - Wed T-1h - One Hour",
     "subjectLine": "See you in an hour",
     "previewText": "Close your other tabs and grab a notebook.",
     "fromName": "Aiden Weir",
@@ -101,7 +101,7 @@
   },
   {
     "n": 11,
-    "name": "Webinar | Pre | Email 11 - Before We Go Live (Wed T-30M)",
+    "name": "11 - Wed T-30m - Before We Go Live",
     "subjectLine": "Before we go live",
     "previewText": "This is not a 90-minute infomercial.",
     "fromName": "Aiden Weir",
@@ -111,7 +111,7 @@
   },
   {
     "n": 12,
-    "name": "Webinar | Pre | Email 12 - We Are Live (Wed +15M)",
+    "name": "12 - Wed T+15m - We're Live (Rehan)",
     "subjectLine": "We're live (doors close at 7:25)",
     "previewText": "Aiden is covering something important right now.",
     "fromName": "Rehan Ali",

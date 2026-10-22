@@ -8,7 +8,7 @@ REHAN = 'Rehan Ali'
 SENDER_EMAIL = {AIDEN: 'aiden@stayvacarya.com', REHAN: 'rehan@stayvacarya.com'}
 
 EMAILS = [
-  dict(n=1, day='Registration', when='Immediately', purpose='Registration Confirmed', timing='Immediate', sender=AIDEN,
+  dict(n=1, day='Registration', when='Immediately', purpose="You're In", timing='Signup', sender=AIDEN,
        subject="You're in. Here's your link",
        preview='Date, time, your link, and one quick favour.',
        body=[
@@ -29,7 +29,7 @@ EMAILS = [
          'BTN:ADD EVENT TO CALENDAR|GCAL',
          'SMALL:Using Apple Calendar or Outlook? [Add it here](ICS).',
        ]),
-  dict(n=2, day='Registration', when='10 min after sign-up', purpose='The Realization', timing='+10 Min', sender=AIDEN,
+  dict(n=2, day='Registration', when='10 min after sign-up', purpose='Backwards Realization', timing='Signup +10m', sender=AIDEN,
        subject='This sounds backwards at first',
        preview='It has nothing to do with buying property.',
        body=[
@@ -180,7 +180,7 @@ EMAILS = [
          'P.S. Our Vacarya partner, Ravi, is a great example of this. And look where he is today!',
          "CTA:See Ravi's Story Here|CS:ravi",
        ]),
-  dict(n=9, day='Wednesday', when='Wed 2:00 PM ET (T-5 hrs)', purpose='Tonight Reminder', timing='Wed T-5H', sender=AIDEN,
+  dict(n=9, day='Wednesday', when='Wed 2:00 PM ET (T-5 hrs)', purpose='Tonight Reminder', timing='Wed T-5h', sender=AIDEN,
        subject='Tonight at 7PM EST',
        preview='A year from now, do you want to be in the same spot?',
        body=[
@@ -204,7 +204,7 @@ EMAILS = [
          '- Aiden',
          'BTN:CLICK TO JOIN LIVE|WJ',
        ]),
-  dict(n=10, day='Wednesday', when='Wed 6:00 PM ET (T-1 hr)', purpose='One Hour', timing='Wed T-1H', sender=AIDEN,
+  dict(n=10, day='Wednesday', when='Wed 6:00 PM ET (T-1 hr)', purpose='One Hour', timing='Wed T-1h', sender=AIDEN,
        subject='See you in an hour',
        preview='Close your other tabs and grab a notebook.',
        body=[
@@ -224,7 +224,7 @@ EMAILS = [
          "P.S. You can join with the link below although I'm sure WebinarJam has sent you 20+ emails by now.",
          'BTN:CLICK TO JOIN LIVE|WJ',
        ]),
-  dict(n=11, day='Wednesday', when='Wed 6:30 PM ET (T-30 min)', purpose='Before We Go Live', timing='Wed T-30M', sender=AIDEN,
+  dict(n=11, day='Wednesday', when='Wed 6:30 PM ET (T-30 min)', purpose='Before We Go Live', timing='Wed T-30m', sender=AIDEN,
        subject='Before we go live',
        preview='This is not a 90-minute infomercial.',
        body=[
@@ -240,7 +240,7 @@ EMAILS = [
          '-Aiden',
          'BTN:CLICK TO JOIN LIVE|WJ',
        ]),
-  dict(n=12, day='Wednesday', when='Wed 7:15 PM ET (+15 min)', purpose='We Are Live', timing='Wed +15M', sender=REHAN,
+  dict(n=12, day='Wednesday', when='Wed 7:15 PM ET (+15 min)', purpose="We're Live (Rehan)", timing='Wed T+15m', sender=REHAN,
        subject="We're live (doors close at 7:25)",
        preview='Aiden is covering something important right now.',
        body=[
@@ -325,7 +325,7 @@ CAL_BUTTON_EMAILS = range(2, 9)
 CHANGES = [
   'Join links: <code>{{contact.webinarlink}}</code> (Main key) → <code>{{contact.webinar_link}}</code>, each person\'s own WebinarJam link. SMS 4, 5 and 7 use it too instead of the shared room link.',
   '<code>{{ custom_values.webinar_date }}</code> doesn\'t exist → "This Wednesday".',
-  '<code>{{contact.webinar_calendar_invite}}</code> doesn\'t exist → Google Calendar link + Apple/Outlook link. Both always pick the next Wednesday 7 PM and put the person\'s own join link inside the event.',
+  '<code>{{contact.webinar_calendar_invite}}</code> doesn\'t exist → Google Calendar link + Apple/Outlook link. Google: a direct calendar.google.com link saved on each contact at sign-up (<code>{{contact.webinar_calendar_link}}</code>, filled by n8n). Apple/Outlook: a calendar file. Both pick the next Wednesday 7 PM with the person\'s own join link inside.',
   'SMS <code>{{appointment.*}}</code> (no appointment exists) → "this Wednesday" / "7 PM EST". <code>{vip link]</code> → https://event.hostvacarya.com/vip.',
   'Typos: Email 3 "On Thursday" → "On Wednesday". Email 9 "in less the next 90 days" → "in the next 90 days". Email 6 "Understand regulations" → "Understanding regulations". "P.S" → "P.S.". Double space in Email 8. SMS: "i\'m" → "I\'m".',
   'Email 7 had no sign-off → added "-Aiden" like the others.',
