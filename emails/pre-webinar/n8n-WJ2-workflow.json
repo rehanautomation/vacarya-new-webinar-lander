@@ -1,0 +1,147 @@
+{
+  "name": "WJ2 GHL sign-up → WebinarJam → live link + calendar link",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "wj-register",
+        "options": {}
+      },
+      "id": "a1f0c2d4-0001-4c1e-9b1a-000000000001",
+      "name": "GHL sign-up (WEBBY)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "wj-register"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.webinarjam.com/webinarjam/register",
+        "sendBody": true,
+        "contentType": "form-urlencoded",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "api_key",
+              "value": "={{ $vars.WEBINARJAM_API_KEY }}"
+            },
+            {
+              "name": "webinar_id",
+              "value": "={{ $vars.WEBINARJAM_WEBINAR_ID || 4 }}"
+            },
+            {
+              "name": "schedule",
+              "value": "4"
+            },
+            {
+              "name": "first_name",
+              "value": "={{ $json.body.first_name || ($json.body.full_name || '').split(' ')[0] || 'Friend' }}"
+            },
+            {
+              "name": "last_name",
+              "value": "={{ $json.body.last_name || '' }}"
+            },
+            {
+              "name": "email",
+              "value": "={{ $json.body.email }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a1f0c2d4-0002-4c1e-9b1a-000000000002",
+      "name": "WebinarJam register",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        260,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Builds a Google Calendar link for next Wednesday 7 PM (Toronto) with the person's own join link inside.\nconst joinLink = ($json.user && $json.user.live_room_url) || '';\nconst TZ = 'America/Toronto';\n\nfunction parts(d) {\n  const p = {};\n  new Intl.DateTimeFormat('en-US', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23', weekday: 'short' })\n    .formatToParts(d).forEach((x) => { p[x.type] = x.value; });\n  return p;\n}\nfunction offset(d) {\n  const p = parts(d);\n  return Date.UTC(+p.year, +p.month - 1, +p.day, +p.hour, +p.minute, +p.second) - Math.floor(d.getTime() / 1000) * 1000;\n}\nfunction zoned(y, m, d, h, mi) {\n  const g = Date.UTC(y, m, d, h, mi);\n  const t = g - offset(new Date(g));\n  return new Date(g - offset(new Date(t)));\n}\n\nconst now = new Date(), p = parts(now);\nconst days = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };\nconst add = (3 - days[p.weekday] + 7) % 7;\nlet start;\nfor (let k = 0; k < 2; k++) {\n  const b = new Date(Date.UTC(+p.year, +p.month - 1, +p.day + add + 7 * k));\n  start = zoned(b.getUTCFullYear(), b.getUTCMonth(), b.getUTCDate(), 19, 0);\n  if (start.getTime() > now.getTime()) break;\n}\nconst end = new Date(start.getTime() + 60 * 60000);\nconst stamp = (d) => d.toISOString().replace(/[-:]/g, '').replace(/\\.\\d{3}/, '');\n\nconst q = {\n  action: 'TEMPLATE',\n  text: 'Vacarya Live Training with Aiden Weir',\n  dates: stamp(start) + '/' + stamp(end),\n  details: joinLink\n    ? 'Free live training with Aiden Weir.\\n\\nYour personal join link:\\n' + joinLink\n    : 'Free live training. Your join link is in your confirmation email.',\n};\nif (joinLink) q.location = joinLink;\nconst calendar_link = 'https://calendar.google.com/calendar/render?' +\n  Object.keys(q).map((k) => k + '=' + encodeURIComponent(q[k])).join('&');\n\nreturn { json: { ...$json, calendar_link } };\n"
+      },
+      "id": "a1f0c2d4-0003-4c1e-9b1a-000000000003",
+      "name": "Build calendar link",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        520,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://services.leadconnectorhq.com/contacts/{{ $('GHL sign-up (WEBBY)').item.json.body.contact_id || $('GHL sign-up (WEBBY)').item.json.body.contactId }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Version",
+              "value": "2021-07-28"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ customFields: [ { id: '0IRhh2fJfGlF8ZvnMmVQ', field_value: $json.user.live_room_url }, { id: 'FcvelyyV3mNVqKZf571p', field_value: $json.calendar_link } ] }) }}",
+        "options": {}
+      },
+      "id": "a1f0c2d4-0004-4c1e-9b1a-000000000004",
+      "name": "GHL save join + calendar link",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        780,
+        0
+      ]
+    }
+  ],
+  "connections": {
+    "GHL sign-up (WEBBY)": {
+      "main": [
+        [
+          {
+            "node": "WebinarJam register",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WebinarJam register": {
+      "main": [
+        [
+          {
+            "node": "Build calendar link",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build calendar link": {
+      "main": [
+        [
+          {
+            "node": "GHL save join + calendar link",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}
