@@ -1,7 +1,7 @@
 // Shared by /api/ics and /api/gcal: the NEXT live training (Wednesday 7:00 PM Toronto time),
 // worked out fresh on every request so links in old emails roll over to the next week by themselves.
 const TZ = 'America/Toronto';
-const WEEKDAY = 3, HOUR = 19, MIN = 0;
+const WEEKDAY = 3, HOUR = 19, MIN = 0, CUTOFF_MIN = 30;
 export const LENGTH_MIN = 60;
 export const TITLE = 'Vacarya Live Training with Aiden Weir';
 
@@ -28,7 +28,7 @@ export function nextWebinar() {
   for (let k = 0; k < 2; k++) {
     const base = new Date(Date.UTC(+p.year, +p.month - 1, +p.day + add + 7 * k));
     t = zoned(base.getUTCFullYear(), base.getUTCMonth(), base.getUTCDate(), HOUR, MIN);
-    if (t.getTime() > now.getTime()) return t;
+    if (now.getTime() < t.getTime() + CUTOFF_MIN * 60000) return t;  // sign-ups until 7:30 PM count for tonight
   }
   return t;
 }
