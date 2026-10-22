@@ -43,7 +43,8 @@ export function joinLink(req) {
   if (i < 0) return '';
   let v = raw.slice(i + 5);
   try { v = decodeURIComponent(v); } catch { /* keep raw */ }
-  v = v.trim();
+  // drop tracking params that email tools or proxies tack onto the end (utm_*, fbclid, gclid, mc_*, _vercel*)
+  v = v.replace(/[&?](utm_[^=&]*|fbclid|gclid|mc_[^=&]*|_vercel[^=&]*)=[^&]*/gi, '').trim();
   try {
     const u = new URL(v);
     if (u.protocol === 'https:' && /(^|\.)webinarjam\.(com|net)$/.test(u.hostname)) return u.href;
