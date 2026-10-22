@@ -9,7 +9,7 @@ Writes:
   preview.html             approval page (artifact) showing every email + SMS
 """
 import html, json, pathlib, re
-from copy_data import EMAILS, SMS, CASE_STUDIES, CHANGES
+from copy_data import EMAILS, SMS, CASE_STUDIES, CASE_LINKS, CAL_BUTTON_EMAILS, CHANGES
 
 ROOT = pathlib.Path(__file__).resolve().parent
 API = 'https://new-webinar-lander.vercel.app'
@@ -19,6 +19,9 @@ URLS_GHL = {
     'ICS': API + '/api/ics?link={{contact.webinar_link}}',
 }
 BLUE, DARK = '#0096D1', '#0072B5'
+TINT, LINE = '#EAF6FC', '#B8E4F7'   # email background tint + divider
+SUPPORT = '{{ custom_values.support_email }}'
+LOGO = 'https://assets.cdn.filesafe.space/Hoh7amPyoisSFyGtDAng/media/6ac1948222bc27f58f40b4fd.png'  # dark wordmark, Webinar media library, 2034x299
 FONT = 'Arial,Helvetica,sans-serif'
 P = f'margin:0 0 16px;font-family:{FONT};font-size:16px;line-height:1.6;color:#1a1a1a;'
 
@@ -29,7 +32,7 @@ def cs_value(name):
 
 def url_for(key, mode):
     if key.startswith('CS:'):
-        return cs_value(key[3:]) if mode == 'ghl' else '#'
+        return cs_value(key[3:]) if mode == 'ghl' else (CASE_LINKS.get(key[3:]) or '#needed')
     if mode == 'ghl':
         return URLS_GHL[key]
     return {'WJ': '#', 'GCAL': API + '/api/gcal', 'ICS': API + '/api/ics'}[key]
@@ -53,7 +56,9 @@ def inline(text, mode):
 
     def esc(s):
         s = html.escape(s, quote=False)
+        s = re.sub(r'\*\*\*(.+?)\*\*\*', r'<strong><em>\1</em></strong>', s)
         s = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', s)
+        s = re.sub(r'(?<![\w*])\*(?!\s)(.+?)(?<!\s)\*(?![\w*])', r'<em>\1</em>', s)
         if mode == 'preview':
             for k, v in MERGE_LABELS.items():
                 s = s.replace(html.escape(k, quote=False), chip(v))
@@ -68,7 +73,7 @@ def inline(text, mode):
         href = url_for(key, mode)
         if mode == 'ghl':
             parts.append(f'<a href="{href}" style="color:{DARK};text-decoration:underline;">{esc(label)}</a>')
-        elif key.startswith('CS:'):
+        elif key.startswith('CS:') and not CASE_LINKS.get(key[3:]):
             parts.append(f'<a href="#needed" class="need" title="Case study link still needed">{esc(label)}</a>')
         elif key == 'WJ':
             parts.append(f'<a href="#" class="wj" title="Opens their own WebinarJam link" onclick="return false">{esc(label)}</a>')
@@ -81,7 +86,7 @@ def button(label, key, mode):
     href = url_for(key, mode)
     extra = ' onclick="return false" title="Opens their own WebinarJam link"' if (mode == 'preview' and key == 'WJ') else ''
     tgt = ' target="_blank" rel="noopener"' if (mode == 'preview' and href.startswith('http')) else ''
-    return (f'<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:8px 0 20px;"><tr>'
+    return (f'<table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="margin:12px auto 20px;"><tr>'
             f'<td style="background:{BLUE};border-radius:6px;">'
             f'<a href="{href}"{tgt}{extra} style="display:inline-block;padding:14px 28px;font-family:{FONT};font-size:16px;'
             f'font-weight:bold;letter-spacing:0.3px;color:#ffffff;text-decoration:none;">{html.escape(label)}</a>'
@@ -94,8 +99,14 @@ def blocks(body, mode):
         if b.startswith('BTN:'):
             label, key = b[4:].split('|')
             rows.append(button(label, key, mode))
+        elif b.startswith('CTA:'):
+            label, key = b[4:].split('|')
+            rows.append(f'<p style="margin:4px 0 20px;text-align:center;font-family:{FONT};font-size:16px;line-height:1.5;">'
+                        + inline(f'[>> {label} <<]({key})', mode).replace('<a ', '<a data-cta="1" ', 1)
+                        .replace(f'style="color:{DARK};text-decoration:underline;"', f'style="color:{DARK};font-weight:bold;text-decoration:underline;"')
+                        + '</p>')
         elif b.startswith('SMALL:'):
-            rows.append(f'<p style="margin:0 0 16px;font-family:{FONT};font-size:14px;line-height:1.5;color:#555555;">{inline(b[6:], mode)}</p>')
+            rows.append(f'<p style="margin:0 0 16px;text-align:center;font-family:{FONT};font-size:14px;line-height:1.5;color:#4A5A6A;">{inline(b[6:], mode)}</p>')
         elif b.startswith('LIST:'):
             items = ''.join(f'<li style="margin:0 0 8px;">{inline(x, mode)}</li>' for x in b[5:].split('||'))
             rows.append(f'<ul style="margin:0 0 16px;padding-left:22px;font-family:{FONT};font-size:16px;line-height:1.6;color:#1a1a1a;">{items}</ul>')
@@ -104,8 +115,27 @@ def blocks(body, mode):
     return '\n'.join(rows)
 
 
+def body_of(e):
+    body = list(e['body'])
+    if e['n'] in CAL_BUTTON_EMAILS:
+        body += ['BTN:ADD EVENT TO CALENDAR|GCAL', 'SMALL:Using Apple Calendar or Outlook? [Add it here](ICS).']
+    return body
+
+
+def footer(mode):
+    mail = chip('support email') if mode == 'preview' else SUPPORT
+    href = '#' if mode == 'preview' else 'mailto:' + SUPPORT
+    return (f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:12px 0 0;"><tr>'
+            f'<td style="border-top:1px solid {LINE};font-size:0;line-height:0;">&nbsp;</td></tr></table>'
+            f'<p style="margin:20px 0 6px;text-align:center;font-family:{FONT};font-size:14px;line-height:1.5;color:#1a1a1a;"><strong>Need Help? Contact Us:</strong></p>'
+            f'<p style="margin:0 0 20px;text-align:center;font-family:{FONT};font-size:14px;line-height:1.5;">'
+            f'<a href="{href}" style="color:{DARK};text-decoration:underline;">{mail}</a></p>'
+            + ('<p style="margin:0;text-align:center;"><span class="logo">VACARYA logo</span></p>' if mode == 'preview' else
+               f'<p style="margin:0;text-align:center;"><img src="{LOGO}" width="140" height="21" alt="Vacarya" style="display:inline-block;width:140px;max-width:140px;height:auto;border:0;"></p>'))
+
+
 def ghl_template(e):
-    inner = blocks(e['body'], 'ghl')
+    inner = blocks(body_of(e), 'ghl') + '\n' + footer('ghl')
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -113,11 +143,11 @@ def ghl_template(e):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(e['subject'])}</title>
 </head>
-<body style="margin:0;padding:0;background:#ffffff;">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#ffffff;">
-<tr><td align="left" style="padding:24px 20px;">
+<body style="margin:0;padding:0;background:{TINT};">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:{TINT};">
+<tr><td align="center" style="padding:28px 20px;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;">
-<tr><td style="font-family:{FONT};font-size:16px;line-height:1.6;color:#1a1a1a;">
+<tr><td align="left" style="font-family:{FONT};font-size:16px;line-height:1.6;color:#1a1a1a;">
 {inner}
 </td></tr>
 </table>
@@ -175,7 +205,7 @@ def preview_page():
           </dl>
         </div>
         <div class="paper"><div class="inbox"><span class="from">{html.escape(e['sender'])}</span><span class="line"><b>{html.escape(e['subject'])}</b> <span class="pv">– {html.escape(e['preview'])}</span></span></div>
-          <div class="body">{blocks(e['body'], 'preview')}</div>
+          <div class="body">{blocks(body_of(e), 'preview')}{footer('preview')}</div>
         </div>
       </article>''')
         cards.append(f'''
@@ -203,7 +233,9 @@ def preview_page():
         </div>''')
         sms_html.append(f'<div class="sgroup"><h3>{html.escape(g)}</h3>{"".join(rows)}</div>')
 
-    needed = ''.join(f'<li><code>case_study_{k}</code> <span>{html.escape(v)}</span></li>' for k, v in CASE_STUDIES.items())
+    missing = [k for k in CASE_STUDIES if not CASE_LINKS.get(k)]
+    needed = ''.join(f'<li><code>case_study_{k}</code> <span>{html.escape(CASE_STUDIES[k])}</span></li>' for k in missing)
+    found = ''.join(f'<li><code>case_study_{k}</code> <span>{html.escape(CASE_STUDIES[k])}: <a href="{CASE_LINKS[k]}" target="_blank" rel="noopener">found in Aiden\'s old emails</a></span></li>' for k in CASE_STUDIES if CASE_LINKS.get(k))
     changes = ''.join(f'<li>{c}</li>' for c in CHANGES)
 
     return f'''<title>Pre-Webinar Sequence</title>
@@ -263,16 +295,18 @@ dl {{ margin:6px 0 0; display:grid; grid-template-columns:72px minmax(0, 1fr); g
 dt {{ color:var(--muted); font-family:var(--mono); font-size:11.5px; text-transform:uppercase; letter-spacing:.05em; padding-top:2px }}
 dd {{ margin:0; min-width:0; overflow-wrap:anywhere }}
 dd.subj {{ font-weight:700 }}
-.paper {{ background:var(--paper); border:1px solid var(--paper-line); border-radius:10px; overflow:hidden; min-width:0; color:#1a1a1a }}
-.inbox {{ display:flex; flex-direction:column; gap:2px; padding:12px 20px; border-bottom:1px solid #E3E8EE; background:#F7F9FB; font-family:Arial, Helvetica, sans-serif; font-size:13.5px; color:#1a1a1a }}
+.paper {{ background:#EAF6FC; border:1px solid var(--paper-line); border-radius:10px; overflow:hidden; min-width:0; color:#1a1a1a }}
+.inbox {{ display:flex; flex-direction:column; gap:2px; padding:12px 20px; border-bottom:1px solid #D4E6F0; background:#FFFFFF; font-family:Arial, Helvetica, sans-serif; font-size:13.5px; color:#1a1a1a }}
 .inbox .from {{ font-weight:700 }}
 .inbox .pv {{ color:#667085 }}
-.body {{ padding:24px 20px 8px; max-width:640px }}
+.body {{ padding:28px 20px 24px; max-width:640px; margin:0 auto }}
 .body a {{ color:#0072B5 }}
 .mf {{ display:inline-block; font-family:var(--mono); font-size:.78em; line-height:1.3; padding:1px 6px; border-radius:4px; background:#E6F6FD; color:#0072B5; border:1px solid #B8E4F7; vertical-align:1px }}
 .body a.need, .body a.need:visited {{ background:#FFF1CC; color:#8A5A00; text-decoration:none; border-bottom:2px dashed #C98A00; padding:0 2px }}
 .body a.need::after {{ content:" ⚑ link needed"; font-family:var(--mono); font-size:11px }}
 .body a.wj {{ cursor:help }}
+.body a[data-cta] {{ font-weight:700 }}
+.logo {{ display:inline-block; font-family:Arial, Helvetica, sans-serif; font-weight:700; letter-spacing:.18em; font-size:13px; color:#062F65; border:1px dashed #9CC9E2; padding:6px 12px; border-radius:4px }}
 .smsw {{ display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:24px }}
 .sgroup {{ display:flex; flex-direction:column; gap:14px; min-width:0 }}
 .sgroup h3 {{ margin:0; font-size:16px; font-weight:800 }}
@@ -303,8 +337,10 @@ footer {{ color:var(--muted); font-size:13px }}
 
   <div class="notes">
     <div class="note warn" id="needed">
-      <h2>7 case study links needed</h2>
+      <h2>{len(missing)} case study links needed</h2>
       <ul>{needed}</ul>
+      <p><strong>Already have:</strong></p>
+      <ul>{found}</ul>
       <p>Each one will be a GHL custom value, so the links can be added later in one place without touching the emails. Until filled, these links go nowhere, so fill them before the switch.</p>
     </div>
     <div class="note">
