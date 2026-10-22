@@ -21,7 +21,7 @@ URLS_GHL = {
 BLUE, DARK = '#0096D1', '#0072B5'
 TINT, LINE = '#EAF6FC', '#B8E4F7'   # email background tint + divider
 SUPPORT = '{{ custom_values.support_email }}'
-LOGO = 'https://assets.cdn.filesafe.space/Hoh7amPyoisSFyGtDAng/media/6ac1948222bc27f58f40b4fd.png'  # dark wordmark, Webinar media library, 2034x299
+LOGO = 'https://hostvacarya.com/wp-content/uploads/2026/10/vacarya-logo-header-dark.png'  # same dark wordmark as the webinar landing page (index.html)
 FONT = 'Arial,Helvetica,sans-serif'
 P = f'margin:0 0 16px;font-family:{FONT};font-size:16px;line-height:1.6;color:#1a1a1a;'
 
@@ -130,12 +130,18 @@ def footer(mode):
             f'<p style="margin:20px 0 6px;text-align:center;font-family:{FONT};font-size:14px;line-height:1.5;color:#1a1a1a;"><strong>Need Help? Contact Us:</strong></p>'
             f'<p style="margin:0 0 20px;text-align:center;font-family:{FONT};font-size:14px;line-height:1.5;">'
             f'<a href="{href}" style="color:{DARK};text-decoration:underline;">{mail}</a></p>'
-            + ('<p style="margin:0;text-align:center;"><span class="logo">VACARYA logo</span></p>' if mode == 'preview' else
-               f'<p style="margin:0;text-align:center;"><img src="{LOGO}" width="140" height="21" alt="Vacarya" style="display:inline-block;width:140px;max-width:140px;height:auto;border:0;"></p>'))
+)
+
+
+def header(mode):
+    if mode == 'preview':
+        return '<p style="margin:0 0 28px;text-align:center;"><span class="logo">VACARYA logo</span></p>'
+    return (f'<p style="margin:0 0 28px;text-align:center;"><img src="{LOGO}" width="160" alt="Vacarya" '
+            f'style="display:inline-block;width:160px;max-width:160px;height:auto;border:0;"></p>')
 
 
 def ghl_template(e):
-    inner = blocks(body_of(e), 'ghl') + '\n' + footer('ghl')
+    inner = header('ghl') + '\n' + blocks(body_of(e), 'ghl') + '\n' + footer('ghl')
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -198,14 +204,14 @@ def preview_page():
           <div class="num">Email {e['n']}</div>
           <div class="when">{html.escape(e['when'])}</div>
           <dl>
-            <dt>From</dt><dd>{html.escape(e['sender'])}</dd>
+            <dt>From</dt><dd>{html.escape(e['sender'])}<br><span class="mono">{html.escape(e['sender_email'])}</span></dd>
             <dt>Subject</dt><dd class="subj">{html.escape(e['subject'])}</dd>
             <dt>Preview</dt><dd>{html.escape(e['preview'])}</dd>
             <dt>Template</dt><dd class="mono">{html.escape(template_name(e))}</dd>
           </dl>
         </div>
-        <div class="paper"><div class="inbox"><span class="from">{html.escape(e['sender'])}</span><span class="line"><b>{html.escape(e['subject'])}</b> <span class="pv">– {html.escape(e['preview'])}</span></span></div>
-          <div class="body">{blocks(body_of(e), 'preview')}{footer('preview')}</div>
+        <div class="paper"><div class="inbox"><span class="from">{html.escape(e['sender'])} <span class="pv">&lt;{html.escape(e['sender_email'])}&gt;</span></span><span class="line"><b>{html.escape(e['subject'])}</b> <span class="pv">– {html.escape(e['preview'])}</span></span></div>
+          <div class="body">{header('preview')}{blocks(body_of(e), 'preview')}{footer('preview')}</div>
         </div>
       </article>''')
         cards.append(f'''
@@ -369,7 +375,7 @@ def main():
         f = ROOT / 'templates' / f"email-{e['n']:02d}.html"
         f.write_text(ghl_template(e))
         manifest.append({'n': e['n'], 'name': template_name(e), 'subjectLine': e['subject'], 'previewText': e['preview'],
-                         'fromName': e['sender'], 'file': str(f.relative_to(ROOT)), 'when': e['when']})
+                         'fromName': e['sender'], 'fromEmail': e['sender_email'], 'file': str(f.relative_to(ROOT)), 'when': e['when']})
     (ROOT / 'manifest.json').write_text(json.dumps(manifest, indent=2, ensure_ascii=False))
     (ROOT / 'preview.html').write_text(preview_page())  # published as artifact 'Pre-Webinar Sequence' (not committed)
     for s in SMS:

@@ -4,7 +4,8 @@
     "name": "Webinar | Pre | Email 1 - Registration Confirmed (Immediate)",
     "subjectLine": "You're in. Here's your link",
     "previewText": "Date, time, your link, and one quick favour.",
-    "fromName": "Aiden from Vacarya",
+    "fromName": "Aiden Weir",
+    "fromEmail": "aiden@stayvacarya.com",
     "file": "templates/email-01.html",
     "when": "Immediately"
   },
@@ -13,7 +14,8 @@
     "name": "Webinar | Pre | Email 2 - The Realization (+10 Min)",
     "subjectLine": "This sounds backwards at first",
     "previewText": "It has nothing to do with buying property.",
-    "fromName": "Aiden from Vacarya",
+    "fromName": "Aiden Weir",
+    "fromEmail": "aiden@stayvacarya.com",
     "file": "templates/email-02.html",
     "when": "10 min after sign-up"
   },
@@ -22,7 +24,8 @@
     "name": "Webinar | Pre | Email 3 - Saturated (Mon 9AM)",
     "subjectLine": "Let me ruin a sentence for you",
     "previewText": "\"Airbnb is saturated\" is only half a sentence.",
-    "fromName": "Aiden from Vacarya",
+    "fromName": "Aiden Weir",
+    "fromEmail": "aiden@stayvacarya.com",
     "file": "templates/email-03.html",
     "when": "Mon 9:00 AM ET"
   },
@@ -31,7 +34,8 @@
     "name": "Webinar | Pre | Email 4 - Second Job (Mon 1PM)",
     "subjectLine": "Am I just buying myself a second job?",
     "previewText": "The question almost every smart person asks.",
-    "fromName": "Aiden from Vacarya",
+    "fromName": "Aiden Weir",
+    "fromEmail": "aiden@stayvacarya.com",
     "file": "templates/email-04.html",
     "when": "Mon 1:00 PM ET"
   },
@@ -40,7 +44,8 @@
     "name": "Webinar | Pre | Email 5 - Operator Not Owner (Mon 6PM)",
     "subjectLine": "The thing that confuses everybody",
     "previewText": "You're the operator, not the owner.",
-    "fromName": "Aiden from Vacarya",
+    "fromName": "Aiden Weir",
+    "fromEmail": "aiden@stayvacarya.com",
     "file": "templates/email-05.html",
     "when": "Mon 6:00 PM ET"
   },
@@ -49,7 +54,8 @@
     "name": "Webinar | Pre | Email 6 - Why Smart People Fail (Tue 9AM)",
     "subjectLine": "Why smart people still fail at this",
     "previewText": "The information is the easy part.",
-    "fromName": "Aiden from Vacarya",
+    "fromName": "Aiden Weir",
+    "fromEmail": "aiden@stayvacarya.com",
     "file": "templates/email-06.html",
     "when": "Tue 9:00 AM ET"
   },
@@ -58,7 +64,8 @@
     "name": "Webinar | Pre | Email 7 - Who Is Real (Tue 1PM)",
     "subjectLine": "How to tell who is actually real",
     "previewText": "A simple filter you can run on anyone. Including me.",
-    "fromName": "Aiden from Vacarya",
+    "fromName": "Aiden Weir",
+    "fromEmail": "aiden@stayvacarya.com",
     "file": "templates/email-07.html",
     "when": "Tue 1:00 PM ET"
   },
@@ -67,7 +74,8 @@
     "name": "Webinar | Pre | Email 8 - Never Run A Business (Tue 6PM)",
     "subjectLine": "If you have never run a business before",
     "previewText": "The real reason people hesitate.",
-    "fromName": "Aiden from Vacarya",
+    "fromName": "Aiden Weir",
+    "fromEmail": "aiden@stayvacarya.com",
     "file": "templates/email-08.html",
     "when": "Tue 6:00 PM ET"
   },
@@ -76,7 +84,8 @@
     "name": "Webinar | Pre | Email 9 - Tonight Reminder (Wed T-5H)",
     "subjectLine": "Tonight at 7PM EST",
     "previewText": "A year from now, do you want to be in the same spot?",
-    "fromName": "Aiden from Vacarya",
+    "fromName": "Aiden Weir",
+    "fromEmail": "aiden@stayvacarya.com",
     "file": "templates/email-09.html",
     "when": "Wed 2:00 PM ET (T-5 hrs)"
   },
@@ -85,7 +94,8 @@
     "name": "Webinar | Pre | Email 10 - One Hour (Wed T-1H)",
     "subjectLine": "See you in an hour",
     "previewText": "Close your other tabs and grab a notebook.",
-    "fromName": "Aiden from Vacarya",
+    "fromName": "Aiden Weir",
+    "fromEmail": "aiden@stayvacarya.com",
     "file": "templates/email-10.html",
     "when": "Wed 6:00 PM ET (T-1 hr)"
   },
@@ -94,7 +104,8 @@
     "name": "Webinar | Pre | Email 11 - Before We Go Live (Wed T-30M)",
     "subjectLine": "Before we go live",
     "previewText": "This is not a 90-minute infomercial.",
-    "fromName": "Aiden from Vacarya",
+    "fromName": "Aiden Weir",
+    "fromEmail": "aiden@stayvacarya.com",
     "file": "templates/email-11.html",
     "when": "Wed 6:30 PM ET (T-30 min)"
   },
@@ -103,7 +114,8 @@
     "name": "Webinar | Pre | Email 12 - We Are Live (Wed +15M)",
     "subjectLine": "We're live (doors close at 7:25)",
     "previewText": "Aiden is covering something important right now.",
-    "fromName": "Rehan from Vacarya",
+    "fromName": "Rehan Ali",
+    "fromEmail": "rehan@stayvacarya.com",
     "file": "templates/email-12.html",
     "when": "Wed 7:15 PM ET (+15 min)"
   }

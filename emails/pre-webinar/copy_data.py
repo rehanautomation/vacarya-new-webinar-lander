@@ -2,8 +2,10 @@
 # Block syntax: plain string = paragraph ("\n" = line break) · "BTN:Label|URL" · "SMALL:text" · "LIST:a||b||c"
 # Inline: [text](URL) links, **bold**. URL keys: WJ, GCAL, ICS, CS:<name> (case study link, still needed).
 
-AIDEN = 'Aiden from Vacarya'
-REHAN = 'Rehan from Vacarya'
+# Sender = whoever signs the email (Rehan, Oct 22): full name + their @stayvacarya.com address
+AIDEN = 'Aiden Weir'
+REHAN = 'Rehan Ali'
+SENDER_EMAIL = {AIDEN: 'aiden@stayvacarya.com', REHAN: 'rehan@stayvacarya.com'}
 
 EMAILS = [
   dict(n=1, day='Registration', when='Immediately', purpose='Registration Confirmed', timing='Immediate', sender=AIDEN,
@@ -256,6 +258,9 @@ EMAILS = [
        ]),
 ]
 
+for _e in EMAILS:
+    _e['sender_email'] = SENDER_EMAIL[_e['sender']]
+
 # SMS: straight apostrophes only (a curly one forces UCS-2 = 70 chars per segment). No STOP line: GHL adds it.
 SMS = [
   dict(group='On registration', label='SMS 1', when='Immediately', text=
@@ -329,5 +334,6 @@ CHANGES = [
   'Numbers left exactly as Aiden wrote them.',
   'Formatting in Aiden\'s style: bold and italics on key lines, case study links as centered ">> Watch … Here <<" lines, light blue background, centered buttons.',
   '"ADD EVENT TO CALENDAR" button at the end of Emails 2–8 and "CLICK TO JOIN LIVE" on Email 9, like Aiden\'s old pre-webinar emails.',
-  'Footer on every email: divider, "Need Help? Contact Us:", support email from a new custom value <code>{{ custom_values.support_email }}</code>, new Vacarya logo.',
+  'Vacarya logo centered at the top (same image as the webinar landing page). Footer: divider, "Need Help? Contact Us:", support email from a new custom value <code>{{ custom_values.support_email }}</code> (support@stayvacarya.com).',
+  'Sender = whoever signs: Emails 1–11 from Aiden Weir &lt;aiden@stayvacarya.com&gt;, Email 12 from Rehan Ali &lt;rehan@stayvacarya.com&gt;.',
 ]
