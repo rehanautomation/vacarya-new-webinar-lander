@@ -17,6 +17,16 @@ export async function POST(request) {
   }
   const name = [firstName, lastName].filter(Boolean).join(' ');
 
+  // Saved on the payment so the Stripe webhook can send a well-matched Meta Purchase (CAPI).
+  const capi = {
+    capi_ip: (request.headers.get('x-real-ip') || (request.headers.get('x-forwarded-for') || '').split(',')[0]).trim().slice(0, 100),
+    capi_ua: (request.headers.get('user-agent') || '').slice(0, 500),
+    capi_fbp: /^fb\.\d\.\d+\.\d+$/.test(clean(body.fbp, 100)) ? clean(body.fbp, 100) : '',
+    capi_fbc: /^fb\.\d\.\d+\.\S+$/.test(clean(body.fbc, 500)) ? clean(body.fbc, 500) : '',
+    capi_url: /^https:\/\//.test(clean(body.page_url, 500)) ? clean(body.page_url, 500) : '',
+  };
+  Object.keys(capi).forEach((k) => { if (!capi[k]) delete capi[k]; });
+
   try {
     let customer;
     try {
@@ -37,7 +47,7 @@ export async function POST(request) {
       payment_method_types: ['card'], // card + Apple Pay + Google Pay
       customer: customer ? customer.id : undefined,
       receipt_email: email,
-      metadata: { product: 'vip', first_name: firstName, last_name: lastName, email, method },
+      metadata: { product: 'vip', first_name: firstName, last_name: lastName, email, method, ...capi },
     });
 
     return json({ clientSecret: pi.client_secret });

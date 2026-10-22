@@ -224,6 +224,23 @@ html,body{margin:0;padding:0;background:#fff}
   var qs = new URLSearchParams(location.search);
   var who = { email: (qs.get('email') || '').trim(), first_name: (qs.get('first_name') || '').trim(), last_name: (qs.get('last_name') || '').trim(), payment_intent: (qs.get('payment_intent') || '').trim() };
 
+  /* Meta Purchase, browser half (split Test A). The Stripe webhook sends the same event through CAPI
+     with the same id (payment_intent), so Meta counts the sale once. Pixel itself loads from the GHL funnel head code. */
+  var VIP_VALUE = 27;   // keep equal to VIP.amount / 100 in api/_stripe.js
+  (function(){
+    var pi = who.payment_intent;
+    if (!/^pi_[A-Za-z0-9]+$/.test(pi)) return;
+    var key = 'vc_purchase_' + pi, tries = 0;
+    try { if (localStorage.getItem(key)) return; } catch (e) {}
+    (function fire(){
+      if (typeof window.fbq !== 'function') { if (++tries < 20) setTimeout(fire, 250); return; }
+      try {
+        window.fbq('track', 'Purchase', {value:VIP_VALUE, currency:'USD', content_name:'VIP Access'}, {eventID:pi});
+        try { localStorage.setItem(key, '1'); } catch (e) {}
+      } catch (e) {}
+    })();
+  })();
+
   var form = document.getElementById('pqForm'), btn = document.getElementById('pqBtn'), msg = document.getElementById('pqMsg');
   /* text box grows with what they type (no drag handle) */
   var ta = document.getElementById('pqGoal');

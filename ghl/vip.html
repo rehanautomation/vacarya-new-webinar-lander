@@ -744,10 +744,19 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   var STRIPE_PK = 'pk_live_51RPDiCDIw5VjyCSne6VWHVZGDpsKNjDp8v67dzQUIE5Y5OcohBww9yEfS7HEV7mNf8TTqb9gVAnlt5a4WREL28oj00wxqUcyU9';
   var VIP_CENTS = 2700, VIP_CURRENCY = 'usd';   // display only; the real price is set on the server
   var SUCCESS_PATH = 'https://event.hostvacarya.com/vip-application';   // after paying, buyers fill the pre-qual form
-  function successUrl(email, first, last){
+  function successUrl(email, first, last, pi){
     var q = new URLSearchParams();
     if (email) q.set('email', email); if (first) q.set('first_name', first); if (last) q.set('last_name', last);
+    if (pi) q.set('payment_intent', pi);   // /vip-application fires the Meta Purchase with this id (server sends the same id)
     var s = q.toString(); return SUCCESS_PATH + (s ? '?' + s : '');
+  }
+  function piId(secret){ return String(secret || '').split('_secret_')[0]; }
+  /* Meta cookies + page, sent with the payment so the server-side Purchase matches the ad click */
+  function cookie(n){ try { var m = document.cookie.match('(?:^|; )' + n + '=([^;]*)'); return m ? decodeURIComponent(m[1]) : ''; } catch (e) { return ''; } }
+  function adTrack(){
+    var fbc = cookie('_fbc');
+    if (!fbc) { try { var id = new URLSearchParams(location.search).get('fbclid'); if (id) fbc = 'fb.1.' + Date.now() + '.' + id; } catch (e) {} }
+    return {fbp:cookie('_fbp'), fbc:fbc, page_url:location.origin + location.pathname};
   }
 
   /* prefill checkout from the opt-in redirect (?email=&first_name=&last_name= or ?name=/full_name=) */
@@ -772,7 +781,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   Object.keys(f).forEach(function(k){ f[k].addEventListener('input', function(){ f[k].classList.remove('co-bad'); }); });
 
   function createIntent(extra){
-    var body = Object.assign(details(), extra || {});
+    var body = Object.assign(details(), adTrack(), extra || {});
     return fetch('https://new-webinar-lander.vercel.app/api/create-payment-intent', {method:'POST', headers:{'content-type':'application/json'}, body:JSON.stringify(body)})
       .then(function(r){ return r.json().then(function(d){ if (!r.ok || !d.clientSecret) throw new Error(d.error || 'Checkout error.'); return d.clientSecret; }); });
   }
@@ -815,7 +824,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       return stripe.confirmCardPayment(secret, {payment_method:{card:cardNum, billing_details:{name:(d.firstName + ' ' + d.lastName).trim(), email:d.email, address:{line1:d.address}}}});
     }).then(function(res){
       if (res.error) throw new Error(res.error.message);
-      if (res.paymentIntent && res.paymentIntent.status === 'succeeded') { window.location.href = successUrl(d.email, d.firstName, d.lastName); return; }
+      if (res.paymentIntent && res.paymentIntent.status === 'succeeded') { window.location.href = successUrl(d.email, d.firstName, d.lastName, res.paymentIntent.id); return; }
       throw new Error('Payment did not go through. Please try again.');
     }).catch(function(err){ busy(false); showMsg(err.message); });
   });
@@ -841,14 +850,16 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
         firstName: d.firstName || parts[0] || '',
         lastName: d.lastName || parts.slice(1).join(' '),
         address: d.address || (bd.address && bd.address.line1) || ''};
+      var pi = '';
       els.submit().then(function(r){
         if (r.error) throw new Error(r.error.message);
         return createIntent(extra);
       }).then(function(secret){
-        return stripe.confirmPayment({elements:els, clientSecret:secret, confirmParams:{return_url:new URL(successUrl(extra.email, extra.firstName, extra.lastName), window.location.href).href}, redirect:'if_required'});
+        pi = piId(secret);
+        return stripe.confirmPayment({elements:els, clientSecret:secret, confirmParams:{return_url:new URL(successUrl(extra.email, extra.firstName, extra.lastName, pi), window.location.href).href}, redirect:'if_required'});
       }).then(function(res){
         if (res.error) throw new Error(res.error.message);
-        window.location.href = successUrl(extra.email, extra.firstName, extra.lastName);
+        window.location.href = successUrl(extra.email, extra.firstName, extra.lastName, pi);
       }).catch(function(err){ showMsg(err.message); });
     });
   }
