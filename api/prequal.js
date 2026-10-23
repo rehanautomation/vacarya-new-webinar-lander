@@ -3,7 +3,7 @@
 // and that workflow saves the answers onto the contact (matched by email).
 // Turn on by setting GHL_PREQUAL_WEBHOOK_URL in Vercel.
 
-const OPTIONS = {
+const CHOICES = {
   capital: ['Less than $50,000', '$50,000 - $100,000', '$100,000 - $250,000', '$250,000 - $500,000+'],
   situation: [
     'I am completely new to Airbnb',
@@ -44,7 +44,7 @@ export async function POST(request) {
   if (!data.email) console.warn('prequal: submitted without email (page opened without checkout params)');
   if (data.goal.length < 3) return json({ error: 'Please answer the first question.' }, 400);
   for (const k of ['capital', 'situation', 'timeline', 'profit_goal']) {
-    if (!OPTIONS[k].includes(data[k])) return json({ error: 'Please answer every question.' }, 400);
+    if (!CHOICES[k].includes(data[k])) return json({ error: 'Please answer every question.' }, 400);
   }
 
   const hook = process.env.GHL_PREQUAL_WEBHOOK_URL;
