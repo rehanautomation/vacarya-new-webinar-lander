@@ -411,6 +411,12 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
         data-cookie-consent="true"
         data-cookie-consent-provider="auto"
         title="WEBBY REPLAY FORM"></iframe></div>
+      <script>/* pass ?email=&first_name=&last_name=&phone= (and utm/fbclid) from this page into the GHL form so it prefills */
+      (function(){ try { var f = document.getElementById('inline-0xd5njZvpKRlI4IsYx6b'); if (!location.search) return;
+        var u = new URL(f.src), q = new URLSearchParams(location.search);
+        q.forEach(function(v, k){ if (!u.searchParams.has(k)) u.searchParams.set(k, v); });
+        if (q.get('first_name') && q.get('last_name') && !u.searchParams.has('full_name')) u.searchParams.set('full_name', q.get('first_name') + ' ' + q.get('last_name'));
+        f.src = u.toString(); } catch (e) {} })();</script>
     </div>
   </section>
 

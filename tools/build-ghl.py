@@ -23,6 +23,7 @@ PAGES = {  # Vercel file -> GHL step path
     'vip-application.html': 'vip-application',
     'vip-confirmed.html': 'vip-confirmed',
     'confirmed.html': 'confirmed',
+    'replay.html': 'replay',
 }
 
 KEEP_HEAD = re.compile(r'<link[^>]*(?:preconnect|dns-prefetch|stylesheet)[^>]*>|<style[\s\S]*?</style>|<script[\s\S]*?</script>', re.I)
@@ -53,7 +54,7 @@ def build(src, step):
     # Vercel back end: assets + API
     out = re.sub(r'''(["'(])/(img|downloads|api)/''', lambda m: m.group(1) + API + '/' + m.group(2) + '/', out)
     # funnel links
-    out = re.sub(r'''(["'])/(confirmed|vip-application|vip-confirmed|vip|register)(?=["'?#])''', lambda m: m.group(1) + SITE + '/' + m.group(2), out)
+    out = re.sub(r'''(["'])/(confirmed|vip-application|vip-confirmed|vip|register|replay)(?=["'?#])''', lambda m: m.group(1) + SITE + '/' + m.group(2), out)
     # vip-confirmed: this undo-rule was only for the bare Vercel page
     out = out.replace('/* this page has no GHL wrapper: undo the full-bleed 100vw trick (it caused sideways scroll) */\n#vc-vip{width:auto;left:auto;right:auto;margin:0}\n', '')
 
