@@ -319,6 +319,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 #vc-reg .rp-label i{font-style:normal;color:var(--blue)}
 #vc-reg .rp-apply-h{margin-top:46px;font-size:clamp(22px,2.8vw,30px);font-weight:900;letter-spacing:-.5px;color:var(--navy);text-transform:uppercase}
 #vc-reg .rp-apply-h i{font-style:normal;color:var(--blue)}
+#vc-reg .rp-embed{padding:0!important;overflow:hidden}
 #vc-reg .rp-form{max-width:560px;margin:22px auto 0;text-align:left;background:#fff;border:1px solid var(--line);border-radius:22px;padding:28px;box-shadow:var(--shadow-lg)}
 #vc-reg .rp-f{margin-bottom:16px}
 #vc-reg .rp-f label{display:block;font-size:14px;font-weight:700;color:var(--navy);margin-bottom:6px}
@@ -384,11 +385,6 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       <div class="ty-vip" style="display:inline-flex"><span>★</span> Live Masterclass Replay</div>
       <h1>How To <span class="vc-hl">Build A <span class="vc-nw">Profitable Airbnb</span> Business In 90&nbsp;Days</span> <span class="vc-money">Without</span> Buying Property</h1>
       <p class="vc-sub">…without real estate experience, ever seeing your Airbnbs in person, or spending more than 5 hours a week managing it.</p>
-      <div class="vc-rating">
-        <span class="vc-tp" role="img" aria-label="Rated 4.4 out of 5 on Trustpilot"><svg viewBox="0 0 128 24" aria-hidden="true"><rect x="0" width="24" height="24" fill="#00B67A"/><rect x="26" width="24" height="24" fill="#00B67A"/><rect x="52" width="24" height="24" fill="#00B67A"/><rect x="78" width="24" height="24" fill="#00B67A"/><rect x="104" width="12" height="24" fill="#00B67A"/><rect x="116" width="12" height="24" fill="#DCDCE6"/><path transform="translate(0 0)" fill="#fff" d="M12 4.2l2.3 4.9 5.3.6-3.9 3.6 1 5.3L12 16l-4.7 2.6 1-5.3-3.9-3.6 5.3-.6z"/><path transform="translate(26 0)" fill="#fff" d="M12 4.2l2.3 4.9 5.3.6-3.9 3.6 1 5.3L12 16l-4.7 2.6 1-5.3-3.9-3.6 5.3-.6z"/><path transform="translate(52 0)" fill="#fff" d="M12 4.2l2.3 4.9 5.3.6-3.9 3.6 1 5.3L12 16l-4.7 2.6 1-5.3-3.9-3.6 5.3-.6z"/><path transform="translate(78 0)" fill="#fff" d="M12 4.2l2.3 4.9 5.3.6-3.9 3.6 1 5.3L12 16l-4.7 2.6 1-5.3-3.9-3.6 5.3-.6z"/><path transform="translate(104 0)" fill="#fff" d="M12 4.2l2.3 4.9 5.3.6-3.9 3.6 1 5.3L12 16l-4.7 2.6 1-5.3-3.9-3.6 5.3-.6z"/></svg></span>
-        <b>Rated Excellent</b>
-        <span>on Trustpilot</span>
-      </div>
       <div class="ty-chips ty-chips-top"><span>Hosted by Aiden Weir</span><span>493 Active Properties</span><span>#1 Largest Operator in NA</span></div>
       <div class="rp-label"><i>▼</i> Watch The Replay Below <i>▼</i></div>
       <div class="rp-video"><div class="rp-video-in" id="rpVideo">
@@ -397,20 +393,24 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
       <div id="rp-apply"></div>
       <h2 class="rp-apply-h"><i>▼</i> Apply Below To Learn More <i>▼</i></h2>
-      <form class="rp-form" id="rpForm" novalidate>
-        <div id="rpFields">
-          <div class="rp-f"><label for="rpName">Full Name</label><input id="rpName" type="text" autocomplete="name" placeholder="Your full name" required></div>
-          <div class="rp-f"><label for="rpEmail">Email</label><input id="rpEmail" type="email" autocomplete="email" placeholder="you@email.com" required></div>
-          <div class="rp-f"><label for="rpPhone">Phone Number</label><input id="rpPhone" type="tel" autocomplete="tel" placeholder="(555) 555-5555" required></div>
-          <div class="rp-f"><label for="rpTime">How soon would you be looking to start your Airbnb business?</label>
-            <div class="rp-dd" data-ph="Select one"><select id="rpTime" required tabindex="-1"><option value="">Select one</option><option>I'm ready to start right away</option><option>Within 30 days</option><option>30 - 60 days</option><option>3-6 months</option></select></div></div>
-          <div class="rp-f"><label for="rpBudget">How much capital do you have to invest in your Airbnb business?</label>
-            <div class="rp-dd" data-ph="Select one"><select id="rpBudget" required tabindex="-1"><option value="">Select one</option><option>Less than $40,000</option><option>$40,000 - $60,000</option><option>$60,000 - $100,000</option><option>$100,000+</option></select></div></div>
-          <button type="submit" class="vc-btn rp-submit"><span class="ty-btn-main">Apply Now <span class="vc-btn-arrow">→</span></span></button>
-          <p class="rp-msg" id="rpMsg" role="alert"></p>
-        </div>
-        <div class="rp-done" id="rpDone"><b>Thanks! Your application is in.</b><p>Our team will reach out to you shortly.</p></div>
-      </form>
+      <div class="rp-form rp-embed"><iframe
+        src="https://api.leadconnectorhq.com/widget/form/0xd5njZvpKRlI4IsYx6b"
+        style="width:100%;height:774px;border:none;border-radius:20px;display:block"
+        id="inline-0xd5njZvpKRlI4IsYx6b"
+        data-layout="{'id':'INLINE'}"
+        data-trigger-type="alwaysShow"
+        data-trigger-value=""
+        data-activation-type="alwaysActivated"
+        data-activation-value=""
+        data-deactivation-type="neverDeactivate"
+        data-deactivation-value=""
+        data-form-name="WEBBY REPLAY FORM"
+        data-height="774"
+        data-layout-iframe-id="inline-0xd5njZvpKRlI4IsYx6b"
+        data-form-id="0xd5njZvpKRlI4IsYx6b"
+        data-cookie-consent="true"
+        data-cookie-consent-provider="auto"
+        title="WEBBY REPLAY FORM"></iframe></div>
     </div>
   </section>
 
@@ -476,7 +476,6 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   /* ---------- SETTINGS ---------- */
   var TZ = 'America/Toronto';
   var REPLAY_VIDEO_ID = '';   // Vidalytics id of this week's replay (account xWCLYwSv). Empty = placeholder box.
-  var FORM_WEBHOOK = '';      // where the apply form posts (JSON). Empty = form shows the thank-you only.
 
   /* ---------- LAST WEBINAR DATE (most recent Wed 7 PM Toronto) ---------- */
   try {
@@ -503,58 +502,9 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   /* ---------- APPLY BUTTONS → FORM ---------- */
   document.querySelectorAll('a[href="#rp-apply"]').forEach(function(a){
-    a.addEventListener('click', function(e){ e.preventDefault(); document.getElementById('rp-apply').scrollIntoView({behavior:'smooth', block:'start'}); setTimeout(function(){ try { document.getElementById('rpName').focus({preventScroll:true}); } catch (x) {} }, 600); });
+    a.addEventListener('click', function(e){ e.preventDefault(); document.getElementById('rp-apply').scrollIntoView({behavior:'smooth', block:'start'}); });
   });
 
-
-  /* ---------- CUSTOM DROPDOWNS ---------- */
-  var openDD = null;
-  function closeDD(){ if (openDD){ openDD.classList.remove('open'); openDD.querySelector('.rp-dd-box').setAttribute('aria-expanded','false'); openDD = null; } }
-  document.addEventListener('click', function(e){ if (openDD && !openDD.contains(e.target)) closeDD(); });
-  document.querySelectorAll('.rp-dd').forEach(function(wrap){
-    var sel = wrap.querySelector('select'), opts = [].slice.call(sel.options).filter(function(o){ return o.value; }).map(function(o){ return o.value; });
-    var box = document.createElement('button'); box.type = 'button'; box.className = 'rp-dd-box'; box.setAttribute('aria-haspopup','listbox'); box.setAttribute('aria-expanded','false');
-    box.innerHTML = '<span>' + wrap.getAttribute('data-ph') + '</span>';
-    var list = document.createElement('ul'); list.className = 'rp-dd-list'; list.setAttribute('role','listbox');
-    list.innerHTML = opts.map(function(o){ return '<li role="option">' + o.replace(/</g,'&lt;') + '</li>'; }).join('');
-    wrap.appendChild(box); wrap.appendChild(list);
-    var lis = [].slice.call(list.children), hi = -1;
-    function mark(i){ lis.forEach(function(li,k){ li.classList.toggle('hi', k === i); }); hi = i; }
-    function pick(i){ sel.value = opts[i]; box.firstChild.textContent = opts[i]; wrap.classList.add('has'); wrap.classList.remove('bad');
-      lis.forEach(function(li,k){ li.classList.toggle('on', k === i); }); closeDD(); box.focus(); }
-    box.addEventListener('click', function(){ if (openDD === wrap) { closeDD(); return; } closeDD(); wrap.classList.add('open'); openDD = wrap; box.setAttribute('aria-expanded','true'); mark(Math.max(0, opts.indexOf(sel.value))); });
-    lis.forEach(function(li,k){ li.addEventListener('click', function(){ pick(k); }); li.addEventListener('mouseenter', function(){ mark(k); }); });
-    box.addEventListener('keydown', function(e){
-      var isOpen = openDD === wrap;
-      if (e.key === 'ArrowDown' || e.key === 'ArrowUp'){ e.preventDefault(); if (!isOpen) box.click(); else mark((hi + (e.key === 'ArrowDown' ? 1 : -1) + opts.length) % opts.length); }
-      else if ((e.key === 'Enter' || e.key === ' ') && isOpen && hi > -1){ e.preventDefault(); pick(hi); }
-      else if (e.key === 'Escape') closeDD();
-    });
-  });
-
-  /* ---------- APPLY FORM ---------- */
-  var form = document.getElementById('rpForm'), msg = document.getElementById('rpMsg');
-  var f = {name:'rpName', email:'rpEmail', phone:'rpPhone', timeline:'rpTime', capital:'rpBudget'};
-  Object.keys(f).forEach(function(k){ f[k] = document.getElementById(f[k]); f[k].addEventListener('input', function(){ f[k].classList.remove('rp-bad'); }); f[k].addEventListener('change', function(){ f[k].classList.remove('rp-bad'); }); });
-  try { var q = new URLSearchParams(location.search);
-    var nm = [q.get('first_name'), q.get('last_name')].filter(Boolean).join(' ') || q.get('name') || q.get('full_name');
-    if (nm) f.name.value = nm; if (q.get('email')) f.email.value = q.get('email'); if (q.get('phone')) f.phone.value = q.get('phone');
-  } catch (e) {}
-  form.addEventListener('submit', function(e){
-    e.preventDefault(); msg.classList.remove('on');
-    var ok = true, d = {};
-    Object.keys(f).forEach(function(k){
-      var v = f[k].value.trim(), bad = !v || (k === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) || (k === 'phone' && v.replace(/\D/g,'').length < 7);
-      f[k].classList.toggle('rp-bad', bad); if (f[k].parentNode.classList.contains('rp-dd')) f[k].parentNode.classList.toggle('bad', bad); if (bad) ok = false; d[k] = v;
-    });
-    if (!ok) { msg.textContent = 'Please fill in every field.'; msg.classList.add('on'); return; }
-    var parts = d.name.split(/\s+/); d.first_name = parts.shift(); d.last_name = parts.join(' ');
-    d.source = 'replay'; d.page_url = location.href; d.submitted_at = new Date().toISOString();
-    function done(){ document.getElementById('rpFields').style.display = 'none'; document.getElementById('rpDone').style.display = 'block'; }
-    if (!FORM_WEBHOOK) { done(); return; }
-    fetch(FORM_WEBHOOK, {method:'POST', headers:{'content-type':'application/json'}, body:JSON.stringify(d)})
-      .then(done).catch(function(){ msg.textContent = 'Something went wrong. Please try again.'; msg.classList.add('on'); });
-  });
 
   /* testimonials are isolated: an error here can never stop checkout below */
   try {
@@ -655,6 +605,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   } catch (e) { if (window.console) console.warn("testimonials:", e); }
 })();
 </script>
+<script src="https://link.msgsndr.com/js/form_embed.js"></script>
 <script src="/flow-nav.js" defer></script>
 </body>
 </html>
