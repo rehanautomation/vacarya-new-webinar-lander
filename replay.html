@@ -334,7 +334,30 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 #vc-reg .rp-done b{display:block;font-size:20px;color:var(--navy);margin-bottom:6px}
 #vc-reg .rp-done p{color:var(--muted);font-size:15px}
 #vc-reg .rp-note{margin-top:12px;font-size:12.5px;color:#8592A6;text-align:center}
+
+#vc-reg .vc-rating{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 10px;margin-top:22px;font-size:15px;color:var(--muted)}
+#vc-reg .vc-rating b{color:var(--ink);font-weight:800}
+#vc-reg .vc-tp{display:inline-flex;line-height:0}
+#vc-reg .vc-tp svg{height:20px;width:auto}
+#vc-reg .vc-rating + .ty-chips{margin-top:12px}
+/* custom dropdown (the hidden <select> keeps the value) */
+#vc-reg .rp-dd{position:relative}
+#vc-reg .rp-dd select{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px}
+#vc-reg .rp-dd-box{width:100%;height:48px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 14px;border:1px solid #D1D5DB;border-radius:10px;background:#fff;font:inherit;font-size:16px;color:#9CA3AF;text-align:left;cursor:pointer;transition:border-color .15s,box-shadow .15s}
+#vc-reg .rp-dd.has .rp-dd-box{color:var(--ink)}
+#vc-reg .rp-dd-box:after{content:"";flex:0 0 auto;width:9px;height:9px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:translateY(-3px) rotate(45deg);transition:transform .15s}
+#vc-reg .rp-dd.open .rp-dd-box{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,150,214,.14)}
+#vc-reg .rp-dd.open .rp-dd-box:after{transform:translateY(2px) rotate(225deg)}
+#vc-reg .rp-dd.bad .rp-dd-box{border-color:#F04438}
+#vc-reg .rp-dd-list{display:none;position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:30;list-style:none;background:#fff;border:1px solid var(--line);border-radius:12px;padding:6px;box-shadow:0 18px 40px -16px rgba(6,47,101,.35)}
+#vc-reg .rp-dd.open .rp-dd-list{display:block}
+#vc-reg .rp-dd-list li{padding:12px 12px;border-radius:8px;font-size:15.5px;color:var(--ink);cursor:pointer}
+#vc-reg .rp-dd-list li:hover,#vc-reg .rp-dd-list li.hi{background:var(--blue-l);color:var(--blue-d)}
+#vc-reg .rp-dd-list li.on{font-weight:700;color:var(--blue-d)}
+#vc-reg .rp-dd-list li.on:after{content:" ✓"}
 @media (max-width:600px){
+  #vc-reg .vc-rating{flex-wrap:nowrap;white-space:nowrap;font-size:min(12.5px,3.25vw);gap:6px;margin-top:16px}
+  #vc-reg .vc-tp svg{height:16px}
   #vc-reg .rp-video{border-radius:14px;margin-top:8px}
   #vc-reg .rp-label{margin-top:18px;font-size:12px}
   #vc-reg .rp-apply-h{margin-top:32px}
@@ -361,6 +384,11 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       <div class="ty-vip" style="display:inline-flex"><span>★</span> Live Masterclass Replay</div>
       <h1>How To <span class="vc-hl">Build A <span class="vc-nw">Profitable Airbnb</span> Business In 90&nbsp;Days</span> <span class="vc-money">Without</span> Buying Property</h1>
       <p class="vc-sub">…without real estate experience, ever seeing your Airbnbs in person, or spending more than 5 hours a week managing it.</p>
+      <div class="vc-rating">
+        <span class="vc-tp" role="img" aria-label="Rated 4.4 out of 5 on Trustpilot"><svg viewBox="0 0 128 24" aria-hidden="true"><rect x="0" width="24" height="24" fill="#00B67A"/><rect x="26" width="24" height="24" fill="#00B67A"/><rect x="52" width="24" height="24" fill="#00B67A"/><rect x="78" width="24" height="24" fill="#00B67A"/><rect x="104" width="12" height="24" fill="#00B67A"/><rect x="116" width="12" height="24" fill="#DCDCE6"/><path transform="translate(0 0)" fill="#fff" d="M12 4.2l2.3 4.9 5.3.6-3.9 3.6 1 5.3L12 16l-4.7 2.6 1-5.3-3.9-3.6 5.3-.6z"/><path transform="translate(26 0)" fill="#fff" d="M12 4.2l2.3 4.9 5.3.6-3.9 3.6 1 5.3L12 16l-4.7 2.6 1-5.3-3.9-3.6 5.3-.6z"/><path transform="translate(52 0)" fill="#fff" d="M12 4.2l2.3 4.9 5.3.6-3.9 3.6 1 5.3L12 16l-4.7 2.6 1-5.3-3.9-3.6 5.3-.6z"/><path transform="translate(78 0)" fill="#fff" d="M12 4.2l2.3 4.9 5.3.6-3.9 3.6 1 5.3L12 16l-4.7 2.6 1-5.3-3.9-3.6 5.3-.6z"/><path transform="translate(104 0)" fill="#fff" d="M12 4.2l2.3 4.9 5.3.6-3.9 3.6 1 5.3L12 16l-4.7 2.6 1-5.3-3.9-3.6 5.3-.6z"/></svg></span>
+        <b>Rated Excellent</b>
+        <span>on Trustpilot</span>
+      </div>
       <div class="ty-chips ty-chips-top"><span>Hosted by Aiden Weir</span><span>493 Active Properties</span><span>#1 Largest Operator in NA</span></div>
       <div class="rp-label"><i>▼</i> Watch The Replay Below <i>▼</i></div>
       <div class="rp-video"><div class="rp-video-in" id="rpVideo">
@@ -375,12 +403,11 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
           <div class="rp-f"><label for="rpEmail">Email</label><input id="rpEmail" type="email" autocomplete="email" placeholder="you@email.com" required></div>
           <div class="rp-f"><label for="rpPhone">Phone Number</label><input id="rpPhone" type="tel" autocomplete="tel" placeholder="(555) 555-5555" required></div>
           <div class="rp-f"><label for="rpTime">How soon would you be looking to start your Airbnb business?</label>
-            <select id="rpTime" required><option value="">Select one</option><option>I'm ready to start right away</option><option>Within 30 days</option><option>30 - 60 days</option><option>3-6 months</option></select></div>
+            <div class="rp-dd" data-ph="Select one"><select id="rpTime" required tabindex="-1"><option value="">Select one</option><option>I'm ready to start right away</option><option>Within 30 days</option><option>30 - 60 days</option><option>3-6 months</option></select></div></div>
           <div class="rp-f"><label for="rpBudget">How much capital do you have to invest in your Airbnb business?</label>
-            <select id="rpBudget" required><option value="">Select one</option><option>Less than $40,000</option><option>$40,000 - $60,000</option><option>$60,000 - $100,000</option><option>$100,000+</option></select></div>
+            <div class="rp-dd" data-ph="Select one"><select id="rpBudget" required tabindex="-1"><option value="">Select one</option><option>Less than $40,000</option><option>$40,000 - $60,000</option><option>$60,000 - $100,000</option><option>$100,000+</option></select></div></div>
           <button type="submit" class="vc-btn rp-submit"><span class="ty-btn-main">Apply Now <span class="vc-btn-arrow">→</span></span></button>
           <p class="rp-msg" id="rpMsg" role="alert"></p>
-          <p class="rp-note">🔒 Your info is private. We never share it.</p>
         </div>
         <div class="rp-done" id="rpDone"><b>Thanks! Your application is in.</b><p>Our team will reach out to you shortly.</p></div>
       </form>
@@ -397,8 +424,6 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
           <div class="vc-tcard"><div class="vc-tvid" data-video="UH3YggU0nB1bDod_"><div id="vidalytics_embed_UH3YggU0nB1bDod_" style="padding-top:177.78%"></div></div><div class="vc-tname">Josh C.<span>Vacarya operator</span></div></div>
           <div class="vc-tcard"><div class="vc-tvid" data-video="YMTcLkxOfEPogHig"><div id="vidalytics_embed_YMTcLkxOfEPogHig" style="padding-top:177.78%"></div></div><div class="vc-tname">Kajana D.<span>Vacarya operator</span></div></div>
       </div>
-      <span class="vc-swipe">Swipe for more →</span>
-      <button type="button" class="vc-more-btn" id="vcMoreBtn" aria-expanded="false">View More ↓</button>
       <span class="vc-swipe">Swipe for more →</span>
       <button type="button" class="vc-more-btn" id="vcMoreBtn" aria-expanded="false">View More ↓</button>
       <div class="vc-more" id="vcMore" hidden>
@@ -481,6 +506,32 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     a.addEventListener('click', function(e){ e.preventDefault(); document.getElementById('rp-apply').scrollIntoView({behavior:'smooth', block:'start'}); setTimeout(function(){ try { document.getElementById('rpName').focus({preventScroll:true}); } catch (x) {} }, 600); });
   });
 
+
+  /* ---------- CUSTOM DROPDOWNS ---------- */
+  var openDD = null;
+  function closeDD(){ if (openDD){ openDD.classList.remove('open'); openDD.querySelector('.rp-dd-box').setAttribute('aria-expanded','false'); openDD = null; } }
+  document.addEventListener('click', function(e){ if (openDD && !openDD.contains(e.target)) closeDD(); });
+  document.querySelectorAll('.rp-dd').forEach(function(wrap){
+    var sel = wrap.querySelector('select'), opts = [].slice.call(sel.options).filter(function(o){ return o.value; }).map(function(o){ return o.value; });
+    var box = document.createElement('button'); box.type = 'button'; box.className = 'rp-dd-box'; box.setAttribute('aria-haspopup','listbox'); box.setAttribute('aria-expanded','false');
+    box.innerHTML = '<span>' + wrap.getAttribute('data-ph') + '</span>';
+    var list = document.createElement('ul'); list.className = 'rp-dd-list'; list.setAttribute('role','listbox');
+    list.innerHTML = opts.map(function(o){ return '<li role="option">' + o.replace(/</g,'&lt;') + '</li>'; }).join('');
+    wrap.appendChild(box); wrap.appendChild(list);
+    var lis = [].slice.call(list.children), hi = -1;
+    function mark(i){ lis.forEach(function(li,k){ li.classList.toggle('hi', k === i); }); hi = i; }
+    function pick(i){ sel.value = opts[i]; box.firstChild.textContent = opts[i]; wrap.classList.add('has'); wrap.classList.remove('bad');
+      lis.forEach(function(li,k){ li.classList.toggle('on', k === i); }); closeDD(); box.focus(); }
+    box.addEventListener('click', function(){ if (openDD === wrap) { closeDD(); return; } closeDD(); wrap.classList.add('open'); openDD = wrap; box.setAttribute('aria-expanded','true'); mark(Math.max(0, opts.indexOf(sel.value))); });
+    lis.forEach(function(li,k){ li.addEventListener('click', function(){ pick(k); }); li.addEventListener('mouseenter', function(){ mark(k); }); });
+    box.addEventListener('keydown', function(e){
+      var isOpen = openDD === wrap;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp'){ e.preventDefault(); if (!isOpen) box.click(); else mark((hi + (e.key === 'ArrowDown' ? 1 : -1) + opts.length) % opts.length); }
+      else if ((e.key === 'Enter' || e.key === ' ') && isOpen && hi > -1){ e.preventDefault(); pick(hi); }
+      else if (e.key === 'Escape') closeDD();
+    });
+  });
+
   /* ---------- APPLY FORM ---------- */
   var form = document.getElementById('rpForm'), msg = document.getElementById('rpMsg');
   var f = {name:'rpName', email:'rpEmail', phone:'rpPhone', timeline:'rpTime', capital:'rpBudget'};
@@ -494,7 +545,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     var ok = true, d = {};
     Object.keys(f).forEach(function(k){
       var v = f[k].value.trim(), bad = !v || (k === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) || (k === 'phone' && v.replace(/\D/g,'').length < 7);
-      f[k].classList.toggle('rp-bad', bad); if (bad) ok = false; d[k] = v;
+      f[k].classList.toggle('rp-bad', bad); if (f[k].parentNode.classList.contains('rp-dd')) f[k].parentNode.classList.toggle('bad', bad); if (bad) ok = false; d[k] = v;
     });
     if (!ok) { msg.textContent = 'Please fill in every field.'; msg.classList.add('on'); return; }
     var parts = d.name.split(/\s+/); d.first_name = parts.shift(); d.last_name = parts.join(' ');
