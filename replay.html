@@ -318,6 +318,9 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 #vc-reg .rp-play.rp-off{opacity:.5;box-shadow:none}
 #vc-reg .rp-sub{display:block;font-size:15px;color:#B9CBE3;max-width:460px}
 #vc-reg .rp-reg{margin-top:6px;padding:14px 26px;text-decoration:none}
+#vc-reg #rpLive[hidden],#vc-reg .rp-ended[hidden]{display:none}
+#vc-reg .rp-ended{max-width:1180px;margin:34px auto 0;padding:64px 22px;border-radius:20px;background:var(--soft);border:1px solid var(--line)}
+#vc-reg .rp-ended h2{font-size:clamp(28px,4vw,42px);font-weight:900;letter-spacing:-1px;color:var(--navy);text-transform:uppercase}
 #vc-reg .rp-label{display:inline-flex;align-items:center;gap:8px;margin-top:28px;font-size:14px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--navy)}
 #vc-reg .rp-label i{font-style:normal;color:var(--blue)}
 #vc-reg .rp-apply-h{margin-top:46px;font-size:clamp(22px,2.8vw,30px);font-weight:900;letter-spacing:-.5px;color:var(--navy);text-transform:uppercase}
@@ -389,6 +392,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       <h1>How To <span class="vc-hl">Build A <span class="vc-nw">Profitable Airbnb</span> Business In 90&nbsp;Days</span> <span class="vc-money">Without</span> Buying Property</h1>
       <p class="vc-sub">…without real estate experience, ever seeing your Airbnbs in person, or spending more than 5 hours a week managing it.</p>
       <div class="ty-chips ty-chips-top"><span>Hosted by Aiden Weir</span><span>493 Active Properties</span><span>#1 Largest Operator in NA</span></div>
+      <div id="rpLive">
       <div class="rp-label"><i>▼</i> Watch The Replay Below <i>▼</i></div>
       <div class="rp-video"><div class="rp-video-in" id="rpVideo">
         <div class="rp-ph" id="rpPh"><div class="rp-play rp-off"></div><b>Loading the replay…</b></div>
@@ -420,6 +424,8 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
         q.forEach(function(v, k){ if (!u.searchParams.has(k)) u.searchParams.set(k, v); });
         if (q.get('first_name') && q.get('last_name') && !u.searchParams.has('full_name')) u.searchParams.set('full_name', q.get('first_name') + ' ' + q.get('last_name'));
         f.src = u.toString(); } catch (e) {} })();</script>
+      </div>
+      <div class="rp-ended" id="rpEnded" hidden><h2>Replay Has Ended</h2></div>
     </div>
   </section>
 
@@ -522,9 +528,10 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   }
 
   if (!inWindow) {
-    var nx = document.querySelector('[data-rp-next]') ? document.querySelector('[data-rp-next]').textContent : 'Wednesday';
-    showMsg('This replay has ended', 'The next live training is ' + nx + ' at 7:00 PM ET.', 'Save My Free Seat');
-    var bar = document.querySelector('.ty-bar'); if (bar) bar.innerHTML = '<span class="ty-check">▶</span> Next Live Airbnb Masterclass: <b>' + nx + '</b> at <b>7:00 PM ET</b>';
+    document.getElementById('rpLive').hidden = true;
+    document.getElementById('rpEnded').hidden = false;
+    document.querySelectorAll('.rp-go').forEach(function(a){ var row = a.closest('.vc-cta-row'); if (row) row.style.display = 'none'; });
+    var bar = document.querySelector('.ty-bar'); if (bar) bar.innerHTML = '<span class="ty-check">▶</span> This Replay Has Ended';
   } else if (!vid) {
     showMsg('The replay is being uploaded', 'Check back shortly. It will appear right here.', '');
   } else {
