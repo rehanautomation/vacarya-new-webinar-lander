@@ -860,8 +860,28 @@ body:has(.vcc-page) {
 </script>
 
 <!-- WebinarJam goal tracking: success page for the "Vacarya Partnership" offer ($0 = booked call) -->
-<script src="https://event.webinarjam.com/t/sale/cookie.js"></script>
-<script src="https://event.webinarjam.com/t/sale/o1zy28t9hx/v2?price=0.00&currency=USD"></script>
+<script>
+/* WebinarJam $0 sale: count each person once (WJ's own script counts every page load) */
+(function () {
+  var CODES = ['o1zy28t9hx']; // Wednesday webinar offer
+  var m = document.cookie.match(/(?:^|;\s*)wj_user_product=([^;]*)/);
+  if (!m) return;                                   // not from a WebinarJam room: nothing to count
+  var user = (decodeURIComponent(m[1]).match(/(?:^|&)wj_user=([^&]*)/) || [])[1];
+  if (!user) return;
+  CODES.forEach(function (code) {
+    var key = 'wjsale_' + code + '_' + user;
+    var done = false;
+    try { done = localStorage.getItem(key) === '1'; } catch (e) {}
+    if (document.cookie.indexOf(key + '=1') > -1) done = true;
+    if (done) return;
+    try { localStorage.setItem(key, '1'); } catch (e) {}
+    document.cookie = key + '=1; path=/; max-age=' + 60 * 60 * 24 * 90;
+    var s = document.createElement('script');
+    s.src = 'https://event.webinarjam.com/t/sale/' + code + '/v2?price=0.00&currency=USD';
+    document.body.appendChild(s);
+  });
+})();
+</script>
 
 <script>
 /* GHL: drop the builder's section/row/column padding so this page runs full width */
