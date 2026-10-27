@@ -305,6 +305,9 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 #vc-reg .rp-play{width:84px;height:84px;border-radius:50%;background:linear-gradient(180deg,#1FBCF2,#0088C7);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 10px rgba(255,255,255,.12)}
 #vc-reg .rp-play:after{content:"";border-left:26px solid #fff;border-top:16px solid transparent;border-bottom:16px solid transparent;margin-left:6px}
 #vc-reg .rp-ph b{font-size:17px;font-weight:800}
+#vc-reg .rp-play.rp-off{opacity:.5;box-shadow:none}
+#vc-reg .rp-sub{display:block;font-size:15px;color:#B9CBE3;max-width:460px}
+#vc-reg .rp-reg{margin-top:6px;padding:14px 26px;text-decoration:none}
 #vc-reg .rp-label{display:inline-flex;align-items:center;gap:8px;margin-top:28px;font-size:14px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--navy)}
 #vc-reg .rp-label i{font-style:normal;color:var(--blue)}
 #vc-reg .rp-apply-h{margin-top:46px;font-size:clamp(22px,2.8vw,30px);font-weight:900;letter-spacing:-.5px;color:var(--navy);text-transform:uppercase}
@@ -362,7 +365,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
 </style>
 <div id="vc-reg">
-  <div class="ty-bar"><span class="ty-check">▶</span> Live Replay From The Airbnb Masterclass, <b data-rp-date>Wednesday, Oct 21</b> at <b>7:00 PM ET</b></div>
+  <div class="ty-bar"><span class="ty-check">▶</span> Live Replay From The Airbnb Masterclass, <b data-rp-date>Wednesday, Oct 21</b> at <b>7:00 PM ET</b><span data-rp-next hidden></span></div>
   <header class="vc-header">
     <img class="vc-logo" src="https://hostvacarya.com/wp-content/uploads/2026/10/vacarya-logo-header-dark.png" alt="Vacarya">
   </header>
@@ -376,7 +379,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       <div class="ty-chips ty-chips-top"><span>Hosted by Aiden Weir</span><span>493 Active Properties</span><span>#1 Largest Operator in NA</span></div>
       <div class="rp-label"><i>▼</i> Watch The Replay Below <i>▼</i></div>
       <div class="rp-video"><div class="rp-video-in" id="rpVideo">
-        <div class="rp-ph" id="rpPh"><div class="rp-play"></div><b>Replay video goes here</b></div>
+        <div class="rp-ph" id="rpPh"><div class="rp-play rp-off"></div><b>Loading the replay…</b></div>
       </div></div>
 
       <div id="rp-apply"></div>
@@ -469,29 +472,76 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 (function(){
   /* ---------- SETTINGS ---------- */
   var TZ = 'America/Toronto';
-  var REPLAY_VIDEO_ID = '';   // Vidalytics id of this week's replay (account xWCLYwSv). Empty = placeholder box.
+  /* REPLAY_RAW comes from GHL custom value "Replay Video ID" (Webinar sub-account).
+     Paste the Vidalytics video ID (or its embed code / link). "none" or empty = no replay yet. */
+  var REPLAY_RAW = '{{ custom_values.replay_video_id }}';
+  var VACC_ID = 'xWCLYwSv';
 
-  /* ---------- LAST WEBINAR DATE (most recent Wed 7 PM Toronto) ---------- */
+  /* ---------- REPLAY WINDOW (Toronto): live Wed 9:00 PM -> Sun 11:59 PM ---------- */
+  function torontoParts(d){ var p = {};
+    new Intl.DateTimeFormat('en-US',{timeZone:TZ,weekday:'short',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(d).forEach(function(x){p[x.type]=x.value;});
+    return {dow:{Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6}[p.weekday], min:(+p.hour)*60+(+p.minute)}; }
+  var nowP = torontoParts(new Date());
+  var inWindow = (nowP.dow === 3 && nowP.min >= 21*60) || nowP.dow === 4 || nowP.dow === 5 || nowP.dow === 6 || nowP.dow === 0;
+
+  /* ---------- DATES: last webinar (bar) + next webinar (closed message) ---------- */
+  function fmtDay(d){ return new Intl.DateTimeFormat('en-US',{timeZone:TZ,weekday:'long',month:'short',day:'numeric'}).format(d); }
   try {
-    var now = new Date(), p = {};
-    new Intl.DateTimeFormat('en-US',{timeZone:TZ,weekday:'short',hour:'2-digit',hourCycle:'h23'}).formatToParts(now).forEach(function(x){p[x.type]=x.value;});
-    var dow = {Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6}[p.weekday];
-    var back = (dow - 3 + 7) % 7; if (back === 0 && +p.hour < 20) back = 7;
-    var last = new Date(now.getTime() - back*86400000);
-    var txt = new Intl.DateTimeFormat('en-US',{timeZone:TZ,weekday:'long',month:'short',day:'numeric'}).format(last);
-    document.querySelectorAll('[data-rp-date]').forEach(function(el){ el.textContent = txt; });
+    var back = (nowP.dow - 3 + 7) % 7; if (back === 0 && nowP.min < 21*60) back = 7;
+    var noon = Date.now() - (nowP.min - 720)*60000;   /* today at noon Toronto, so DST shifts never cross a date */
+    var lastW = new Date(noon - back*86400000);
+    var ahead = (3 - nowP.dow + 7) % 7; if (ahead === 0 && nowP.min >= 19*60) ahead = 7;
+    var nextW = new Date(noon + ahead*86400000);
+    document.querySelectorAll('[data-rp-date]').forEach(function(el){ el.textContent = fmtDay(lastW); });
+    document.querySelectorAll('[data-rp-next]').forEach(function(el){ el.textContent = fmtDay(nextW); });
   } catch (e) {}
 
-  /* ---------- REPLAY VIDEO ---------- */
-  if (REPLAY_VIDEO_ID) {
-    var box = document.getElementById('rpVideo'), embedId = 'vidalytics_embed_' + REPLAY_VIDEO_ID;
-    box.innerHTML = '<div id="' + embedId + '" style="width:100%;height:100%"></div>';
-    (function (v, i, d, a, l, y, t, c, s) {
-      y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}
-      var vl='Loader',vli=v[y][vl],vsl=v[c][vl+'Script'],vlf=v[c][vl+'Loaded'],ve='Embed';
-      if(!vsl){vsl=function(u,cb){ if(t){cb();return;}s=i.createElement("script");s.type="text/javascript";s.async=1;s.src=u; s.onload=function(){vlf=1;cb();}; i.getElementsByTagName("head")[0].appendChild(s); };}
-      vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();} vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});
-    })(window, document, 'Vidalytics', embedId, 'https://fast.vidalytics.com/embeds/xWCLYwSv/' + REPLAY_VIDEO_ID + '/');
+  /* ---------- VIDEO ID from the custom value ---------- */
+  var vid = '';
+  if (REPLAY_RAW.indexOf('{{') === -1) {
+    var m = REPLAY_RAW.match(/embeds\/[A-Za-z0-9_-]+\/([A-Za-z0-9_-]{10,})/) || REPLAY_RAW.match(/vidalytics_embed_([A-Za-z0-9_-]{10,})/) || REPLAY_RAW.trim().match(/^([A-Za-z0-9_-]{10,})$/);
+    if (m) vid = m[1];
+  }
+
+  var box = document.getElementById('rpVideo'), ph = document.getElementById('rpPh');
+  function showMsg(title, sub, btn){
+    ph.innerHTML = '<div class="rp-play rp-off"></div><b>' + title + '</b>' + (sub ? '<span class="rp-sub">' + sub + '</span>' : '') +
+      (btn ? '<a class="vc-btn rp-reg" href="https://event.hostvacarya.com/register">' + btn + ' <span class="vc-btn-arrow">→</span></a>' : '');
+  }
+
+  if (!inWindow) {
+    var nx = document.querySelector('[data-rp-next]') ? document.querySelector('[data-rp-next]').textContent : 'Wednesday';
+    showMsg('This replay has ended', 'The next live training is ' + nx + ' at 7:00 PM ET.', 'Save My Free Seat');
+    var bar = document.querySelector('.ty-bar'); if (bar) bar.innerHTML = '<span class="ty-check">▶</span> Next Live Airbnb Masterclass: <b>' + nx + '</b> at <b>7:00 PM ET</b>';
+  } else if (!vid) {
+    showMsg('The replay is being uploaded', 'Check back shortly. It will appear right here.', '');
+  } else {
+    /* Vidalytics: newer videos use the settings loader, older ones the classic one. Try settings first. */
+    var base = 'https://fast.vidalytics.com/embeds/' + VACC_ID + '/' + vid + '/';
+    function addScript(src, cb){ var sc = document.createElement('script'); sc.async = true; sc.src = src; sc.onload = cb; sc.onerror = cb; document.head.appendChild(sc); }
+    function classic(){
+      box.innerHTML = '<div id="vidalytics_embed_' + vid + '" style="width:100%;height:100%"></div>';
+      (function (v, i, d, a, l, y, t, c, s) {
+        y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}
+        var vl='Loader',vli=v[y][vl],vsl=v[c][vl+'Script'],vlf=v[c][vl+'Loaded'],ve='Embed';
+        if(!vsl){vsl=function(u,cb){ if(t){cb();return;}s=i.createElement("script");s.type="text/javascript";s.async=1;s.src=u; s.onload=function(){vlf=1;cb();}; i.getElementsByTagName("head")[0].appendChild(s); };}
+        vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();} vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});
+      })(window, document, 'Vidalytics', 'vidalytics_embed_' + vid, base);
+    }
+    var x = new XMLHttpRequest(); x.open('GET', base + 'player.settings.json?ac=' + Date.now(), true);
+    x.onreadystatechange = function(){
+      if (x.readyState !== 4) return;
+      if (x.status !== 200 && x.status !== 304) { classic(); return; }
+      try {
+        box.innerHTML = '<div id="' + vid + '" style="width:100%;height:100%"></div>';
+        window._vidalytics = window._vidalytics || {}; window._vidalytics.embeds = window._vidalytics.embeds || {};
+        window._vidalytics.embeds[vid] = {type:'video', options: JSON.parse(x.responseText)};
+        addScript(base + 'loader.min.js', function(){ addScript(base + 'player.min.js', function(){
+          var run = function(){ if (window.Vidalytics && window.Vidalytics.Embed){ var e = new window.Vidalytics.Embed(); e.run(vid); e.loadCss(); } else setTimeout(run, 400); }; run();
+        }); });
+      } catch (e) { classic(); }
+    };
+    x.send();
   }
 
   /* ---------- APPLY BUTTONS → FORM ---------- */
