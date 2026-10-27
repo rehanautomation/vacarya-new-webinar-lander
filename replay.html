@@ -517,64 +517,73 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   /* ---------- VIDEO ID from the custom value ---------- */
   /* GHL fills custom values in Text elements, not in code. So the page has a GHL Text element
      containing  RVID:{{ custom_values.replay_video_id }}  -> read it here and hide it. */
-  try {
-    var tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null), tn;
-    while ((tn = tw.nextNode())) {
-      var mm = tn.nodeValue.match(/RVID:\s*(\S+)/);
-      if (mm && !tn.parentNode.closest('script')) {
-        if (mm[1].indexOf('{{') === -1) REPLAY_RAW = mm[1];
-        var host = tn.parentNode.closest('.c-text, .c-paragraph, .c-heading, [class*="paragraph"], [class*="text"]') || tn.parentNode;
-        host.style.display = 'none'; break;
+  function findMarker(){
+    var found = false;
+    try {
+      var tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null), tn;
+      while ((tn = tw.nextNode())) {
+        var mm = tn.nodeValue.match(/RVID:\s*(\S+)/);
+        if (mm && !tn.parentNode.closest('script')) {
+          if (mm[1].indexOf('{{') === -1) REPLAY_RAW = mm[1];
+          var host = tn.parentNode.closest('.c-text, .c-paragraph, .c-heading, [class*="paragraph"], [class*="text"]') || tn.parentNode;
+          host.style.display = 'none'; found = true; break;
+        }
       }
-    }
-  } catch (e) {}
-  var vid = '';
-  if (REPLAY_RAW.indexOf('{{') === -1) {
-    var m = REPLAY_RAW.match(/embeds\/[A-Za-z0-9_-]+\/([A-Za-z0-9_-]{10,})/) || REPLAY_RAW.match(/vidalytics_embed_([A-Za-z0-9_-]{10,})/) || REPLAY_RAW.trim().match(/^([A-Za-z0-9_-]{10,})$/);
-    if (m) vid = m[1];
+    } catch (e) {}
+    return found;
   }
 
-  var box = document.getElementById('rpVideo'), ph = document.getElementById('rpPh');
-  function showMsg(title, sub, btn){
-    ph.innerHTML = '<div class="rp-play rp-off"></div><b>' + title + '</b>' + (sub ? '<span class="rp-sub">' + sub + '</span>' : '') +
-      (btn ? '<a class="vc-btn rp-reg" href="/register">' + btn + ' <span class="vc-btn-arrow">→</span></a>' : '');
-  }
-
-  if (!inWindow) {
-    document.getElementById('rpLive').hidden = true;
-    document.getElementById('rpEnded').hidden = false;
-    document.querySelectorAll('.rp-go').forEach(function(a){ var row = a.closest('.vc-cta-row'); if (row) row.style.display = 'none'; });
-    var bar = document.querySelector('.ty-bar'); if (bar) bar.innerHTML = '<span class="ty-check">▶</span> This Replay Has Ended';
-  } else if (!vid) {
-    showMsg('The replay is being uploaded', 'Check back shortly. It will appear right here.', '');
-  } else {
-    /* Vidalytics: newer videos use the settings loader, older ones the classic one. Try settings first. */
-    var base = 'https://fast.vidalytics.com/embeds/' + VACC_ID + '/' + vid + '/';
-    function addScript(src, cb){ var sc = document.createElement('script'); sc.async = true; sc.src = src; sc.onload = cb; sc.onerror = cb; document.head.appendChild(sc); }
-    function classic(){
-      box.innerHTML = '<div id="vidalytics_embed_' + vid + '" style="width:100%;height:100%"></div>';
-      (function (v, i, d, a, l, y, t, c, s) {
-        y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}
-        var vl='Loader',vli=v[y][vl],vsl=v[c][vl+'Script'],vlf=v[c][vl+'Loaded'],ve='Embed';
-        if(!vsl){vsl=function(u,cb){ if(t){cb();return;}s=i.createElement("script");s.type="text/javascript";s.async=1;s.src=u; s.onload=function(){vlf=1;cb();}; i.getElementsByTagName("head")[0].appendChild(s); };}
-        vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();} vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});
-      })(window, document, 'Vidalytics', 'vidalytics_embed_' + vid, base);
+  function rpRun(){
+    var vid = '';
+    if (REPLAY_RAW.indexOf('{{') === -1) {
+      var m = REPLAY_RAW.match(/embeds\/[A-Za-z0-9_-]+\/([A-Za-z0-9_-]{10,})/) || REPLAY_RAW.match(/vidalytics_embed_([A-Za-z0-9_-]{10,})/) || REPLAY_RAW.trim().match(/^([A-Za-z0-9_-]{10,})$/);
+      if (m) vid = m[1];
     }
-    var x = new XMLHttpRequest(); x.open('GET', base + 'player.settings.json?ac=' + Date.now(), true);
-    x.onreadystatechange = function(){
-      if (x.readyState !== 4) return;
-      if (x.status !== 200 && x.status !== 304) { classic(); return; }
-      try {
-        box.innerHTML = '<div id="' + vid + '" style="width:100%;height:100%"></div>';
-        window._vidalytics = window._vidalytics || {}; window._vidalytics.embeds = window._vidalytics.embeds || {};
-        window._vidalytics.embeds[vid] = {type:'video', options: JSON.parse(x.responseText)};
-        addScript(base + 'loader.min.js', function(){ addScript(base + 'player.min.js', function(){
-          var run = function(){ if (window.Vidalytics && window.Vidalytics.Embed){ var e = new window.Vidalytics.Embed(); e.run(vid); e.loadCss(); } else setTimeout(run, 400); }; run();
-        }); });
-      } catch (e) { classic(); }
-    };
-    x.send();
+  
+    var box = document.getElementById('rpVideo'), ph = document.getElementById('rpPh');
+    function showMsg(title, sub, btn){
+      ph.innerHTML = '<div class="rp-play rp-off"></div><b>' + title + '</b>' + (sub ? '<span class="rp-sub">' + sub + '</span>' : '') +
+        (btn ? '<a class="vc-btn rp-reg" href="/register">' + btn + ' <span class="vc-btn-arrow">→</span></a>' : '');
+    }
+  
+    if (!inWindow) {
+      document.getElementById('rpLive').hidden = true;
+      document.getElementById('rpEnded').hidden = false;
+      document.querySelectorAll('.rp-go').forEach(function(a){ var row = a.closest('.vc-cta-row'); if (row) row.style.display = 'none'; });
+      var bar = document.querySelector('.ty-bar'); if (bar) bar.innerHTML = '<span class="ty-check">▶</span> This Replay Has Ended';
+    } else if (!vid) {
+      showMsg('The replay is being uploaded', 'Check back shortly. It will appear right here.', '');
+    } else {
+      /* Vidalytics: newer videos use the settings loader, older ones the classic one. Try settings first. */
+      var base = 'https://fast.vidalytics.com/embeds/' + VACC_ID + '/' + vid + '/';
+      function addScript(src, cb){ var sc = document.createElement('script'); sc.async = true; sc.src = src; sc.onload = cb; sc.onerror = cb; document.head.appendChild(sc); }
+      function classic(){
+        box.innerHTML = '<div id="vidalytics_embed_' + vid + '" style="width:100%;height:100%"></div>';
+        (function (v, i, d, a, l, y, t, c, s) {
+          y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}
+          var vl='Loader',vli=v[y][vl],vsl=v[c][vl+'Script'],vlf=v[c][vl+'Loaded'],ve='Embed';
+          if(!vsl){vsl=function(u,cb){ if(t){cb();return;}s=i.createElement("script");s.type="text/javascript";s.async=1;s.src=u; s.onload=function(){vlf=1;cb();}; i.getElementsByTagName("head")[0].appendChild(s); };}
+          vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();} vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});
+        })(window, document, 'Vidalytics', 'vidalytics_embed_' + vid, base);
+      }
+      var x = new XMLHttpRequest(); x.open('GET', base + 'player.settings.json?ac=' + Date.now(), true);
+      x.onreadystatechange = function(){
+        if (x.readyState !== 4) return;
+        if (x.status !== 200 && x.status !== 304) { classic(); return; }
+        try {
+          box.innerHTML = '<div id="' + vid + '" style="width:100%;height:100%"></div>';
+          window._vidalytics = window._vidalytics || {}; window._vidalytics.embeds = window._vidalytics.embeds || {};
+          window._vidalytics.embeds[vid] = {type:'video', options: JSON.parse(x.responseText)};
+          addScript(base + 'loader.min.js', function(){ addScript(base + 'player.min.js', function(){
+            var run = function(){ if (window.Vidalytics && window.Vidalytics.Embed){ var e = new window.Vidalytics.Embed(); e.run(vid); e.loadCss(); } else setTimeout(run, 400); }; run();
+          }); });
+        } catch (e) { classic(); }
+      };
+      x.send();
+    }
   }
+  /* the GHL text element can load after this code: look for it for up to 6 s, then run once */
+  (function poll(n){ if (findMarker() || n >= 24) { rpRun(); if (n >= 24) setTimeout(findMarker, 3000); } else setTimeout(function(){ poll(n + 1); }, 250); })(0);
 
   /* ---------- APPLY BUTTONS → FORM ---------- */
   document.querySelectorAll('a[href="#rp-apply"]').forEach(function(a){
