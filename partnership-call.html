@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book Your Partnership Call | Vacarya</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="300x300" href="https://hostvacarya.com/wp-content/uploads/2025/10/vacarya-favicon-light-512-300x300.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;padding:0;background:#fff}
+#vc-reg *{margin:0;padding:0;box-sizing:border-box}
+#vc-reg{
+  --navy:#062F65;--muted:#5A6478;--line:#E3E8EF;--soft:#F4F6FA;
+  font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;color:#0F172A;background:#fff;line-height:1.55;
+  width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;overflow:hidden;-webkit-font-smoothing:antialiased}
+#vc-reg .vc-header{display:flex;align-items:center;justify-content:center;padding:18px 22px;background:#fff;border-bottom:1px solid var(--line)}
+#vc-reg .vc-logo{width:180px;height:auto;display:block}
+#vc-reg .pc-main{max-width:1000px;margin:0 auto;padding:28px 16px 48px}
+#vc-reg .pc-cal{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 1px 2px rgba(6,47,101,.05),0 30px 60px -30px rgba(6,47,101,.40)}
+#vc-reg .pc-cal iframe{display:block;width:100%;min-height:760px;border:0}
+#vc-reg .vc-footer{color:#8592A6;padding:32px 22px 48px;font-size:12.5px;line-height:1.7;text-align:center;border-top:1px solid var(--line)}
+#vc-reg .vc-footer p{max-width:900px;margin:0 auto 8px}
+@media (max-width:600px){
+  #vc-reg .vc-header{padding:10px 12px}
+  #vc-reg .vc-logo{width:100px}
+  #vc-reg .pc-main{padding:14px 8px 32px}
+  #vc-reg .pc-cal{border-radius:14px}
+}
+</style>
+</head>
+<body>
+<div id="vc-reg">
+  <header class="vc-header">
+    <img class="vc-logo" src="https://hostvacarya.com/wp-content/uploads/2026/10/vacarya-logo-header-dark.png" alt="Vacarya">
+  </header>
+
+  <main class="pc-main">
+    <div class="pc-cal">
+      <iframe src="https://api.leadconnectorhq.com/widget/booking/o2dH5El8ovHJjewgVjph" scrolling="no" id="o2dH5El8ovHJjewgVjph_pc" title="Book your partnership call"></iframe>
+    </div>
+  </main>
+
+  <footer class="vc-footer">
+    <p>Vacarya is an independent short-term rental business and education company and is not affiliated with or endorsed by Airbnb. Results are not typical and are not a guarantee of future returns. Nothing here is financial, legal, investment or business advice.</p>
+    <p>© 2026 Vacarya LP · All Rights Reserved</p>
+  </footer>
+</div>
+
+<!-- WebinarJam: marks this visitor so the $0 "sale" on the confirmation page is credited -->
+<script src="https://event.webinarjam.com/t/sale/cookie.js"></script>
+<script>
+/* pass ?email=&first_name=&phone= etc. from this page into the calendar so it prefills */
+(function(){ try { if (!location.search) return;
+  var f = document.getElementById('o2dH5El8ovHJjewgVjph_pc'), u = new URL(f.src), q = new URLSearchParams(location.search);
+  q.forEach(function(v, k){ if (!u.searchParams.has(k)) u.searchParams.set(k, v); });
+  f.src = u.toString(); } catch (e) {} })();
+</script>
+<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
+</body>
+</html>

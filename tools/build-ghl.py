@@ -24,6 +24,7 @@ PAGES = {  # Vercel file -> GHL step path
     'vip-confirmed.html': 'vip-confirmed',
     'confirmed.html': 'confirmed',
     'replay.html': 'replay',
+    'partnership-call.html': 'partnership-call',
 }
 
 KEEP_HEAD = re.compile(r'<link[^>]*(?:preconnect|dns-prefetch|stylesheet)[^>]*>|<style[\s\S]*?</style>|<script[\s\S]*?</script>', re.I)
