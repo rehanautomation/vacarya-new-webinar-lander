@@ -503,6 +503,19 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   } catch (e) {}
 
   /* ---------- VIDEO ID from the custom value ---------- */
+  /* GHL fills custom values in Text elements, not in code. So the page has a GHL Text element
+     containing  RVID:{{ custom_values.replay_video_id }}  -> read it here and hide it. */
+  try {
+    var tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null), tn;
+    while ((tn = tw.nextNode())) {
+      var mm = tn.nodeValue.match(/RVID:\s*(\S+)/);
+      if (mm && !tn.parentNode.closest('script')) {
+        if (mm[1].indexOf('{{') === -1) REPLAY_RAW = mm[1];
+        var host = tn.parentNode.closest('.c-text, .c-paragraph, .c-heading, [class*="paragraph"], [class*="text"]') || tn.parentNode;
+        host.style.display = 'none'; break;
+      }
+    }
+  } catch (e) {}
   var vid = '';
   if (REPLAY_RAW.indexOf('{{') === -1) {
     var m = REPLAY_RAW.match(/embeds\/[A-Za-z0-9_-]+\/([A-Za-z0-9_-]{10,})/) || REPLAY_RAW.match(/vidalytics_embed_([A-Za-z0-9_-]{10,})/) || REPLAY_RAW.trim().match(/^([A-Za-z0-9_-]{10,})$/);
