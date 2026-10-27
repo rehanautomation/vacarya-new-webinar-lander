@@ -483,12 +483,12 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   var REPLAY_RAW = '{{ custom_values.replay_video_id }}';
   var VACC_ID = 'xWCLYwSv';
 
-  /* ---------- REPLAY WINDOW (Toronto): live Wed 9:00 PM -> Sun 11:59 PM ---------- */
+  /* ---------- REPLAY WINDOW (Toronto): live Wed 9:00 PM -> Sat 11:59 PM (emails: 'Saturday at midnight') ---------- */
   function torontoParts(d){ var p = {};
     new Intl.DateTimeFormat('en-US',{timeZone:TZ,weekday:'short',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(d).forEach(function(x){p[x.type]=x.value;});
     return {dow:{Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6}[p.weekday], min:(+p.hour)*60+(+p.minute)}; }
   var nowP = torontoParts(new Date());
-  var inWindow = (nowP.dow === 3 && nowP.min >= 21*60) || nowP.dow === 4 || nowP.dow === 5 || nowP.dow === 6 || nowP.dow === 0;
+  var inWindow = (nowP.dow === 3 && nowP.min >= 21*60) || nowP.dow === 4 || nowP.dow === 5 || nowP.dow === 6;   /* down Saturday at midnight */
 
   /* ---------- DATES: last webinar (bar) + next webinar (closed message) ---------- */
   function fmtDay(d){ return new Intl.DateTimeFormat('en-US',{timeZone:TZ,weekday:'long',month:'short',day:'numeric'}).format(d); }
